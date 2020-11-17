@@ -12,5 +12,6 @@ print ("Con cuanto dinero vais a entrar cada uno?")
 
 funciones.dinerojugadores(listajugadores)
 
-print (listajugadores)
+print ("Vale! empezemos!")
 
+funciones.barajar(objetos.baraja)
