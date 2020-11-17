@@ -1,6 +1,12 @@
+
+from os import system
+
+system("clear")
+
 import funciones
 
 import objetos
+
 
 
 print ("Hola y bienvenidos! a su programa de BlackJack preferido!")
