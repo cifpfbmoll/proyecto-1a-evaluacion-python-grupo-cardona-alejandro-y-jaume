@@ -14,5 +14,3 @@ funciones.dinerojugadores(listajugadores)
 
 print (listajugadores)
 
-https://github.com/cifpfbmoll/proyecto-1a-evaluacion-python-grupo-cardona-alejandro-y-jaume.git
-
