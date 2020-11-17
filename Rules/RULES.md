@@ -10,7 +10,7 @@
 
  - La banca debe sacar carta si su puntuación es menor o igual a 16.
 
- - Se considera Blackjack la suma de J, Q o K + AS
+ - Se considera Blackjack la suma de `J`, `Q` o `K` + `AS`
 
 ## Apuestas:
 
