@@ -23,3 +23,7 @@
 # *Valores de las cartas*
 
 ![Cartas](cartas.png)
+
+# *Diagrama de juego*
+
+![Diagrama de juego](diagrama.svg)
