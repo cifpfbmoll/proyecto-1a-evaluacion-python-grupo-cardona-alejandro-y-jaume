@@ -6,7 +6,9 @@ Jaume es el Scrum Master hoy. Hemos empezado a planear la aplicación i la varia
 
 Alejandro es el Scrum Master hoy. Se ha declarado las reglas del juego y los pasos a seguir durante el juego. Se ha creado la carpeta `RULES` donde se ha subido:
 
- - `RULES.md` Archivo donde explica las reglas del juego. Se incluye el diagrama de los pasos de juego y el valor de las cartas.
- - `cartas.png` Imagen representativa del valor de las cartas.
- - `diagrama.svg` Diagrama con los pasos del juego.
- - `diagrama.drawio` Archivo editable para editar el diagrama.
+ - `RULES/README.md` Archivo donde explica las reglas del juego. Se incluye el diagrama de los pasos de juego y el valor de las cartas.
+ - `RULES/cartas.png` Imagen representativa del valor de las cartas.
+ - `RULES/diagrama.svg` Diagrama con los pasos del juego.
+ - `RULES/diagrama.drawio` Archivo editable para editar el diagrama.
+
+Se ha profundizado en desarrollar las funciones principales y en resolver los problemas de sincronización del equipo con Github.
