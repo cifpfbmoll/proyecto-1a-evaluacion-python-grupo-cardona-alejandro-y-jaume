@@ -18,7 +18,7 @@ def nombrejugadores (numerojugadores):
 
     for i in range(1,numerojugadores+1):
 
-        nombrejugador=str(input(f"Escribe el nombre del {i} jugador:"))
+        nombrejugador=str(input(f" > Escribe el nombre del {i} jugador:"))
 
         listajugadores.append([nombrejugador])
 
@@ -28,8 +28,18 @@ def dinerojugadores (listajugadores):
 
     for i in range (len(listajugadores)):
 
-        dinero=int(input(f"{listajugadores[i][0]}:"))
+        dinero=int(input(f" > Introducir dinero de {listajugadores[i][0]}:"))
 
         listajugadores[i].append(dinero)
+
+    return listajugadores
+
+def apuestajugadores (listajugadores):
+
+    for i in range (len(listajugadores)):
+
+        apuesta=int(input(f" > Introducir apuesta de {listajugadores[i][0]}:"))
+
+        listajugadores[i].append(apuesta)
 
     return listajugadores
