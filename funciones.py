@@ -1,8 +1,19 @@
+
 def sacarcarta (lista):
 
     carta=lista.pop(0)
 
     return carta
+
+def repartircarta (listajugadores,baraja):
+
+    
+
+    for i in range (len(listajugadores)):
+
+        carta=sacarcarta(baraja)
+
+        listajugadores[i].append(carta)
 
 def barajar (lista):
 

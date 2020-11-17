@@ -17,10 +17,6 @@ print ("Vale! empezemos!")
 
 baraja=funciones.barajar(objetos.baraja)
 
-for i in range (len(listajugadores)):
+funciones.repartircarta(listajugadores,baraja)
 
-    carta=funciones.sacarcarta(baraja)
-
-    listajugadores[i].append(carta)
-
-
+print (listajugadores)
