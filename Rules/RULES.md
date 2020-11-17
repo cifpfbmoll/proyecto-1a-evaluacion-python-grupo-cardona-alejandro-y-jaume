@@ -21,3 +21,5 @@
  Si el jugador gana a la banca con blackjack obtiene una ganancia de 3:1
 
 # *Valores de las cartas*
+
+![Cartas](cartas.png)
