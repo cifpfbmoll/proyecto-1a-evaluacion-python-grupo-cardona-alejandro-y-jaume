@@ -1,6 +1,7 @@
 import funciones
 
-import baraja
+import objetos
+
 
 print ("Hola y bienvenidos! a su programa de BlackJack preferido!")
 
@@ -14,4 +15,12 @@ funciones.dinerojugadores(listajugadores)
 
 print ("Vale! empezemos!")
 
-funciones.barajar(objetos.baraja)
+baraja=funciones.barajar(objetos.baraja)
+
+for i in range (len(listajugadores)):
+
+    carta=funciones.sacarcarta(baraja)
+
+    listajugadores[i].append(carta)
+
+

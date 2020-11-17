@@ -8,7 +8,7 @@ def barajar (lista):
 
     import random
 
-    lista=random.shuffle(lista)
+    random.shuffle(lista)
 
     return lista
 
