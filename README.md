@@ -10,3 +10,5 @@ Alejandro es el Scrum Master hoy. Se ha declarado las reglas del juego y los pas
  - `RULES/cartas.png` Imagen representativa del valor de las cartas.
  - `RULES/diagrama.svg` Diagrama con los pasos del juego.
  - `RULES/diagrama.drawio` Archivo editable para editar el diagrama.
+
+Se ha profundizado en desarrollar las funciones principales y en resolver los problemas de sincronización del equipo con Github.
