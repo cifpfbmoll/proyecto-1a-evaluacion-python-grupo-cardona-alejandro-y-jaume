@@ -1,5 +1,5 @@
-for i in range (len(listajugadores)):
+respuesta=input(f"Quieres una carta mas ? ")
 
-    carta=funciones.sacarcarta(baraja)
+while respuesta!="si" or respuesta!="no":
 
-    listajugadores[i].append(carta)
+    respuesta=input(f"como ? ")

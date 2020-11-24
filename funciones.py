@@ -5,11 +5,11 @@ def sacarcarta (lista):
 
     return carta
 
-def repartircarta (listajugadores,baraja):
+def repartircartasiniciales (listajugadores,baraja):
 
     for i in range (len(listajugadores)):
 
-        if listajugadores[i][-1]==listajugadores[i][1]:
+        if listajugadores[i][-1]==listajugadores[i][2]:
         
             carta=sacarcarta(baraja)
 
@@ -19,7 +19,7 @@ def repartircarta (listajugadores,baraja):
 
             carta=sacarcarta(baraja)
 
-            listajugadores[i][2].append(carta)
+            listajugadores[i][3].append(carta)
 
 def barajar (lista):
 
@@ -51,12 +51,33 @@ def dinerojugadores (listajugadores):
 
     return listajugadores
 
-def apuestajugadores (listajugadores):
+def apuestainicialjugadores (listajugadores):
 
+    
     for i in range (len(listajugadores)):
 
         apuesta=int(input(f" > Introducir apuesta de {listajugadores[i][0]}:"))
 
-        listajugadores[i].append(apuesta)
+        listajugadores[i].append([apuesta])
 
     return listajugadores
+
+def apuestajugadores (listajugadores,i):
+
+    respuesta=(input(f" > Vas a subir la apuesta {listajugadores[i][0]}?"))
+
+    #while respuesta!="si" or "no":
+
+        #respuesta=input("Como? porfavor escriba si o no")
+
+    if respuesta=="si":
+
+        apuesta=int(input(f" > Introduce la apuesta {listajugadores[i][0]}:"))
+
+        listajugadores[i][2].append(apuesta)
+
+def repartircarta (listajugadores,baraja,i):
+
+    carta=sacarcarta(baraja)
+
+    listajugadores[i][3].append(carta)
