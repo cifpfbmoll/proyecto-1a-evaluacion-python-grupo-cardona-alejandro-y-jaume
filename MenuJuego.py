@@ -25,4 +25,6 @@ baraja=funciones.barajar(objetos.baraja)
 
 funciones.repartircarta(listajugadores,baraja)
 
+funciones.repartircarta(listajugadores,baraja)
+
 print (listajugadores)
