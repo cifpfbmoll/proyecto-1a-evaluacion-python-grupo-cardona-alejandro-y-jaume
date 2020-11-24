@@ -7,13 +7,19 @@ def sacarcarta (lista):
 
 def repartircarta (listajugadores,baraja):
 
-    
-
     for i in range (len(listajugadores)):
 
-        carta=sacarcarta(baraja)
+        if listajugadores[i][-1]==listajugadores[i][1]:
+        
+            carta=sacarcarta(baraja)
 
-        listajugadores[i].append(carta)
+            listajugadores[i].append([carta])
+
+        else:
+
+            carta=sacarcarta(baraja)
+
+            listajugadores[i][2].append(carta)
 
 def barajar (lista):
 
