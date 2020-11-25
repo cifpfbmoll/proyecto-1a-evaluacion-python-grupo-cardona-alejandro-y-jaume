@@ -1,5 +1,7 @@
 respuesta=input(f"Quieres una carta mas ? ")
 
-while respuesta!="si" or respuesta!="no":
+listasino=["si","no"]
+
+while respuesta not in listasino:
 
     respuesta=input(f"como ? ")

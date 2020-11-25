@@ -66,9 +66,11 @@ def apuestajugadores (listajugadores,i):
 
     respuesta=(input(f" > Vas a subir la apuesta {listajugadores[i][0]}?"))
 
-    #while respuesta!="si" or "no":
+    listasino=["si","no"]
 
-        #respuesta=input("Como? porfavor escriba si o no")
+    while respuesta not in listasino:
+
+        respuesta=input("Como? porfavor escriba si o no")
 
     if respuesta=="si":
 
