@@ -45,9 +45,15 @@ for i in range (len(listajugadores)):
         print("\n ⚠  Porfavor escriba si o no")
         respuesta=input(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
 
+    vecesdoblado=0
+
     while respuesta==("si"):
 
-        funciones.apuestajugadores(listajugadores,i)
+        while vecesdoblado==0:
+
+            funciones.apuestajugadores(listajugadores,i)
+
+            vecesdoblado=1
         
         #Revelar carta tapada
 
