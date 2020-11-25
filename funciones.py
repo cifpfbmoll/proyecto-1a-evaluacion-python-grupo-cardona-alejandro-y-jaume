@@ -1,3 +1,4 @@
+import objetos
 
 def sacarcarta (lista):
 
@@ -81,3 +82,39 @@ def repartircarta (listajugadores,baraja,i):
     carta=sacarcarta(baraja)
 
     listajugadores[i][3].append(carta)
+
+def valorcartas (listajugadores):
+
+    valormano=0
+
+    apuesta=0
+
+    for i in listajugadores[3]:
+
+        valormano+=objetos.valor_baraja.get(i)
+
+    for i in listajugadores[2]:
+
+        apuesta+=i
+
+    if valormano>21:
+
+        print ("Looseeeeer!")
+
+        dinerojugador=listajugadores.pop[1]-apuesta
+
+        listajugadores[1:].remove
+
+        listajugadores.append(dinerojugador)
+
+    else:
+
+        listajugadores.append(valormano)
+
+
+
+
+    
+
+
+
