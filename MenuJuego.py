@@ -7,21 +7,24 @@ import funciones
 
 import objetos
 
+print ("\n")
+print ("╔════════════════════════════════════════════════════════════════════╗")
+print ("║                                                                    ║")
+print ("║      Hola y bienvenidos a su programa de BlackJack preferido!      ║")
+print ("║                                                                    ║")
+print ("╚════════════════════════════════════════════════════════════════════╝")
 
-
-print ("Hola y bienvenidos! a su programa de BlackJack preferido!")
-
-numerojugadores=int(input("Cuantos jugadores vais a jugar?"))
+numerojugadores=int(input("\n>>> Cuantos jugadores vais a jugar?\n >  "))
 
 listajugadores=funciones.nombrejugadores(numerojugadores)
 
-print ("Con cuanto dinero vais a entrar cada uno?")
+print ("\n>>> Con cuanto dinero vais a entrar cada uno?")
 
 funciones.dinerojugadores(listajugadores)
 
-print ("Vale! empezemos!")
+print ("\n>>> Vale! empezemos!")
 
-print ("Hagan sus apuestas!")
+print (">>> Hagan sus apuestas!\n")
 
 funciones.apuestainicialjugadores(listajugadores)
 
@@ -35,13 +38,12 @@ funciones.repartircartasiniciales(listajugadores,baraja)
 
 for i in range (len(listajugadores)):
 
-    respuesta=input(f"Quieres una carta mas {listajugadores[i][0]}? ")
+    respuesta=input(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
 
-    listasino=["si","no"]
+    while respuesta not in ["si","no"]:
 
-    while respuesta not in listasino:
-
-        respuesta=input("Como? porfavor escriba si o no: ")
+        print("\n ⚠  Porfavor escriba si o no")
+        respuesta=input(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
 
     while respuesta==("si"):
 
@@ -51,11 +53,12 @@ for i in range (len(listajugadores)):
 
         funciones.repartircarta(listajugadores,baraja,i)
 
-        respuesta=input("Quieres una carta mas?")
+        respuesta=input(">>> Quieres una carta mas?\n >  ")
 
-        while respuesta not in listasino:
+        while respuesta not in ["si","no"]:
 
-            respuesta=input("Como? porfavor escriba si o no: ")
+            print("\n ⚠  Porfavor escriba si o no")
+            respuesta=input(">>> Quieres una carta mas?\n >  ")
 
     print ("Vale! pasemos al siguiente jugador")
 
