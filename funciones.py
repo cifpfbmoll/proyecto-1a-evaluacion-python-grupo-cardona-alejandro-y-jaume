@@ -112,9 +112,3 @@ def valorcartas (listajugadores):
         listajugadores.append(valormano)
 
 
-
-
-    
-
-
-
