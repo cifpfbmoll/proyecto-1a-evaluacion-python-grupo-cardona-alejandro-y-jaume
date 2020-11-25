@@ -76,4 +76,5 @@ for i in range (len(listajugadores)):
 
 funciones.vermesa(listajugadores)
 
-print (listajugadores)
+# print (listajugadores)
+input("\n>>> Pulsa ENTER para cerrar el programa.\n >  ")
