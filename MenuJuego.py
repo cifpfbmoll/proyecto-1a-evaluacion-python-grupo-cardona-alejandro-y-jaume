@@ -58,14 +58,20 @@ for i in range (len(listajugadores)):
 
         funciones.repartircarta(listajugadores,baraja,i)
 
-        funciones.valorcartas(listajugadores[i])
+        pasado=funciones.valorcartas(listajugadores[i])
 
-        respuesta=input(">>> Quieres una carta mas?\n >  ")
+        if not pasado:
 
-        while respuesta not in ["si","no"]:
-
-            print("\n ⚠  Porfavor escriba si o no")
             respuesta=input(">>> Quieres una carta mas?\n >  ")
+
+            while respuesta not in ["si","no"]:
+
+                print("\n ⚠  Porfavor escriba si o no")
+                respuesta=input(">>> Quieres una carta mas?\n >  ")
+
+        if pasado:
+
+            respuesta="no"
 
     os.system('cls')
 

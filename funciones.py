@@ -101,11 +101,11 @@ def valorcartas (listajugadores):
 
         print ("Looseeeeer!")
 
-        dinerojugador=listajugadores.pop[1]-apuesta
+        dinerojugador=(listajugadores.pop(1))-apuesta
 
-        listajugadores[1:].remove
+        listajugadores.insert(1,dinerojugador)
 
-        listajugadores.append(dinerojugador)
+        pasado=True
 
     else:
 
@@ -113,11 +113,17 @@ def valorcartas (listajugadores):
         
             listajugadores.append([valormano])
 
+            pasado=False
+
         else:
 
-            listajugadores[4].remove
+            del listajugadores[4]
 
             listajugadores.append([valormano])
+
+            pasado=False
+
+    return pasado
 
 def vercartas (listajugadores,jugador):
     

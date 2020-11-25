@@ -1,9 +1,7 @@
-respuesta=input(f"Quieres una carta mas ? ")
-
-while respuesta not in ["si","no"]:
-
-    respuesta=input(f"como ? ")
 
 
+lista=["jugador","sudinero",["apuestas"],["cartasenMano"],"valormano"]
 
-lista=[jugador,sudinero,[apuestas],[cartasenMano],valormano]
+del lista[1:]
+
+print(lista)
