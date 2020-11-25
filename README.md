@@ -1,6 +1,6 @@
 ## Lunes, 16 de noviembre. 
 
-Jaume es el Scrum Master hoy. Hemos empezado a planear la aplicación y la variante que usaremos. Alejandro ha preparado un diagrama con las reglas i los pasos que seguirá el programa para así tener mas facilidad a la hora de crear el programa. Cardona ha buscado información por internet para el código. Jaume ha empezado a crear código creando la baraja i funciones de barajar i sacar carta entre otras.
+Jaume es el Scrum Master hoy. Hemos empezado a planear la aplicación y la variante que usaremos. Karina ha preparado un diagrama con las reglas i los pasos que seguirá el programa para así tener mas facilidad a la hora de crear el programa. Cardona ha buscado información por internet para el código. Jaume ha empezado a crear código creando la baraja i funciones de barajar i sacar carta entre otras.
 
 ## Martes, 17 de noviembre.
 
@@ -19,4 +19,4 @@ Cardona es el Scrum Master de hoy. Nos hemos reunido y hemos ido puliendo el có
 
 ## Miércoles, 25 de noviembre.
 
-
+Jaume es el SCRUM master. Cardona no ha podido asistir a clase, pero estamos en contacto a través de discord. Seguimos desarrollando código. Estamos decidiendo que variante del juego queremos que ejecute el programa i eligiendo que reglas exactas va a tener, ya que según donde consultamos vemos unas o otras. Karina ha ido actualizando el menú del juego, perfeccionando la interfaz visual del programa y mejorando el código para que sea mas atractivo y añadiendo funciones para ver as manos de los jugadores y las cartas en mesa. Jaume y Cardona han seguido añadiendo funciones como contar el valor de las cartas, si alguien se pasa que el programa se de cuenta i le reste las apuestas a su dinero,…
