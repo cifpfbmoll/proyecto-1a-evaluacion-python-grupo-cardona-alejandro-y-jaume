@@ -109,7 +109,15 @@ def valorcartas (listajugadores):
 
     else:
 
-        listajugadores.append(valormano)
+        if listajugadores[-1]==listajugadores[3]:
+        
+            listajugadores.append([valormano])
+
+        else:
+
+            listajugadores[4].remove
+
+            listajugadores.append([valormano])
 
 def vercartas (listajugadores,jugador):
     

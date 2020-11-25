@@ -6,4 +6,4 @@ while respuesta not in ["si","no"]:
 
 
 
-lista=[jugador,sudinero,[apuestas],[cartasenMano]]
+lista=[jugador,sudinero,[apuestas],[cartasenMano],valormano]
