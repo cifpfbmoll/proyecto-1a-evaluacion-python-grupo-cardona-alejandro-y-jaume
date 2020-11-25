@@ -111,4 +111,32 @@ def valorcartas (listajugadores):
 
         listajugadores.append(valormano)
 
+def vercartas (listajugadores,jugador):
+    
+    print ("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
+    for i in listajugadores:
+        print(">>> Cartas de %s" % (i[0]))
+        if i[0] == jugador:
+            for j in i[3]:
+                if j != i[3][-1]:
+                    print("%s" % (j), end=" | ")
+                else:
+                    print("%s" % (j), end="")
+        else:
+            for j in i[3]:
+                if j != i[3][-1]:
+                    print("%s" % (j), end=" | ")
+                else:
+                    print("?", end="")
+        print("\n")
 
+def vermesa(listajugadores):
+
+    print ("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
+    for i in listajugadores:
+        print(">>> Cartas de %s" % (i[0]))
+        if i != i[3][-1]:
+            print("%s" % (i), end=" | ")
+        else:
+            print("%s", end="")
+        print("\n")
