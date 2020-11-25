@@ -15,16 +15,12 @@ numerojugadores=int(input("\n>>> Cuantos jugadores vais a jugar?\n >  "))
 
 listajugadores=funciones.nombrejugadores(numerojugadores)
 
-print ("\n>>> Con cuanto dinero vais a entrar cada uno?")
+print("\n>>> Con cuanto dinero vais a entrar cada uno?")
 
 funciones.dinerojugadores(listajugadores)
 os.system('cls')
 
-print ("╔════════════════════════════════════════════════════════════════════╗")
-print ("║                                                                    ║")
-print ("║                      ¡Que empiece la partida!                      ║")
-print ("║                                                                    ║")
-print ("╚════════════════════════════════════════════════════════════════════╝")
+print("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                      ¡Que empiece la partida!                      ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
 
 print ("\n>>> Hagan sus apuestas!\n")
 
@@ -72,13 +68,10 @@ for i in range (len(listajugadores)):
     os.system('cls')
 
     if i != len(listajugadores)-1:
-        print ("╔════════════════════════════════════════════════════════════════════╗")
-        print ("║                                                                    ║")
-        print ("║                 Vale! pasemos al siguiente jugador                 ║")
-        print ("║                                                                    ║")
-        print ("╚════════════════════════════════════════════════════════════════════╝")
+        print("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                 Vale! pasemos al siguiente jugador                 ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
         
         input(">>> Pulsa ENTER para pasar al siguiente jugador.\n >  ")
 
+funciones.vermesa(listajugadores)
 
 print (listajugadores)

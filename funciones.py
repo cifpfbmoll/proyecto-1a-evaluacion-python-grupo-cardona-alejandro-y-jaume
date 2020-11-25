@@ -135,8 +135,9 @@ def vermesa(listajugadores):
     print ("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
     for i in listajugadores:
         print(">>> Cartas de %s" % (i[0]))
-        if i != i[3][-1]:
-            print("%s" % (i), end=" | ")
-        else:
-            print("%s", end="")
+        for j in i[3]:
+            if j != i[3][-1]:
+                print("%s" % (j), end=" | ")
+            else:
+                print("%s" % (j), end="")
         print("\n")
