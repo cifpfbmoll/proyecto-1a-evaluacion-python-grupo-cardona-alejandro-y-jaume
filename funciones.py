@@ -35,7 +35,7 @@ def nombrejugadores (numerojugadores):
 
     for i in range(1,numerojugadores+1):
 
-        nombrejugador=str(input(f" > Escribe el nombre del {i} jugador:"))
+        nombrejugador=str(input(f">>> Escribe el nombre del jugador {i}:\n >  "))
 
         listajugadores.append([nombrejugador])
 
@@ -45,7 +45,7 @@ def dinerojugadores (listajugadores):
 
     for i in range (len(listajugadores)):
 
-        dinero=int(input(f" > Introducir dinero de {listajugadores[i][0]}:"))
+        dinero=int(input(f">>> Introducir dinero de {listajugadores[i][0]}:\n >  "))
 
         listajugadores[i].append(dinero)
 
@@ -56,7 +56,7 @@ def apuestainicialjugadores (listajugadores):
     
     for i in range (len(listajugadores)):
 
-        apuesta=int(input(f" > Introducir apuesta de {listajugadores[i][0]}:"))
+        apuesta=int(input(f">>> Introducir apuesta de {listajugadores[i][0]}:\n >  "))
 
         listajugadores[i].append([apuesta])
 
@@ -64,17 +64,15 @@ def apuestainicialjugadores (listajugadores):
 
 def apuestajugadores (listajugadores,i):
 
-    respuesta=(input(f" > Vas a subir la apuesta {listajugadores[i][0]}?"))
+    respuesta=(input(f">>> Vas a subir la apuesta {listajugadores[i][0]}?\n >  "))
 
-    listasino=["si","no"]
+    while respuesta not in ["si","no"]:
 
-    while respuesta not in listasino:
-
-        respuesta=input("Como? porfavor escriba si o no")
+        respuesta=input(" ⚠  Porfavor escriba si o no")
 
     if respuesta=="si":
 
-        apuesta=int(input(f" > Introduce la apuesta {listajugadores[i][0]}:"))
+        apuesta=int(input(f">>> Introduce la apuesta {listajugadores[i][0]}:\n >  "))
 
         listajugadores[i][2].append(apuesta)
 
