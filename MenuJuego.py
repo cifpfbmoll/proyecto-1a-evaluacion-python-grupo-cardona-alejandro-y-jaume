@@ -58,6 +58,8 @@ for i in range (len(listajugadores)):
 
         funciones.repartircarta(listajugadores,baraja,i)
 
+        funciones.valorcartas(listajugadores[i])
+
         respuesta=input(">>> Quieres una carta mas?\n >  ")
 
         while respuesta not in ["si","no"]:
