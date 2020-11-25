@@ -1,13 +1,10 @@
-
-from os import system
-
-system("clear")
+import os
+os.system('cls')
 
 import funciones
 
 import objetos
 
-print ("\n")
 print ("╔════════════════════════════════════════════════════════════════════╗")
 print ("║                                                                    ║")
 print ("║      Hola y bienvenidos a su programa de BlackJack preferido!      ║")
@@ -21,10 +18,15 @@ listajugadores=funciones.nombrejugadores(numerojugadores)
 print ("\n>>> Con cuanto dinero vais a entrar cada uno?")
 
 funciones.dinerojugadores(listajugadores)
+os.system('cls')
 
-print ("\n>>> Vale! empezemos!")
+print ("╔════════════════════════════════════════════════════════════════════╗")
+print ("║                                                                    ║")
+print ("║                      ¡Que empiece la partida!                      ║")
+print ("║                                                                    ║")
+print ("╚════════════════════════════════════════════════════════════════════╝")
 
-print (">>> Hagan sus apuestas!\n")
+print ("\n>>> Hagan sus apuestas!\n")
 
 funciones.apuestainicialjugadores(listajugadores)
 
@@ -37,7 +39,8 @@ funciones.repartircartasiniciales(listajugadores,baraja)
 funciones.repartircartasiniciales(listajugadores,baraja)
 
 for i in range (len(listajugadores)):
-
+    os.system('cls')
+    funciones.vercartas(listajugadores,listajugadores[i][0])
     respuesta=input(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
 
     while respuesta not in ["si","no"]:
@@ -60,8 +63,16 @@ for i in range (len(listajugadores)):
             print("\n ⚠  Porfavor escriba si o no")
             respuesta=input(">>> Quieres una carta mas?\n >  ")
 
-    print ("Vale! pasemos al siguiente jugador")
+    os.system('cls')
 
+    if i != len(listajugadores)-1:
+        print ("╔════════════════════════════════════════════════════════════════════╗")
+        print ("║                                                                    ║")
+        print ("║                 Vale! pasemos al siguiente jugador                 ║")
+        print ("║                                                                    ║")
+        print ("╚════════════════════════════════════════════════════════════════════╝")
+        
+        input(">>> Pulsa ENTER para pasar al siguiente jugador.\n >  ")
 
 
 print (listajugadores)

@@ -81,3 +81,26 @@ def repartircarta (listajugadores,baraja,i):
     carta=sacarcarta(baraja)
 
     listajugadores[i][3].append(carta)
+
+def vercartas (listajugadores,jugador):
+    
+    print ("╔════════════════════════════════════════════════════════════════════╗")
+    print ("║                                                                    ║")
+    print ("║                          Cartas en la mesa                         ║")
+    print ("║                                                                    ║")
+    print ("╚════════════════════════════════════════════════════════════════════╝")
+    for i in listajugadores:
+        print(">>> Cartas de %s" % (i[0]))
+        if i[0] == jugador:
+            for j in i[3]:
+                if j != i[3][-1]:
+                    print("%s" % (j), end=" | ")
+                else:
+                    print("%s" % (j), end="")
+        else:
+            for j in i[3]:
+                if j != i[3][-1]:
+                    print("%s" % (j), end=" | ")
+                else:
+                    print("?", end="")
+        print("\n")
