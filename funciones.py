@@ -64,12 +64,12 @@ def apuestainicialjugadores (listajugadores):
             if apuesta>listajugadores[i][1]:
 
                 apuesta=int(input(f">>> No puedes apostar mas que el dinero que tienes en mesa! \
-    introduze una apuesta que puedas cubrir {listajugadores[i][0]}:\n >  "))
+introduze una apuesta que puedas cubrir {listajugadores[i][0]}:\n >  "))
 
             else:
 
                 apuesta=int(input(f">>> Recuerda que la apuesta minima es de 1 euro! \
-    introduze una apuesta superior a 1 euro {listajugadores[i][0]}:\n >  "))
+introduze una apuesta superior a 1 euro {listajugadores[i][0]}:\n >  "))
 
         listajugadores[i].append([apuesta])
 
