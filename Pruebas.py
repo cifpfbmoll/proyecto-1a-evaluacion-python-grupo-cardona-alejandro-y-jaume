@@ -2,6 +2,8 @@
 
 lista=["jugador","sudinero",["apuestas"],["cartasenMano"],"valormano"]
 
-del lista[1:]
+apuesta=lista[2][0]
+
+lista[2].append(apuesta)
 
 print(lista)

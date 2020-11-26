@@ -59,13 +59,25 @@ def apuestainicialjugadores (listajugadores):
 
         apuesta=int(input(f">>> Introducir apuesta de {listajugadores[i][0]}:\n >  "))
 
+        while apuesta>listajugadores[i][1] or apuesta<1:
+
+            if apuesta>listajugadores[i][1]:
+
+                apuesta=int(input(f">>> No puedes apostar mas que el dinero que tienes en mesa! \
+introduze una apuesta que puedas cubrir {listajugadores[i][0]}:\n >  "))
+
+            else:
+
+                apuesta=int(input(f">>> Recuerda que la apuesta minima es de 1 euro! \
+introduze una apuesta superior a 1 euro {listajugadores[i][0]}:\n >  "))
+
         listajugadores[i].append([apuesta])
 
     return listajugadores
 
 def apuestajugadores (listajugadores,i):
 
-    respuesta=(input(f">>> Vas a subir la apuesta {listajugadores[i][0]}?\n >  "))
+    respuesta=(input(f">>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?\n >  "))
 
     while respuesta not in ["si","no"]:
 
@@ -73,7 +85,9 @@ def apuestajugadores (listajugadores,i):
 
     if respuesta=="si":
 
-        apuesta=int(input(f">>> Introduce la apuesta {listajugadores[i][0]}:\n >  "))
+        print (f">>> Muy Bien! Doblemos la apuesta pues {listajugadores[i][0]}")
+
+        apuesta=listajugadores[i][2][0]
 
         listajugadores[i][2].append(apuesta)
 
@@ -99,13 +113,31 @@ def valorcartas (listajugadores):
 
     if valormano>21:
 
-        print ("Looseeeeer!")
+        if listajugadores[-1]==listajugadores[3]:
 
-        dinerojugador=(listajugadores.pop(1))-apuesta
+            listajugadores.append([valormano])
 
-        listajugadores.insert(1,dinerojugador)
+            print ("Looseeeeer!")
 
-        pasado=True
+            dinerojugador=(listajugadores.pop(1))-apuesta
+
+            listajugadores.insert(1,dinerojugador)
+
+            pasado=True
+
+        else:
+
+            del listajugadores[4]
+
+            listajugadores.append([valormano])
+
+            print ("Looseeeeer!")
+
+            dinerojugador=(listajugadores.pop(1))-apuesta
+
+            listajugadores.insert(1,dinerojugador)
+
+            pasado=True
 
     else:
 

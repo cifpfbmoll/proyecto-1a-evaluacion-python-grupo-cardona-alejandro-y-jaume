@@ -13,6 +13,10 @@ print ("╚═══════════════════════
 
 numerojugadores=int(input("\n>>> Cuantos jugadores vais a jugar?\n >  "))
 
+while numerojugadores>7 or numerojugadores<1:
+
+    numerojugadores=int(input("\n>>> Piensa que solo podeis jugar de 1 a 7 jugadores. Cuantos jugadores vais a jugar?\n >  "))
+
 listajugadores=funciones.nombrejugadores(numerojugadores)
 
 print("\n>>> Con cuanto dinero vais a entrar cada uno?")
@@ -36,6 +40,7 @@ funciones.repartircartasiniciales(listajugadores,baraja)
 
 for i in range (len(listajugadores)):
     os.system('cls')
+    funciones.valorcartas(listajugadores[i])
     funciones.vercartas(listajugadores,listajugadores[i][0])
     respuesta=input(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
 
@@ -75,6 +80,8 @@ for i in range (len(listajugadores)):
 
             respuesta="no"
 
+    
+
     os.system('cls')
 
     if i != len(listajugadores)-1:
@@ -84,5 +91,6 @@ for i in range (len(listajugadores)):
 
 funciones.vermesa(listajugadores)
 
-# print (listajugadores)
+print (listajugadores)
+
 input("\n>>> Pulsa ENTER para cerrar el programa.\n >  ")
