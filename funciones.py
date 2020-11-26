@@ -38,7 +38,7 @@ def nombrejugadores (numerojugadores):
 
         nombrejugador=str(input(f">>> Escribe el nombre del jugador {i}:\n >  "))
 
-        listajugadores.append([nombrejugador])
+        listajugadores.append([nombrejugador.upper()])
 
     return listajugadores
 
@@ -127,7 +127,7 @@ def valorcartas (listajugadores):
 
 def vercartas (listajugadores,jugador):
     
-    print ("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
+    print("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
     for i in listajugadores:
         print(">>> Cartas de %s" % (i[0]))
         if i[0] == jugador:
@@ -146,7 +146,7 @@ def vercartas (listajugadores,jugador):
 
 def vermesa(listajugadores):
 
-    print ("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
+    print("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
     for i in listajugadores:
         print(">>> Cartas de %s" % (i[0]))
         for j in i[3]:
