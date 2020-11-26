@@ -38,7 +38,7 @@ def nombrejugadores (numerojugadores):
 
         nombrejugador=str(input(f">>> Escribe el nombre del jugador {i}:\n >  "))
 
-        listajugadores.append([nombrejugador])
+        listajugadores.append([nombrejugador.upper()])
 
     return listajugadores
 
@@ -64,12 +64,12 @@ def apuestainicialjugadores (listajugadores):
             if apuesta>listajugadores[i][1]:
 
                 apuesta=int(input(f">>> No puedes apostar mas que el dinero que tienes en mesa! \
-introduze una apuesta que puedas cubrir {listajugadores[i][0]}:\n >  "))
+    introduze una apuesta que puedas cubrir {listajugadores[i][0]}:\n >  "))
 
             else:
 
                 apuesta=int(input(f">>> Recuerda que la apuesta minima es de 1 euro! \
-introduze una apuesta superior a 1 euro {listajugadores[i][0]}:\n >  "))
+    introduze una apuesta superior a 1 euro {listajugadores[i][0]}:\n >  "))
 
         listajugadores[i].append([apuesta])
 
@@ -159,7 +159,7 @@ def valorcartas (listajugadores):
 
 def vercartas (listajugadores,jugador):
     
-    print ("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
+    print("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
     for i in listajugadores:
         print(">>> Cartas de %s" % (i[0]))
         if i[0] == jugador:
@@ -178,7 +178,7 @@ def vercartas (listajugadores,jugador):
 
 def vermesa(listajugadores):
 
-    print ("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
+    print("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                          Cartas en la mesa                         ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
     for i in listajugadores:
         print(">>> Cartas de %s" % (i[0]))
         for j in i[3]:

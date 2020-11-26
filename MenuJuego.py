@@ -56,6 +56,7 @@ for i in range (len(listajugadores)):
         while vecesdoblado==0:
 
             funciones.apuestajugadores(listajugadores,i)
+            os.system('cls')
 
             vecesdoblado=1
         
@@ -75,6 +76,7 @@ for i in range (len(listajugadores)):
 
                 print("\n ⚠  Porfavor escriba si o no")
                 respuesta=input(">>> Quieres una carta mas?\n >  ")
+            os.system('cls')
 
         if pasado:
 
