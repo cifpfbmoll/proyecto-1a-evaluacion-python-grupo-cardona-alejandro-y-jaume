@@ -58,6 +58,8 @@ for i in range (len(listajugadores)):
 
         funciones.repartircarta(listajugadores,baraja,i)
 
+        funciones.vercartas(listajugadores,listajugadores[i][0])
+
         pasado=funciones.valorcartas(listajugadores[i])
 
         if not pasado:
