@@ -15,11 +15,11 @@ print ("║      Hola y bienvenidos a su programa de BlackJack preferido!      �
 print ("║                                                                    ║")
 print ("╚════════════════════════════════════════════════════════════════════╝")
 
-numerojugadores=int(input("\n>>> Cuantos jugadores vais a jugar?\n >  "))
+numerojugadores=int(funciones.colorinput("\n>>> Cuantos jugadores vais a jugar?"))
 
 while numerojugadores>7 or numerojugadores<1:
 
-    numerojugadores=int(input("\n>>> Piensa que solo podeis jugar de 1 a 7 jugadores. Cuantos jugadores vais a jugar?\n >  "))
+    numerojugadores=int(funciones.colorinput("\n>>> Piensa que solo podeis jugar de 1 a 7 jugadores. Cuantos jugadores vais a jugar?"))
 
 listajugadores=funciones.nombrejugadores(numerojugadores)
 
@@ -47,15 +47,18 @@ funciones.repartircartasiniciales(listajugadores,baraja)
 funciones.repartircartasiniciales(listajugadores,baraja)
 
 for i in range (len(listajugadores)):
+    funciones.valorcartas(listajugadores[i])
+
+for i in range (len(listajugadores)):
     os.system('cls')
     funciones.valorcartas(listajugadores[i])
     funciones.vercartas(listajugadores,listajugadores[i][0])
-    respuesta=input(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
+    respuesta=funciones.colorinput(f">>> Quieres una carta mas {listajugadores[i][0]}?")
 
     while respuesta not in ["si","no"]:
 
-        print("\n ⚠  Porfavor escriba si o no")
-        respuesta=input(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
+        funciones.colorerror("\n ⚠  Porfavor escriba si o no")
+        respuesta=funciones.colorinput(f">>> Quieres una carta mas {listajugadores[i][0]}?")
 
     vecesdoblado=0
 
@@ -78,12 +81,12 @@ for i in range (len(listajugadores)):
 
         if not pasado:
 
-            respuesta=input(">>> Quieres una carta mas?\n >  ")
+            respuesta=funciones.colorinput(">>> Quieres una carta mas?")
 
             while respuesta not in ["si","no"]:
 
-                print("\n ⚠  Porfavor escriba si o no")
-                respuesta=input(">>> Quieres una carta mas?\n >  ")
+                funciones.colorerror("\n ⚠  Porfavor escriba si o no")
+                respuesta=funciones.colorinput(">>> Quieres una carta mas?")
             os.system('cls')
 
         if pasado:
@@ -101,10 +104,10 @@ for i in range (len(listajugadores)):
         print("║                                                                    ║")
         print("╚════════════════════════════════════════════════════════════════════╝")
         
-        input(">>> Pulsa ENTER para pasar al siguiente jugador.\n >  ")
+        funciones.colorinput(">>> Pulsa ENTER para pasar al siguiente jugador.")
 
 funciones.vermesa(listajugadores)
 
 print (listajugadores)
 
-input("\n>>> Pulsa ENTER para cerrar el programa.\n >  ")
+funciones.colorinput("\n>>> Pulsa ENTER para cerrar el programa.")
