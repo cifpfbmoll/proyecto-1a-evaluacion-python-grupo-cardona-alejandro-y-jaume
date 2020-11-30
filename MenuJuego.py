@@ -28,7 +28,11 @@ print("\n>>> Con cuanto dinero vais a entrar cada uno?")
 funciones.dinerojugadores(listajugadores)
 os.system('cls')
 
-print("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                      ¡Que empiece la partida!                      ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
+print("╔════════════════════════════════════════════════════════════════════════╗")
+print("║                                                                        ║")
+print("║                        ¡Que empiece la partida!                        ║")
+print("║                                                                        ║")
+print("╚════════════════════════════════════════════════════════════════════════╝")
 
 print ("\n>>> Hagan sus apuestas!\n")
 
@@ -91,7 +95,11 @@ for i in range (len(listajugadores)):
     os.system('cls')
 
     if i != len(listajugadores)-1:
-        print("╔════════════════════════════════════════════════════════════════════╗\n║                                                                    ║\n║                 Vale! pasemos al siguiente jugador                 ║\n║                                                                    ║\n╚════════════════════════════════════════════════════════════════════╝")
+        print("╔════════════════════════════════════════════════════════════════════╗")
+        print("║                                                                    ║")
+        print("║                 Vale! pasemos al siguiente jugador                 ║")
+        print("║                                                                    ║")
+        print("╚════════════════════════════════════════════════════════════════════╝")
         
         input(">>> Pulsa ENTER para pasar al siguiente jugador.\n >  ")
 
