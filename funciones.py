@@ -71,7 +71,7 @@ introduze una apuesta que puedas cubrir {listajugadores[i][0]}:\n >  "))
                 apuesta=int(input(f">>> Recuerda que la apuesta minima es de 1 euro! \
 introduze una apuesta superior a 1 euro {listajugadores[i][0]}:\n >  "))
 
-        listajugadores[i].append([apuesta])
+        listajugadores[i].append(apuesta)
 
     return listajugadores
 
@@ -87,9 +87,13 @@ def apuestajugadores (listajugadores,i):
 
         print (f">>> Muy Bien! Doblemos la apuesta pues {listajugadores[i][0]}")
 
-        apuesta=listajugadores[i][2][0]
+        apuesta=listajugadores[i][2]
 
-        listajugadores[i][2].append(apuesta)
+        doblar=apuesta+apuesta
+
+        del listajugadores[i][2]
+
+        listajugadores[i].insert(2,doblar)
 
 def repartircarta (listajugadores,baraja,i):
 
@@ -101,15 +105,11 @@ def valorcartas (listajugadores):
 
     valormano=0
 
-    apuesta=0
+    apuesta=listajugadores[2]
 
     for i in listajugadores[3]:
 
         valormano+=objetos.valor_baraja.get(i)
-
-    for i in listajugadores[2]:
-
-        apuesta+=i
 
     if valormano>21:
 

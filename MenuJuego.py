@@ -5,7 +5,6 @@ import funciones
 
 import objetos
 
-#Poner apuesta i dinero del jugador en la interfaz grafica
 #Hacer bucle de partida i que el jugador 1 vaya rotando en cada ronda.
 #Hacer menu del juego donde puedas salir de la partida, añadir jugador o añadir dinero despues de cada partida
 #Hacer lista de la banca [Dinero,[cartas],valorcartas] y sus funciones
