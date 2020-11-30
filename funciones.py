@@ -1,16 +1,17 @@
 import objetos
 
-def colorreset(): print("\033[96m \033[00m") 
+def colorreset(): print("\033[92m") 
 
 def colorjugadoractual(): print("\033[96m") 
 def colorerror(skk):
     print("\033[91m {}\033[00m" .format(skk))
     colorreset()
 def colorinput(skk):
-    print("{}" .format(skk), end="\033[37m \n")
+    print("{}" .format(skk), end="\033[33m \n")
     valor = input(" >  ")
     colorreset()
     return valor
+
 
 def sacarcarta (lista):
 
@@ -76,12 +77,12 @@ def apuestainicialjugadores (listajugadores):
             if apuesta>listajugadores[i][1]:
 
                 apuesta=int(colorinput(f">>> No puedes apostar mas que el dinero que tienes en mesa! \
-introduze una apuesta que puedas cubrir {listajugadores[i][0]}:\n >  "))
+introduze una apuesta que puedas cubrir {listajugadores[i][0]}:"))
 
             else:
 
                 apuesta=int(colorinput(f">>> Recuerda que la apuesta minima es de 1 euro! \
-introduze una apuesta superior a 1 euro {listajugadores[i][0]}:\n >  "))
+introduze una apuesta superior a 1 euro {listajugadores[i][0]}:"))
 
         listajugadores[i].append(apuesta)
 
@@ -179,6 +180,8 @@ def valorcartas (listajugadores):
     return pasado
 
 def vercartas (listajugadores,jugador):
+    for i in range (len(listajugadores)):
+        valorcartas(listajugadores[i])
     print("╔════════════════════════════════════════════════════════════════════════╗\n║                                                                        ║\n║                            Cartas en la mesa                           ║\n║                                                                        ║\n╚════════════════════════════════════════════════════════════════════════╝")
     for i in listajugadores:
         if i[0] == jugador:

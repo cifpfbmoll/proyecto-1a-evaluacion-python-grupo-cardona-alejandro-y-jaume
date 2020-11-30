@@ -9,6 +9,7 @@ import objetos
 #Hacer menu del juego donde puedas salir de la partida, añadir jugador o añadir dinero despues de cada partida
 #Hacer lista de la banca [Dinero,[cartas],valorcartas] y sus funciones
 
+funciones.colorreset()
 print ("╔════════════════════════════════════════════════════════════════════╗")
 print ("║                                                                    ║")
 print ("║      Hola y bienvenidos a su programa de BlackJack preferido!      ║")
@@ -46,8 +47,6 @@ funciones.repartircartasiniciales(listajugadores,baraja)
 
 funciones.repartircartasiniciales(listajugadores,baraja)
 
-for i in range (len(listajugadores)):
-    funciones.valorcartas(listajugadores[i])
 
 for i in range (len(listajugadores)):
     os.system('cls')
