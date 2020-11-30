@@ -186,9 +186,9 @@ def vercartas (listajugadores,jugador):
     for i in listajugadores:
         if i[0] == jugador:
             colorjugadoractual()
-            print(">>> Cartas de %s | Dinero: %s | Apuesta: %s | Valor de la mano: %s" % (i[0],i[1],i[2],i[4]))
+            print(">>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s" % (i[0],i[1],i[2],i[4]))
         else:
-            print(">>> Cartas de %s | Dinero: %s | Apuesta: %s | Valor de la mano: ?" % (i[0],i[1],i[2]))
+            print(">>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: ?" % (i[0],i[1],i[2]))
         if i[0] == jugador:
             for j in i[3]:
                 if j != i[3][-1]:
@@ -210,7 +210,7 @@ def vermesa(listajugadores):
 
     print("╔════════════════════════════════════════════════════════════════════════╗\n║                                                                        ║\n║                            Cartas en la mesa                           ║\n║                                                                        ║\n╚════════════════════════════════════════════════════════════════════════╝")
     for i in listajugadores:
-        print(">>> Cartas de %s | Dinero: %s | Apuesta: %s | Valor de la mano: %s" % (i[0],i[1],i[2],i[4]))
+        print(">>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s" % (i[0],i[1],i[2],i[4]))
         for j in i[3]:
             if j != i[3][-1]:
                 print("%s" % (j), end=" | ")
