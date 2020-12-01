@@ -6,6 +6,7 @@ import funciones
 import objetos
 
 #Se imprime dos veces looser cuando el ultimo jugador en hablar pierde
+#borrar todos los valores menos nombre i dinero total de las listas al acabar la ronda
 #Hacer que el jugador 1 vaya rotando en cada ronda.
 #Hacer lista de la banca [Dinero,[cartas],valorcartas] y sus funciones
 
@@ -120,9 +121,9 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
         if opcion=="salir":
 
-            print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")#si surt un jugador que no sigui es darrer, sa llista s'altera
+            print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")
 
-            
+            listajugadoressaliendo.append(i)
 
         elif opcion=="añadir":
 
@@ -138,6 +139,14 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
             ("Seguimos asi pues!")
 
+    listajugadoressaliendo.reverse()
+
+    for i in listajugadoressaliendo:
+
+        del listajugadores[i]
+
+    del listajugadoressaliendo
+
     if (len(listajugadores))<7:
 
         masjugadores=funciones.colorinput("Van a entrar a jugar mas jugadores?")
@@ -150,9 +159,11 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
                 numeroNuevosJugadores=int(funciones.colorinput("No se pueden añadir tantos jugadores! recordad que el maximo son 7!"))
 
-            #Nombre jugador
+            listajugadores.extend(funciones.nombrejugadores(numeroNuevosJugadores))
 
-            #Dinero jugador
+            funciones.dinerojugadores(listajugadores[-numeroNuevosJugadores:])
+
+            del numeroNuevosJugadores
 
         if masjugadores=="no":
 

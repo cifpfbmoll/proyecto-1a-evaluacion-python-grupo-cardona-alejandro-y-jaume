@@ -217,3 +217,4 @@ def vermesa(listajugadores):
             else:
                 print("%s" % (j), end="")
         print("\n")
+
