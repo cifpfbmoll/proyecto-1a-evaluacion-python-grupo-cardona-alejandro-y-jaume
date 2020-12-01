@@ -80,7 +80,7 @@ def apuestajugadores (listajugadores,i):
 
     respuesta=(prints.colorinput(f">>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))
 
-    while respuesta not in ["si","no"]:
+    while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí"]:
 
         prints.colorerror(" ⚠  Porfavor escriba si o no")
         respuesta=(prints.colorinput(f">>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))
