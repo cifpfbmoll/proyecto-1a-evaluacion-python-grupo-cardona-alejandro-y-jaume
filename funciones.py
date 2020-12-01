@@ -65,12 +65,12 @@ def apuestainicialjugadores (listajugadores):
             if apuesta>listajugadores[i][1]:
 
                 apuesta=int(prints.colorinput(f">>> No puedes apostar mas que el dinero que tienes en mesa! \
-introduze una apuesta que puedas cubrir {listajugadores[i][0]}:"))
+introduce una apuesta que puedas cubrir {listajugadores[i][0]}:"))
 
             else:
 
                 apuesta=int(prints.colorinput(f">>> Recuerda que la apuesta minima es de 1 euro! \
-introduze una apuesta superior a 1 euro {listajugadores[i][0]}:"))
+introduce una apuesta superior o igual a 1 euro {listajugadores[i][0]}:"))
 
         listajugadores[i].append(apuesta)
 
@@ -80,7 +80,7 @@ def apuestajugadores (listajugadores,i):
 
     respuesta=(prints.colorinput(f">>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))
 
-    while respuesta not in ["si","no"]:
+    while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí"]:
 
         prints.colorerror(" ⚠  Porfavor escriba si o no")
         respuesta=(prints.colorinput(f">>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))

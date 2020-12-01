@@ -23,3 +23,6 @@ Jaume es el SCRUM master. Cardona no ha podido asistir a clase, pero estamos en 
 
 ## Lunes, 30 de noviembre.
 Karina es la SCRUM master. Se han solucionado algunos errores internos de las funciones. Se ha modificado el formato en el que se enseña los programas añadiendo colores y se ha añadido información visible.
+
+## Martes, 1 de diciembre.
+Cardona es el SCRUM master de hoy. Seguimos retocando el programa para que quede lo mejor posible, puliendolo al máximo para que quede un buen programa, tanto limpio como bonito, además de completo. Se puede destacar el aumento de archivos para que quede mejor estructurado, así como las constantes actualizaciones del código.
