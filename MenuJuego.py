@@ -2,27 +2,24 @@ import os
 os.system('cls')
 
 import funciones
-
+import prints
 import objetos
 
 #Se imprime dos veces looser cuando el ultimo jugador en hablar pierde
 #Hacer que el jugador 1 vaya rotando en cada ronda.
 #Hacer lista de la banca [Dinero,[cartas],valorcartas] y sus funciones
 
-funciones.colorreset()
-print ("╔════════════════════════════════════════════════════════════════════╗")
-print ("║                                                                    ║")
-print ("║      Hola y bienvenidos a su programa de BlackJack preferido!      ║")
-print ("║                                                                    ║")
-print ("╚════════════════════════════════════════════════════════════════════╝")
+prints.colorreset()
+prints.inicio()
 
-numerojugadores=int(funciones.colorinput("\n>>> Cuantos jugadores vais a jugar?"))
+numerojugadores=prints.colorinput("\n>>> Cuantos jugadores vais a jugar? [1-7]")
 
-while numerojugadores>7 or numerojugadores<1:
+while numerojugadores not in ["1","2","3","4","5","6","7"]:
 
-    numerojugadores=int(funciones.colorinput("\n>>> Piensa que solo podeis jugar de 1 a 7 jugadores. Cuantos jugadores vais a jugar?"))
+    prints.colorerror(" ⚠  Error. Has de seleccionar un número del 1 al 7.")
+    numerojugadores=prints.colorinput(">>> Cuantos jugadores vais a jugar? [1-7]")
 
-listajugadores=funciones.nombrejugadores(numerojugadores)
+listajugadores=funciones.nombrejugadores(int(numerojugadores))
 
 print("\n>>> Con cuanto dinero vais a entrar cada uno?")
 
@@ -34,11 +31,7 @@ while opcion!="terminar":
 
     os.system('cls')
 
-    print("╔════════════════════════════════════════════════════════════════════════╗")
-    print("║                                                                        ║")
-    print("║                        ¡Que empiece la partida!                        ║")
-    print("║                                                                        ║")
-    print("╚════════════════════════════════════════════════════════════════════════╝")
+    prints.empezar()
 
     print ("\n>>> Hagan sus apuestas!\n")
 
@@ -54,12 +47,12 @@ while opcion!="terminar":
         os.system('cls')
         funciones.valorcartas(listajugadores[i])
         funciones.vercartas(listajugadores,listajugadores[i][0])
-        respuesta=funciones.colorinput(f">>> Quieres una carta mas {listajugadores[i][0]}?")
+        respuesta=prints.colorinput(f">>> Quieres una carta mas {listajugadores[i][0]}?  [si/NO]")
 
-        while respuesta not in ["si","no"]:
+        while respuesta not in ["si","no",""]:
 
-            funciones.colorerror("\n ⚠  Porfavor escriba si o no")
-            respuesta=funciones.colorinput(f">>> Quieres una carta mas {listajugadores[i][0]}?")
+            prints.colorerror(" ⚠  Porfavor escriba si o no")
+            respuesta=prints.colorinput(f">>> Quieres una carta mas {listajugadores[i][0]}?  [si/NO]")
 
         vecesdoblado=0
 
@@ -80,12 +73,12 @@ while opcion!="terminar":
 
             if not pasado:
 
-                respuesta=funciones.colorinput(">>> Quieres una carta mas?")
+                respuesta=prints.colorinput(">>> Quieres una carta mas? [si/NO]")
 
-                while respuesta not in ["si","no"]:
+                while respuesta not in ["si","no",""]:
 
-                    funciones.colorerror("\n ⚠  Porfavor escriba si o no")
-                    respuesta=funciones.colorinput(">>> Quieres una carta mas?")
+                    prints.colorerror(" ⚠  Porfavor escriba si o no")
+                    respuesta=prints.colorinput(">>> Quieres una carta mas? [si/NO]")
                 os.system('cls')
 
             if pasado:
@@ -96,13 +89,9 @@ while opcion!="terminar":
         os.system('cls')
 
         if i != len(listajugadores)-1:
-            print("╔════════════════════════════════════════════════════════════════════╗")
-            print("║                                                                    ║")
-            print("║                 Vale! pasemos al siguiente jugador                 ║")
-            print("║                                                                    ║")
-            print("╚════════════════════════════════════════════════════════════════════╝")
+            prints.siguiente_jugador()
             
-            funciones.colorinput(">>> Pulsa ENTER para pasar al siguiente jugador.")
+            prints.colorinput(">>> Pulsa ENTER para pasar al siguiente jugador.")
 
     funciones.vermesa(listajugadores)
 
@@ -113,7 +102,7 @@ Ademas pueden entrar a jugar mas personas mientras se respete el numero maximo d
 
     for i in range(len(listajugadores)):
 
-        opcion=funciones.colorinput(f"{listajugadores[i][0]} Escribe salir si quieres salir de la partida, añadir si quieres añadir dinero o \
+        opcion=prints.colorinput(f"{listajugadores[i][0]} Escribe salir si quieres salir de la partida, añadir si quieres añadir dinero o \
 pulsa cualquier otra cosa para seguir jugando asi:")
 
         if opcion=="salir":
@@ -124,7 +113,7 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
         elif opcion=="añadir":
 
-            dinero=int(funciones.colorinput("Cuanto dinero quieres añadir?"))
+            dinero=int(prints.colorinput("Cuanto dinero quieres añadir?"))
 
             dinerototal=listajugadores[i][1]+dinero
 
@@ -138,15 +127,15 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
     if (len(listajugadores))<7:
 
-        masjugadores=funciones.colorinput("Van a entrar a jugar mas jugadores?")
+        masjugadores=prints.colorinput("Van a entrar a jugar mas jugadores?")
 
         if masjugadores=="si":
 
-            numeroNuevosJugadores=int(funciones.colorinput("Cuantos jugadores se van a añadir?"))
+            numeroNuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
 
             while (len(listajugadores))+numeroNuevosJugadores>7:
 
-                numeroNuevosJugadores=int(funciones.colorinput("No se pueden añadir tantos jugadores! recordad que el maximo son 7!"))
+                numeroNuevosJugadores=int(prints.colorinput("No se pueden añadir tantos jugadores! recordad que el maximo son 7!"))
 
             #Nombre jugador
 
@@ -162,4 +151,4 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
 print (listajugadores)
 
-funciones.colorinput("\n>>> Pulsa ENTER para cerrar el programa.")
+prints.colorinput("\n>>> Pulsa ENTER para cerrar el programa.")
