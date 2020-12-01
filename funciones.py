@@ -206,7 +206,41 @@ def vermesa(listajugadores):
                 print("%s" % (j), end="")
         print("\n")
 
-def menujuego (listajugadores):
+def eliminarjugadores (listajugadoressaliendo,listajugadores):
+
+    listajugadoressaliendo.reverse()
+
+    for i in listajugadoressaliendo:
+
+        del listajugadores[i]
+
+    del listajugadoressaliendo
+
+def añadirdinero (listajugadores,i):
+
+    dinero=int(prints.colorinput("Cuanto dinero quieres añadir?"))
+
+    dinerototal=listajugadores[i][1]+dinero
+
+    del listajugadores[i][1]
+
+    listajugadores[i].insert(1,dinerototal)
+
+def nuevosjugadores (listajugadores):
+
+    numeroNuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
+
+    while (len(listajugadores))+numeroNuevosJugadores>7:
+
+        numeroNuevosJugadores=int(prints.colorinput("No se pueden añadir tantos jugadores! recordad que el maximo son 7!"))
+
+    listajugadores.extend(nombrejugadores(numeroNuevosJugadores))
+
+    dinerojugadores(listajugadores[-numeroNuevosJugadores:])
+
+    del numeroNuevosJugadores
+
+def menujuego (listajugadores): 
 
     print ("MENU DEL JUEGO")
 
@@ -228,25 +262,13 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
         elif opcion=="añadir":
 
-            dinero=int(prints.colorinput("Cuanto dinero quieres añadir?"))
-
-            dinerototal=listajugadores[i][1]+dinero
-
-            del listajugadores[i][1]
-
-            listajugadores[i].insert(1,dinerototal)
+            añadirdinero (listajugadores,i)
 
         else:
 
             ("Seguimos asi pues!")
 
-    listajugadoressaliendo.reverse()
-
-    for i in listajugadoressaliendo:
-
-        del listajugadores[i]
-
-    del listajugadoressaliendo
+    eliminarjugadores(listajugadoressaliendo,listajugadores)
 
     if (len(listajugadores))<7:
 
@@ -254,18 +276,9 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
         if masjugadores=="si":
 
-            numeroNuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
-
-            while (len(listajugadores))+numeroNuevosJugadores>7:
-
-                numeroNuevosJugadores=int(prints.colorinput("No se pueden añadir tantos jugadores! recordad que el maximo son 7!"))
-
-            listajugadores.extend(nombrejugadores(numeroNuevosJugadores))
-
-            dinerojugadores(listajugadores[-numeroNuevosJugadores:])
-
-            del numeroNuevosJugadores
+            nuevosjugadores(listajugadores)
 
         if masjugadores=="no":
 
             ("Sigamos pues!")
+
