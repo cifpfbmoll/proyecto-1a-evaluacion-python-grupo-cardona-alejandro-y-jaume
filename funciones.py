@@ -82,7 +82,7 @@ introduze una apuesta que puedas cubrir {listajugadores[i][0]}:"))
             else:
 
                 apuesta=int(colorinput(f">>> Recuerda que la apuesta minima es de 1 euro! \
-introduze una apuesta superior a 1 euro {listajugadores[i][0]}:"))
+introduze una apuesta superior o igual a 1 euro {listajugadores[i][0]}:"))
 
         listajugadores[i].append(apuesta)
 
