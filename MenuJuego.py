@@ -58,8 +58,8 @@ while opcion!="terminar":
 
         while respuesta not in ["si","no"]:
 
-            print("\n ⚠  Porfavor escriba si o no")
-            respuesta=input(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
+            funciones.colorerror("\n ⚠  Porfavor escriba si o no")
+            respuesta=funciones.colorinput(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
 
         vecesdoblado=0
 
@@ -84,7 +84,7 @@ while opcion!="terminar":
 
                 while respuesta not in ["si","no"]:
 
-                    print("\n ⚠  Porfavor escriba si o no")
+                    funciones.colorerror("\n ⚠  Porfavor escriba si o no")
                     respuesta=funciones.colorinput(">>> Quieres una carta mas?")
                 os.system('cls')
 
@@ -115,7 +115,7 @@ Ademas pueden entrar a jugar mas personas mientras se respete el numero maximo d
 
     for i in range(len(listajugadores)):
 
-        opcion=input(f"{listajugadores[i][0]} Escribe salir si quieres salir de la partida, añadir si quieres añadir dinero o \
+        opcion=funciones.colorinput(f"{listajugadores[i][0]} Escribe salir si quieres salir de la partida, añadir si quieres añadir dinero o \
 pulsa cualquier otra cosa para seguir jugando asi:")
 
         if opcion=="salir":
@@ -126,7 +126,7 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
         elif opcion=="añadir":
 
-            dinero=int(input("Cuanto dinero quieres añadir?"))
+            dinero=int(funciones.colorinput("Cuanto dinero quieres añadir?"))
 
             dinerototal=listajugadores[i][1]+dinero
 
@@ -140,15 +140,15 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
     if (len(listajugadores))<7:
 
-        masjugadores=input("Van a entrar a jugar mas jugadores?")
+        masjugadores=funciones.colorinput("Van a entrar a jugar mas jugadores?")
 
         if masjugadores=="si":
 
-            numeroNuevosJugadores=int(input("Cuantos jugadores se van a añadir?"))
+            numeroNuevosJugadores=int(funciones.colorinput("Cuantos jugadores se van a añadir?"))
 
             while (len(listajugadores))+numeroNuevosJugadores>7:
 
-                numeroNuevosJugadores=int(input("No se pueden añadir tantos jugadores! recordad que el maximo son 7!"))
+                numeroNuevosJugadores=int(funciones.colorinput("No se pueden añadir tantos jugadores! recordad que el maximo son 7!"))
 
             #Nombre jugador
 
