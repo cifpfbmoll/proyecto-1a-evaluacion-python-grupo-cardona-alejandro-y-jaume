@@ -100,6 +100,8 @@ while opcion!="terminar":
     print ("Aqui cada jugador puede salir de la partida o añadir dinero!\n\
 Ademas pueden entrar a jugar mas personas mientras se respete el numero maximo de jugadores.")
 
+    listajugadoressaliendo=[]
+
     for i in range(len(listajugadores)):
 
         opcion=prints.colorinput(f"{listajugadores[i][0]} Escribe salir si quieres salir de la partida, añadir si quieres añadir dinero o \
@@ -107,9 +109,9 @@ pulsa cualquier otra cosa para seguir jugando asi:")
 
         if opcion=="salir":
 
-            print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")#si surt un jugador que no sigui es darrer, sa llista s'altere
+            print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")#si surt un jugador que no sigui es darrer, sa llista s'altera
 
-            del listajugadores[i]
+            
 
         elif opcion=="añadir":
 
