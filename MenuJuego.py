@@ -59,7 +59,7 @@ while opcion!="terminar":
         while respuesta not in ["si","no"]:
 
             funciones.colorerror("\n ⚠  Porfavor escriba si o no")
-            respuesta=funciones.colorinput(f">>> Quieres una carta mas {listajugadores[i][0]}?\n >  ")
+            respuesta=funciones.colorinput(f">>> Quieres una carta mas {listajugadores[i][0]}?")
 
         vecesdoblado=0
 
