@@ -9,19 +9,20 @@ import objetos
 #Hacer que el jugador 1 vaya rotando en cada ronda.
 #Hacer lista de la banca [Dinero,[cartas],valorcartas] y sus funciones
 
-prints.colorreset()
 prints.inicio()
 
 numerojugadores=prints.colorinput("\n>>> Cuantos jugadores vais a jugar? [1-7]")
 
 while numerojugadores not in ["1","2","3","4","5","6","7"]:
 
-    prints.colorerror(" ⚠  Error. Has de seleccionar un número del 1 al 7.")
+    os.system('cls')
+    prints.inicio()
+    prints.colorerror("\n ⚠  Error. Has de seleccionar un número del 1 al 7.")
     numerojugadores=prints.colorinput(">>> Cuantos jugadores vais a jugar? [1-7]")
 
 listajugadores=funciones.nombrejugadores(int(numerojugadores))
 
-print("\n>>> Con cuanto dinero vais a entrar cada uno?")
+print(">>> Con cuanto dinero vais a entrar cada uno?")
 
 funciones.dinerojugadores(listajugadores)
 
