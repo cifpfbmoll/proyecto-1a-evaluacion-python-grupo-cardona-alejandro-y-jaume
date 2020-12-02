@@ -65,12 +65,12 @@ def apuestainicialjugadores (listajugadores):
             if apuesta>listajugadores[i][1]:
 
                 apuesta=int(prints.colorinput(f">>> No puedes apostar mas que el dinero que tienes en mesa! \
-introduze una apuesta que puedas cubrir {listajugadores[i][0]}:"))
+introduce una apuesta que puedas cubrir {listajugadores[i][0]}:"))
 
             else:
 
                 apuesta=int(prints.colorinput(f">>> Recuerda que la apuesta minima es de 1 euro! \
-introduze una apuesta superior a 1 euro {listajugadores[i][0]}:"))
+introduce una apuesta superior o igual a 1 euro {listajugadores[i][0]}:"))
 
         listajugadores[i].append(apuesta)
 
@@ -80,7 +80,7 @@ def apuestajugadores (listajugadores,i):
 
     respuesta=(prints.colorinput(f">>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))
 
-    while respuesta not in ["si","no"]:
+    while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí"]:
 
         prints.colorerror(" ⚠  Porfavor escriba si o no")
         respuesta=(prints.colorinput(f">>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))
@@ -205,3 +205,80 @@ def vermesa(listajugadores):
             else:
                 print("%s" % (j), end="")
         print("\n")
+
+def eliminarjugadores (listajugadoressaliendo,listajugadores):
+
+    listajugadoressaliendo.reverse()
+
+    for i in listajugadoressaliendo:
+
+        del listajugadores[i]
+
+    del listajugadoressaliendo
+
+def añadirdinero (listajugadores,i):
+
+    dinero=int(prints.colorinput("Cuanto dinero quieres añadir?"))
+
+    dinerototal=listajugadores[i][1]+dinero
+
+    del listajugadores[i][1]
+
+    listajugadores[i].insert(1,dinerototal)
+
+def nuevosjugadores (listajugadores):
+
+    numeroNuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
+
+    while (len(listajugadores))+numeroNuevosJugadores>7:
+
+        numeroNuevosJugadores=int(prints.colorinput("No se pueden añadir tantos jugadores! recordad que el maximo son 7!"))
+
+    listajugadores.extend(nombrejugadores(numeroNuevosJugadores))
+
+    dinerojugadores(listajugadores[-numeroNuevosJugadores:])
+
+    del numeroNuevosJugadores
+
+def menujuego (listajugadores): 
+
+    print ("MENU DEL JUEGO")
+
+    print ("Aqui cada jugador puede salir de la partida o añadir dinero!\n\
+Ademas pueden entrar a jugar mas personas mientras se respete el numero maximo de jugadores.")
+
+    listajugadoressaliendo=[]
+
+    for i in range(len(listajugadores)):
+
+        opcion=prints.colorinput(f"{listajugadores[i][0]} Escribe salir si quieres salir de la partida, añadir si quieres añadir dinero o \
+pulsa cualquier otra cosa para seguir jugando asi:")
+
+        if opcion=="salir":
+
+            print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")
+
+            listajugadoressaliendo.append(i)
+
+        elif opcion=="añadir":
+
+            añadirdinero (listajugadores,i)
+
+        else:
+
+            ("Seguimos asi pues!")
+
+    eliminarjugadores(listajugadoressaliendo,listajugadores)
+
+    if (len(listajugadores))<7:
+
+        masjugadores=prints.colorinput("Van a entrar a jugar mas jugadores?")
+
+        if masjugadores=="si":
+
+            nuevosjugadores(listajugadores)
+
+        if masjugadores=="no":
+
+            ("Sigamos pues!")
+
