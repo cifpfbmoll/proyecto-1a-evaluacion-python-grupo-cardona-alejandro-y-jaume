@@ -97,9 +97,11 @@ while opcion!="terminar":
 
     funciones.vermesa(listajugadores)
 
+    funciones.eliminardatosronda(listajugadores)
+
     funciones.menujuego(listajugadores)
 
-    primerJugador=listajugadores.pop(0)
+    primerJugador=listajugadores.pop(0) #El jugador que hablaba primero pasa a hablar el ultimo
 
     listajugadores.append(primerJugador)
 

@@ -244,6 +244,11 @@ def nuevosjugadores (listajugadores):
 
     del numeroNuevosJugadores
 
+def eliminardatosronda (listajugadores):
+
+    for i in listajugadores:
+        del i[2:]
+
 def menujuego (listajugadores): 
 
     print ("MENU DEL JUEGO")

@@ -2,6 +2,6 @@
 
 lista=["jugador","sudinero",["apuesta"],["cartasenMano"],"valormano"]
 
-lista.reverse()
+del lista[2:]
 
 print (lista)
