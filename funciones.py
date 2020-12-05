@@ -104,6 +104,24 @@ def repartircarta (listajugadores,baraja,i):
 
     listajugadores[i][3].append(carta)
 
+def valorcartassimple (listajugadores):
+
+    valormano=0
+
+    for i in listajugadores[3]:
+
+        valormano+=objetos.valor_baraja.get(i)
+
+    if listajugadores[-1]==listajugadores[3]:
+    
+        listajugadores.append(valormano)
+
+    else:
+
+        del listajugadores[4]
+
+        listajugadores.append(valormano)
+
 def valorcartas (listajugadores):
 
     valormano=0
@@ -170,7 +188,7 @@ def valorcartas (listajugadores):
 
 def vercartas (listajugadores,jugador):
     for i in range (len(listajugadores)):
-        valorcartas(listajugadores[i])
+        valorcartassimple(listajugadores[i])
     prints.mesa()
     for i in listajugadores:
         if i[0] == jugador:
@@ -195,7 +213,6 @@ def vercartas (listajugadores,jugador):
                     print("?", end="")
         prints.colorreset()
         print("")
-
 
 def vermesa(listajugadores):
 
