@@ -249,6 +249,58 @@ def eliminardatosronda (listajugadores):
     for i in listajugadores:
         del i[2:]
 
+def opcionesjugadores (listajugadores):
+
+    listajugadoressaliendo=[]
+
+    for i in range(len(listajugadores)):
+
+        if len(listajugadores)-1==len(listajugadoressaliendo):
+
+            opcion=prints.colorinput(f"{listajugadores[i][0]} Escribe terminar si quieres terminar la partida, añadir si quieres añadir dinero o \
+pulsa cualquier otra cosa para seguir jugando asi:")
+
+        else:
+
+            opcion=prints.colorinput(f"{listajugadores[i][0]} Escribe salir si quieres salir de la partida, añadir si quieres añadir dinero o \
+pulsa cualquier otra cosa para seguir jugando asi:")
+
+        if len(listajugadores)-1==len(listajugadoressaliendo):
+
+            if opcion=="terminar":
+
+                print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")
+
+                listajugadoressaliendo.append(i)
+
+            elif opcion=="añadir":
+
+                añadirdinero (listajugadores,i)
+
+            else:
+
+                ("Seguimos asi pues!")
+
+        else:
+
+            if opcion=="salir":
+
+                print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")
+
+                listajugadoressaliendo.append(i)
+
+            elif opcion=="añadir":
+
+                añadirdinero (listajugadores,i)
+
+            else:
+
+                ("Seguimos asi pues!")
+
+    eliminarjugadores(listajugadoressaliendo,listajugadores)
+
+    return opcion
+
 def menujuego (listajugadores): 
 
     print ("MENU DEL JUEGO")
@@ -256,30 +308,9 @@ def menujuego (listajugadores):
     print ("Aqui cada jugador puede salir de la partida o añadir dinero!\n\
 Ademas pueden entrar a jugar mas personas mientras se respete el numero maximo de jugadores.")
 
-    listajugadoressaliendo=[]
+    opcion=opcionesjugadores(listajugadores)
 
-    for i in range(len(listajugadores)):
-
-        opcion=prints.colorinput(f"{listajugadores[i][0]} Escribe salir si quieres salir de la partida, añadir si quieres añadir dinero o \
-pulsa cualquier otra cosa para seguir jugando asi:")
-
-        if opcion=="salir":
-
-            print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")
-
-            listajugadoressaliendo.append(i)
-
-        elif opcion=="añadir":
-
-            añadirdinero (listajugadores,i)
-
-        else:
-
-            ("Seguimos asi pues!")
-
-    eliminarjugadores(listajugadoressaliendo,listajugadores)
-
-    if (len(listajugadores))<7:
+    if len(listajugadores)!=0 and (len(listajugadores))<7:
 
         masjugadores=prints.colorinput("Van a entrar a jugar mas jugadores?")
 
@@ -290,4 +321,6 @@ pulsa cualquier otra cosa para seguir jugando asi:")
         if masjugadores=="no":
 
             ("Sigamos pues!")
+
+    return opcion
 

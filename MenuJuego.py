@@ -6,7 +6,6 @@ import prints
 import objetos
 
 #Se imprime dos veces looser cuando el ultimo jugador en hablar pierde
-#borrar todos los valores menos nombre i dinero total de las listas al acabar la ronda
 #Elegir valor de as (creo que lo mejor es darle valor de 1, y luego elegir si subirlo a 11)
 #Hacer lista de la banca [Dinero,[cartas],valorcartas] y sus funciones
 
@@ -99,11 +98,13 @@ while opcion!="terminar":
 
     funciones.eliminardatosronda(listajugadores)
 
-    funciones.menujuego(listajugadores)
+    opcion=funciones.menujuego(listajugadores)
 
-    primerJugador=listajugadores.pop(0) #El jugador que hablaba primero pasa a hablar el ultimo
+    if len(listajugadores)!=0:
 
-    listajugadores.append(primerJugador)
+        primerJugador=listajugadores.pop(0) #El jugador que hablaba primero pasa a hablar el ultimo
+
+        listajugadores.append(primerJugador)
 
     print (listajugadores)
 
