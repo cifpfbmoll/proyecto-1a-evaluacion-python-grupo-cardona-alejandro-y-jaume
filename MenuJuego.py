@@ -5,10 +5,18 @@ import funciones
 import prints
 import objetos
 
+listabanca=[1000000]
+
+#Tenemos que elegir un minimo y maximo de dinero para la banca y con cuanto dinero minimo i maximo pueden entrar los jugadores comparado con la banca.
 #Elegir valor de as (creo que lo mejor es darle valor de 1, y luego elegir si subirlo a 11)
-#Hacer lista de la banca [Dinero,[cartas],valorcartas] y sus funciones
+#Añadir datos banca a la interfaz visual
+#Mirar todas las condiciones donde no se pueda apostar una cantidad debido a que no tiene suficiente dinero el jugador(doblar,...)
+#Poner codigo para cuando el jugador o la banca se quedan sin dinero(jugador recomprar o salir), banca=bancarota i cerrar programa.
+
 
 prints.inicio()
+
+funciones.dinerobanca(listabanca)
 
 numerojugadores=prints.colorinput("\n     >>> Cuantos jugadores vais a jugar? [1-7]")
 
@@ -37,15 +45,17 @@ while opcion!="terminar":
 
     funciones.apuestainicialjugadores(listajugadores)
 
-    baraja=funciones.barajar(objetos.baraja)
+    baraja=funciones.barajar(objetos.baraja[:])
 
     funciones.repartircartasiniciales(listajugadores,baraja)
+
+    funciones.repartircartabanca(listabanca,baraja)
 
     funciones.repartircartasiniciales(listajugadores,baraja)
 
     for i in range (len(listajugadores)):
         os.system('cls')
-        funciones.valorcartas(listajugadores[i])
+        funciones.valorcartas(listajugadores[i],listabanca)
         funciones.vercartas(listajugadores,listajugadores[i][0])
         respuesta=prints.colorinput(f"     >>> Quieres una carta mas {listajugadores[i][0]}?  [si/NO]")
 
@@ -69,7 +79,7 @@ while opcion!="terminar":
 
             funciones.vercartas(listajugadores,listajugadores[i][0])
 
-            pasado=funciones.valorcartas(listajugadores[i])
+            pasado=funciones.valorcartas(listajugadores[i],listabanca)
 
             if not pasado:
 
@@ -95,9 +105,23 @@ while opcion!="terminar":
 
     funciones.vermesa(listajugadores)
 
+    funciones.valorcartasbanca(listabanca)
+
+    while listabanca[2]<17:#La banca saca cartas hasta que obtiene un valor de 17 o mas
+    
+        funciones.repartircartabanca(listabanca,baraja)
+    
+        funciones.valorcartasbanca(listabanca)
+
+    funciones.compararcartas(listajugadores,listabanca)
+
+    funciones.vermesa(listajugadores)
+
     funciones.eliminardatosronda(listajugadores)
 
-    opcion=funciones.menujuego(listajugadores)
+    del listabanca[1:]
+
+    opcion=funciones.menujuego(listajugadores)#Menu de cuando finaliza la ronda, se devuelve valor porque si  opcion="terminar" se rompe el bucle y termina la partida
 
     if len(listajugadores)!=0:
 
@@ -105,8 +129,12 @@ while opcion!="terminar":
 
         listajugadores.append(primerJugador)
 
+    print (baraja)
     print (listajugadores)
+    print (listabanca)
+
 
 print (listajugadores)
+print (listabanca)
 
 prints.colorinput("\n     >>> Pulsa ENTER para cerrar el programa.")

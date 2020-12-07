@@ -23,6 +23,38 @@ def repartircartasiniciales (listajugadores,baraja):
 
             listajugadores[i][3].append(carta)
 
+def repartircartabanca (listabanca,baraja):
+
+    if listabanca[-1]==listabanca[0]:
+
+        carta=sacarcarta(baraja)
+
+        listabanca.append([carta])
+
+    else:
+
+        carta=sacarcarta(baraja)
+
+        listabanca[1].append(carta)
+
+def valorcartasbanca (listabanca):
+
+    valormano=0
+
+    for i in listabanca[1]:
+
+        valormano+=objetos.valor_baraja.get(i)
+
+    if listabanca[-1]==listabanca[1]:
+    
+        listabanca.append(valormano)
+
+    else:
+
+        del listabanca[2]
+
+        listabanca.append(valormano)
+
 def barajar (lista):
 
     import random
@@ -30,6 +62,19 @@ def barajar (lista):
     random.shuffle(lista)
 
     return lista
+
+def dinerobanca (listabanca):
+
+    cambio=input("\n     Recordamos que la banca empieza con 1.000.000, si quieres cambiar esa cantidad de dinero escribe: cambiar\n\
+     Si no la quiere cambiar pulse enter")
+
+    if cambio=="cambiar":
+
+        dinerobanca=int(input("Cuanto dinero quieres que tenga la banca?"))
+
+        listabanca.clear()
+
+        listabanca.append(dinerobanca)
 
 def nombrejugadores (numerojugadores):
 
@@ -122,7 +167,7 @@ def valorcartassimple (listajugadores):
 
         listajugadores.append(valormano)
 
-def valorcartas (listajugadores):
+def valorcartas (listajugadores,listabanca):
 
     valormano=0
 
@@ -146,6 +191,10 @@ def valorcartas (listajugadores):
 
             listajugadores.insert(1,dinerojugador)
 
+            dinerobanca=listabanca.pop(0)+apuesta
+
+            listabanca.insert(0,dinerobanca)
+
             pasado=True
 
             prints.colorinput("\n     >>> Pulsa ENTER para abandonar la mesa.")
@@ -163,6 +212,10 @@ def valorcartas (listajugadores):
             dinerojugador=(listajugadores.pop(1))-apuesta
 
             listajugadores.insert(1,dinerojugador)
+
+            dinerobanca=listabanca.pop(0)+apuesta
+
+            listabanca.insert(0,dinerobanca)
 
             pasado=True
 
@@ -340,4 +393,72 @@ Ademas pueden entrar a jugar mas personas mientras se respete el numero maximo d
             ("Sigamos pues!")
 
     return opcion
+
+def compararcartas (listajugadores,listabanca):
+
+    for i in listajugadores:
+
+        if listabanca[2]>21 and i[4]<22: #Si la banca se pasa de 21 y el jugador no
+
+            if i[4]==21:
+
+                apuesta=i[2]
+
+                dinerobanca=listabanca.pop(0)-(apuesta*1.5)
+
+                listabanca.insert(0,dinerobanca)
+
+                dinerojugador=i.pop(1)+(apuesta*1.5)
+
+                i.insert(1,dinerojugador)
+
+            else:
+
+                apuesta=i[2]
+
+                dinerobanca=listabanca.pop(0)-apuesta
+
+                listabanca.insert(0,dinerobanca)
+
+                dinerojugador=i.pop(1)+apuesta
+
+                i.insert(1,dinerojugador)
+
+        elif listabanca[2]>=i[4] and i[4]<22: #Si la banca iguala o supera al jugador i el jugador no se ha pasado
+
+            apuesta=i[2]
+
+            dinerobanca=listabanca.pop(0)+apuesta
+
+            listabanca.insert(0,dinerobanca)
+
+            dinerojugador=i.pop(1)-apuesta
+
+            i.insert(1,dinerojugador)
+
+        elif listabanca[2]<i[4] and i[4]<22: #Si la banca no supera al jugador i el jugador no se ha pasado 
+
+            if i[4]==21:
+
+                apuesta=i[2]
+
+                dinerobanca=listabanca.pop(0)-(apuesta*1.5)
+
+                listabanca.insert(0,dinerobanca)
+
+                dinerojugador=i.pop(1)+(apuesta*1.5)
+
+                i.insert(1,dinerojugador)
+
+            else:
+
+                apuesta=i[2]
+
+                dinerobanca=listabanca.pop(0)-apuesta
+
+                listabanca.insert(0,dinerobanca)
+
+                dinerojugador=i.pop(1)+apuesta
+
+                i.insert(1,dinerojugador)
 

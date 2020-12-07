@@ -1,7 +1,9 @@
 
 
-lista=["jugador","sudinero",["apuesta"],["cartasenMano"],"valormano"]
+lista=["jugador","sudinero","apuesta",["cartasenMano"],"valormano"]
 
-del lista[2:]
+listabanca=["Dinero",["cartas"],"valorcartas"]
 
-print (lista)
+
+
+print (lista[2],lista.pop(1))
