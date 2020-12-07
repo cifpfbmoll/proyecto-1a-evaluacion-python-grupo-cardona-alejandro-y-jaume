@@ -2,6 +2,8 @@ def colorreset(): print("\033[92m")
 
 def colorjugadoractual(): print("\033[96m") 
 def colorbanca(): print("\033[95m") 
+def colorganador(): print("\033[93m") 
+def colorperdedor(): print("\033[91m") 
 def colorerror(skk):
     print("\033[91m {}\033[00m" .format(skk))
     colorreset()
