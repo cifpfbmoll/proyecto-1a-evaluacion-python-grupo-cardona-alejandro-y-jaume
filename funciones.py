@@ -65,8 +65,7 @@ def barajar (lista):
 
 def dinerobanca (listabanca):
 
-    cambio=input("\n     Recordamos que la banca empieza con 1.000.000, si quieres cambiar esa cantidad de dinero escribe: cambiar\n\
-     Si no la quiere cambiar pulse enter")
+    cambio=prints.colorinput("\n   >>> La banca empieza con 1.000.000 de euros.\n   >>> Si quiere cambiar esa cantidad escriba \"CAMBIAR\", si no pulse \"ENTER\".")
 
     if cambio=="cambiar":
 
@@ -82,7 +81,7 @@ def nombrejugadores (numerojugadores):
 
     for i in range(1,numerojugadores+1):
 
-        nombrejugador=str(prints.colorinput(f"     >>> Escribe el nombre del jugador {i}:"))
+        nombrejugador=str(prints.colorinput(f"   >>> Escribe el nombre del jugador {i}:"))
 
         listajugadores.append([nombrejugador.upper()])
 
@@ -92,7 +91,7 @@ def dinerojugadores (listajugadores):
 
     for i in range (len(listajugadores)):
 
-        dinero=int(prints.colorinput(f"     >>> Introducir dinero de {listajugadores[i][0]}:"))
+        dinero=int(prints.colorinput(f"   >>> Introducir dinero de {listajugadores[i][0]}:"))
 
         listajugadores[i].append(dinero)
 
@@ -103,20 +102,20 @@ def apuestainicialjugadores (listajugadores):
     
     for i in range (len(listajugadores)):
 
-        apuesta=int(prints.colorinput(f"     >>> Introducir apuesta de {listajugadores[i][0]}:"))
+        apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]}:"))
 
         while apuesta>listajugadores[i][1] or apuesta<1:
 
             if apuesta>listajugadores[i][1]:
 
-                prints.colorerror(f"      ⚠  No puedes apostar mas dinero del que tienes en mesa!")
-                apuesta=int(prints.colorinput(f"     >>> Introducir apuesta de {listajugadores[i][0]}:"))
+                prints.colorerror(f"    ⚠  No puedes apostar mas dinero del que tienes en mesa!")
+                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]}:"))
 
 
             else:
 
-                prints.colorerror(f"      ⚠  Recuerda que la apuesta minima es de 1 euro!")
-                apuesta=int(prints.colorinput(f"     >>> Introducir apuesta de {listajugadores[i][0]}:"))
+                prints.colorerror(f"    ⚠  Recuerda que la apuesta minima es de 1 euro!")
+                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]}:"))
 
         listajugadores[i].append(apuesta)
 
@@ -124,16 +123,16 @@ def apuestainicialjugadores (listajugadores):
 
 def apuestajugadores (listajugadores,i):
 
-    respuesta=(prints.colorinput(f"     >>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))
+    respuesta=(prints.colorinput(f"   >>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))
 
     while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí"]:
 
-        prints.colorerror("      ⚠  Porfavor escriba si o no")
-        respuesta=(prints.colorinput(f"     >>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))
+        prints.colorerror("    ⚠  Porfavor escriba si o no")
+        respuesta=(prints.colorinput(f"   >>> Vas a doblar la apuesta inicial {listajugadores[i][0]}?"))
 
     if respuesta=="si":
 
-        print (f"     >>> Muy Bien! Doblemos la apuesta pues {listajugadores[i][0]}")
+        print (f"   >>> Muy Bien! Doblemos la apuesta pues {listajugadores[i][0]}")
 
         apuesta=listajugadores[i][2]
 
@@ -183,8 +182,8 @@ def valorcartas (listajugadores,listabanca):
 
             listajugadores.append(valormano)
 
-            print ("     >>> Looseeeeer!")
-            print ("     >>> Tu puntuación es mayor a 21.")
+            print ("   >>> Looseeeeer!")
+            print ("   >>> Tu puntuación es mayor a 21.")
 
 
             dinerojugador=(listajugadores.pop(1))-apuesta
@@ -197,7 +196,7 @@ def valorcartas (listajugadores,listabanca):
 
             pasado=True
 
-            prints.colorinput("\n     >>> Pulsa ENTER para abandonar la mesa.")
+            prints.colorinput("\n   >>> Pulsa ENTER para abandonar la mesa.")
 
 
         else:
@@ -206,8 +205,8 @@ def valorcartas (listajugadores,listabanca):
 
             listajugadores.append(valormano)
 
-            print ("     >>> Looseeeeer!")
-            print ("     >>> Tu puntuación es mayor a 21.")
+            print ("   >>> Looseeeeer!")
+            print ("   >>> Tu puntuación es mayor a 21.")
 
             dinerojugador=(listajugadores.pop(1))-apuesta
 
@@ -219,7 +218,7 @@ def valorcartas (listajugadores,listabanca):
 
             pasado=True
 
-            prints.colorinput("\n     >>> Pulsa ENTER para abandonar la mesa.")
+            prints.colorinput("\n   >>> Pulsa ENTER para abandonar la mesa.")
 
     else:
 
@@ -239,42 +238,64 @@ def valorcartas (listajugadores,listabanca):
 
     return pasado
 
-def vercartas (listajugadores,jugador):
+def verbanca (listabanca):
+    #print(listabanca)
+    prints.colorbanca()
+    valorcartasbanca(listabanca)
+    print("   >>> Cartas de la BANCA ⁞ Dinero: %s ⁞ Valor de la mano: %s" % (listabanca[0],listabanca[2]))
+    for i in listabanca[1]:
+        if i != listabanca[1][-1]:
+            if i == listabanca[1][0]:
+                print("    >> ", end="")
+            print("%s" % (i), end=" | ")
+        else:
+            if i == listabanca[1][0]:
+                print("    >> ", end="")
+            print("%s" % (i), end="")
+    prints.colorreset()
+
+
+def vercartas (listajugadores,jugador,listabanca):
     for i in range (len(listajugadores)):
         valorcartassimple(listajugadores[i])
     prints.mesa()
+    verbanca(listabanca)
     for i in listajugadores:
         if i[0] == jugador:
             prints.colorjugadoractual()
-            print("     >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s" % (i[0],i[1],i[2],i[4]))
+            print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s" % (i[0],i[1],i[2],i[4]))
         else:
-            print("     >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: ?" % (i[0],i[1],i[2]))
+            prints.colorreset()
+            print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: ?" % (i[0],i[1],i[2]))
         if i[0] == jugador:
             for j in i[3]:
                 if j != i[3][-1]:
-                    print("     >>> ", end="")
+                    if j == i[3][0]:
+                        print("    >> ", end="")
                     print("%s" % (j), end=" | ")
                 else:
                     print("%s" % (j), end="")
-
         else:
             for j in i[3]:
                 if j != i[3][-1]:
-                    print("      >>> ", end="")
+                    if j == i[3][0]:
+                        print("    >> ", end="")
                     print("%s" % (j), end=" | ")
                 else:
                     print("?", end="")
         prints.colorreset()
-        print("")
 
-def vermesa(listajugadores):
+def vermesa(listajugadores,listabanca):
 
     prints.mesa()
+    verbanca(listabanca)
+    print("")
     for i in listajugadores:
-        print("     >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s" % (i[0],i[1],i[2],i[4]))
+        print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s" % (i[0],i[1],i[2],i[4]))
         for j in i[3]:
             if j != i[3][-1]:
-                print("     >>> ", end="")
+                if j == i[3][0]:
+                    print("    >> ", end="")
                 print("%s" % (j), end=" | ")
             else:
                 print("%s" % (j), end="")
@@ -375,8 +396,7 @@ def menujuego (listajugadores):
 
     print ("MENU DEL JUEGO")
 
-    print ("Aqui cada jugador puede salir de la partida o añadir dinero!\n\
-Ademas pueden entrar a jugar mas personas mientras se respete el numero maximo de jugadores.")
+    print ("Aqui cada jugador puede salir de la partida o añadir dinero!\nAdemas pueden entrar a jugar mas personas mientras se respete el numero maximo de jugadores.")
 
     opcion=opcionesjugadores(listajugadores)
 

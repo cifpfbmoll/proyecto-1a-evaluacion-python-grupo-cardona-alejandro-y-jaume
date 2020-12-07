@@ -18,18 +18,18 @@ prints.inicio()
 
 funciones.dinerobanca(listabanca)
 
-numerojugadores=prints.colorinput("\n     >>> Cuantos jugadores vais a jugar? [1-7]")
+numerojugadores=prints.colorinput("\n   >>> Cuantos jugadores vais a jugar? [1-7]")
 
 while numerojugadores not in ["1","2","3","4","5","6","7"]:
 
     os.system('cls')
     prints.inicio()
-    prints.colorerror("\n      ⚠  Error. Has de seleccionar un número del 1 al 7.")
-    numerojugadores=prints.colorinput("     >>> Cuantos jugadores vais a jugar? [1-7]")
+    prints.colorerror("\n    ⚠  Error. Has de seleccionar un número del 1 al 7.")
+    numerojugadores=prints.colorinput("   >>> Cuantos jugadores vais a jugar? [1-7]")
 
 listajugadores=funciones.nombrejugadores(int(numerojugadores))
 
-print("     >>> Con cuanto dinero vais a entrar cada uno?")
+print("   >>> Con cuanto dinero vais a entrar cada uno?")
 
 funciones.dinerojugadores(listajugadores)
 
@@ -41,7 +41,7 @@ while opcion!="terminar":
 
     prints.empezar()
 
-    print ("\n     >>> Hagan sus apuestas!\n")
+    print ("\n   >>> Hagan sus apuestas!\n")
 
     funciones.apuestainicialjugadores(listajugadores)
 
@@ -56,13 +56,13 @@ while opcion!="terminar":
     for i in range (len(listajugadores)):
         os.system('cls')
         funciones.valorcartas(listajugadores[i],listabanca)
-        funciones.vercartas(listajugadores,listajugadores[i][0])
-        respuesta=prints.colorinput(f"     >>> Quieres una carta mas {listajugadores[i][0]}?  [si/NO]")
+        funciones.vercartas(listajugadores,listajugadores[i][0],listabanca)
+        respuesta=prints.colorinput(f"   >>> Quieres una carta mas {listajugadores[i][0]}?  [si/NO]")
 
         while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
 
-            prints.colorerror("      ⚠  Porfavor escriba si o no")
-            respuesta=prints.colorinput(f"     >>> Quieres una carta mas {listajugadores[i][0]}?  [si/NO]")
+            prints.colorerror("    ⚠  Porfavor escriba si o no")
+            respuesta=prints.colorinput(f"   >>> Quieres una carta mas {listajugadores[i][0]}?  [si/NO]")
 
         vecesdoblado=0
 
@@ -77,18 +77,18 @@ while opcion!="terminar":
 
             funciones.repartircarta(listajugadores,baraja,i)
 
-            funciones.vercartas(listajugadores,listajugadores[i][0])
+            funciones.vercartas(listajugadores,listajugadores[i][0],listabanca)
 
             pasado=funciones.valorcartas(listajugadores[i],listabanca)
 
             if not pasado:
 
-                respuesta=prints.colorinput("     >>> Quieres una carta mas? [si/NO]")
+                respuesta=prints.colorinput("   >>> Quieres una carta mas? [si/NO]")
 
                 while respuesta not in ["si","no",""]:
 
-                    prints.colorerror("      ⚠  Porfavor escriba si o no")
-                    respuesta=prints.colorinput("     >>> Quieres una carta mas? [si/NO]")
+                    prints.colorerror("    ⚠  Porfavor escriba si o no")
+                    respuesta=prints.colorinput("   >>> Quieres una carta mas? [si/NO]")
                 os.system('cls')
 
             if pasado:
@@ -101,9 +101,9 @@ while opcion!="terminar":
         if i != len(listajugadores)-1:
             prints.siguiente_jugador()
             
-            prints.colorinput("     >>> Pulsa ENTER para pasar al siguiente jugador.")
+            prints.colorinput("   >>> Pulsa ENTER para pasar al siguiente jugador.")
 
-    funciones.vermesa(listajugadores)
+    funciones.vermesa(listajugadores,listabanca)
 
     funciones.valorcartasbanca(listabanca)
 
@@ -115,7 +115,8 @@ while opcion!="terminar":
 
     funciones.compararcartas(listajugadores,listabanca)
 
-    funciones.vermesa(listajugadores)
+    os.system('cls')
+    funciones.vermesa(listajugadores,listabanca)
 
     funciones.eliminardatosronda(listajugadores)
 
@@ -137,4 +138,4 @@ while opcion!="terminar":
 print (listajugadores)
 print (listabanca)
 
-prints.colorinput("\n     >>> Pulsa ENTER para cerrar el programa.")
+prints.colorinput("\n   >>> Pulsa ENTER para cerrar el programa.")
