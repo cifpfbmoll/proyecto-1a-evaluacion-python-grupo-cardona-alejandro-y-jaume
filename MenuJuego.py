@@ -21,7 +21,7 @@ numerojugadores=prints.colorinput("\n   >>> Cuantos jugadores vais a jugar? [1-7
 while numerojugadores not in ["1","2","3","4","5","6","7"]:
     os.system('cls')
     prints.inicio()
-    prints.colorerror("\n    ⚠  Error. Has de seleccionar un número del 1 al 7.")
+    prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
     numerojugadores=prints.colorinput("   >>> Cuantos jugadores vais a jugar? [1-7]")
 
 os.system('cls')
@@ -80,9 +80,9 @@ while opcion!="terminar":
         if i != len(listajugadores)-1:
             prints.siguiente_jugador()
             
-            prints.colorinput("   >>> Pulsa ENTER para pasar al siguiente jugador.")
+            prints.colorinput("   >>> Pulsa \"ENTER\" para pasar al siguiente jugador.")
 
-    funciones.vermesa(listajugadores,listabanca)
+    #funciones.vermesa(listajugadores,listabanca)
     funciones.valorcartasbanca(listabanca)
     while listabanca[2]<17: #La banca saca cartas hasta que obtiene un valor de 17 o mas
         funciones.repartircartabanca(listabanca,baraja)
@@ -92,15 +92,17 @@ while opcion!="terminar":
     funciones.vermesa(listajugadores,listabanca)
     funciones.eliminardatosronda(listajugadores)
     del listabanca[1:]
+    os.system('cls')
     opcion=funciones.menujuego(listajugadores) #Menu de cuando finaliza la ronda, se devuelve valor porque si  opcion="terminar" se rompe el bucle y termina la partida
     if len(listajugadores)!=0:
         primerJugador=listajugadores.pop(0) #El jugador que hablaba primero pasa a hablar el ultimo
         listajugadores.append(primerJugador)
-    print (baraja)
-    print (listajugadores)
-    print (listabanca)
+    #print (baraja)
+    #print (listajugadores)
+    #print (listabanca)
 
-print (listajugadores)
-print (listabanca)
-
-prints.colorinput("\n   >>> Pulsa ENTER para cerrar el programa.")
+#print (listajugadores)
+#print (listabanca)
+os.system('cls')
+prints.adios()
+prints.colorinput("\n   >>> Pulsa \"ENTER\" para cerrar el programa.")

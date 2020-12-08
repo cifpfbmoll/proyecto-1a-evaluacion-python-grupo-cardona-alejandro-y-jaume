@@ -202,6 +202,7 @@ def vermesa(listajugadores,listabanca):
             else:
                 print("%s" % (j), end="")
         prints.colorreset()
+    prints.colorinput("   >>> La partida ha finalizado, pulsa \"ENTER\" para continuar.")
 
 def eliminarjugadores (listajugadoressaliendo,listajugadores):
 
@@ -214,15 +215,16 @@ def eliminarjugadores (listajugadoressaliendo,listajugadores):
     del listajugadoressaliendo
 
 def añadirdinero (listajugadores,i):
-    dinero=int(prints.colorinput("Cuanto dinero quieres añadir?"))
+    dinero=int(prints.colorinput("   >>> Cuanto dinero quieres añadir?"))
     dinerototal=listajugadores[i][1]+dinero
     del listajugadores[i][1]
     listajugadores[i].insert(1,dinerototal)
 
 def nuevosjugadores (listajugadores):
-    numeroNuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
+    numeroNuevosJugadores=int(prints.colorinput("   >>> Cuantos jugadores se van a añadir?"))
     while (len(listajugadores))+numeroNuevosJugadores>7:
-        numeroNuevosJugadores=int(prints.colorinput("No se pueden añadir tantos jugadores! recordad que el maximo son 7!"))
+        prints.colorerror("    ⚠  El máximo son 7 jugadores.")
+        numeroNuevosJugadores=int(prints.colorinput("   >>> Cuantos jugadores se van a añadir?"))
     listajugadores.extend(nombrejugadores(numeroNuevosJugadores))
     dinerojugadores(listajugadores[-numeroNuevosJugadores:])
     del numeroNuevosJugadores
@@ -235,39 +237,39 @@ def opcionesjugadores (listajugadores):
     listajugadoressaliendo=[]
     for i in range(len(listajugadores)):
         if len(listajugadores)-1==len(listajugadoressaliendo):
-            opcion=prints.colorinput(f"{listajugadores[i][0]} Escribe terminar si quieres terminar la partida, añadir si quieres añadir dinero o pulsa cualquier otra cosa para seguir jugando asi:")
+            opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas terminar la partida, añadir dinero, o  continuar? [ terminar / añadir / ENTER ]")
         else:
-            opcion=prints.colorinput(f"{listajugadores[i][0]} Escribe salir si quieres salir de la partida, añadir si quieres añadir dinero o pulsa cualquier otra cosa para seguir jugando asi:")
+            opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas salir la partida, añadir dinero, o  continuar? [ salir / añadir / ENTER ]")
         if len(listajugadores)-1==len(listajugadoressaliendo):
             if opcion=="terminar":
-                print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")
+                print (f"   >>> ¡Vale! Hasta la proxima {listajugadores[i][0]}!")
                 listajugadoressaliendo.append(i)
             elif opcion=="añadir":
                 añadirdinero (listajugadores,i)
             else:
-                ("Seguimos asi pues!")
+                ("   >>> ¡Sigamos asi pues!")
         else:
             if opcion=="salir":
-                print (f"Vale! Hasta la proxima {listajugadores[i][0]}!")
+                print (f"   >>> ¡Vale! Hasta la proxima {listajugadores[i][0]}!")
                 listajugadoressaliendo.append(i)
             elif opcion=="añadir":
                 añadirdinero (listajugadores,i)
             else:
-                ("Seguimos asi pues!")
+                ("   >>> ¡Sigamos asi pues!")
     eliminarjugadores(listajugadoressaliendo,listajugadores)
     return opcion
 
 def menujuego (listajugadores): 
 
-    print ("MENU DEL JUEGO")
+    prints.menu()
 
-    print ("Aqui cada jugador puede salir de la partida o añadir dinero!\nAdemas pueden entrar a jugar mas personas mientras se respete el numero maximo de jugadores.")
+    print ("   >>> Aqui cada jugador puede salir de la partida o añadir dinero!\n   >>> Ademas pueden entrar a jugar mas personas mientras se respete el numero máximo de jugadores.\n")
 
     opcion=opcionesjugadores(listajugadores)
 
     if len(listajugadores)!=0 and (len(listajugadores))<7:
 
-        masjugadores=prints.colorinput("Van a entrar a jugar mas jugadores?")
+        masjugadores=prints.colorinput("   >>> Van a entrar a jugar mas jugadores?")
 
         if masjugadores=="si":
 
@@ -275,7 +277,7 @@ def menujuego (listajugadores):
 
         if masjugadores=="no":
 
-            ("Sigamos pues!")
+            ("   >>> Sigamos pues!")
 
     return opcion
 
