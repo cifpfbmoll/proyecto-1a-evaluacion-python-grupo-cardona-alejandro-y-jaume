@@ -9,7 +9,6 @@ listabanca=[1000000]
 
 #Tenemos que elegir un minimo y maximo de dinero para la banca y con cuanto dinero minimo i maximo pueden entrar los jugadores comparado con la banca.
 #Elegir valor de as (creo que lo mejor es darle valor de 1, y luego elegir si subirlo a 11)
-#Añadir datos banca a la interfaz visual
 #Mirar todas las condiciones donde no se pueda apostar una cantidad debido a que no tiene suficiente dinero el jugador(doblar,...)
 #Poner codigo para cuando el jugador o la banca se quedan sin dinero(jugador recomprar o salir), banca=bancarota i cerrar programa.
 
