@@ -1,12 +1,15 @@
 def colorreset(): print("\033[92m") 
 
 def colorjugadoractual(): print("\033[96m") 
+def colorbanca(): print("\033[95m") 
+def colorganador(): print("\033[93m") 
+def colorperdedor(): print("\033[91m") 
 def colorerror(skk):
     print("\033[91m {}\033[00m" .format(skk))
     colorreset()
 def colorinput(skk):
     print("{}" .format(skk), end="\033[33m \n")
-    valor = input("      >  ")
+    valor = input("    >  ")
     colorreset()
     return valor
 
@@ -40,7 +43,7 @@ def siguiente_jugador():
     banner()
     print("   ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗")
     print("   ║                                                                                                      ║")
-    print("   ║                                  Vale! pasemos al siguiente jugador                                  ║")
+    print("   ║                                ¡Vale! Pasemos al siguiente jugador...                                ║")
     print("   ║                                                                                                      ║")
     print("   ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝")
 
@@ -52,3 +55,20 @@ def mesa():
     print("   ║                                                                                                      ║")
     print("   ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝")
 
+def menu():
+    banner()
+    print("   ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+    print("   ║                                                                                                      ║")
+    print("   ║                                                 MENÚ                                                 ║")
+    print("   ║                                                                                                      ║")
+    print("   ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+def adios():
+    banner()
+    print("   ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+    print("   ║                                                                                                      ║")
+    print("   ║                                          ¡Gracias por jugar!                                         ║")
+    print("   ║                                            ¡Hasta pronto!                                            ║")
+    print("   ║                                                                                                      ║")
+    print("   ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+    print("\n   >>> Creado por...\n\n      >> Karina Carrascosa\n      >> Jaume Fullana\n      >> Jose Luis Cardona")
