@@ -48,7 +48,7 @@ def nombrejugadores (numerojugadores):
     listajugadores=[]
     for i in range(1,numerojugadores+1):
         nombrejugador=str(prints.colorinput(f"   >>> Escribe el nombre del jugador {i}:"))
-        listajugadores.append([nombrejugador.upper()])
+        listajugadores.append([nombrejugador.capitalize()])
     return listajugadores
 
 def dinerojugadores (listajugadores):
@@ -59,14 +59,14 @@ def dinerojugadores (listajugadores):
 
 def apuestainicialjugadores (listajugadores):
     for i in range (len(listajugadores)):
-        apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]}:"))
+        apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} (Dinero: {listajugadores[i][1]}):"))
         while apuesta>listajugadores[i][1] or apuesta<1:
             if apuesta>listajugadores[i][1]:
                 prints.colorerror(f"    ⚠  No puedes apostar mas dinero del que tienes en mesa!")
-                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]}:"))
+                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} (Dinero: {listajugadores[i][1]}):"))
             else:
                 prints.colorerror(f"    ⚠  Recuerda que la apuesta minima es de 1 euro!")
-                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]}:"))
+                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} (Dinero: {listajugadores[i][1]}):"))
         listajugadores[i].append(apuesta)
     return listajugadores
 
@@ -215,7 +215,7 @@ def eliminarjugadores (listajugadoressaliendo,listajugadores):
     del listajugadoressaliendo
 
 def añadirdinero (listajugadores,i):
-    dinero=int(prints.colorinput("   >>> Cuanto dinero quieres añadir?"))
+    dinero=int(prints.colorinput(f"   >>> Cuanto dinero quieres añadir? (Dinero: {listajugadores[i][1]})"))
     dinerototal=listajugadores[i][1]+dinero
     del listajugadores[i][1]
     listajugadores[i].insert(1,dinerototal)
