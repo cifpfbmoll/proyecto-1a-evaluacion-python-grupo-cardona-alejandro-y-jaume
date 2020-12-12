@@ -7,10 +7,9 @@ import objetos
 
 listabanca=[1000000]
 
-#Tenemos que elegir un minimo y maximo de dinero para la banca y con cuanto dinero minimo i maximo pueden entrar los jugadores comparado con la banca.
 #Elegir valor de as (creo que lo mejor es darle valor de 1, y luego elegir si subirlo a 11)
-#Mirar todas las condiciones donde no se pueda apostar una cantidad debido a que no tiene suficiente dinero el jugador(doblar,...)
-#Poner codigo para cuando el jugador o la banca se quedan sin dinero(jugador recomprar o salir), banca=bancarota i cerrar programa.
+#Poner manera de cobrar de forma que pague primero a los que van primero.
+#Añadir dividir (en culaquier momento que tengas dos cartas del mismo valor 6 i 6, j i j, 10 i k,...)
 
 
 prints.inicio()
@@ -58,7 +57,7 @@ while opcion!="terminar":
             respuesta=prints.colorinput(f"   >>> Quieres una carta mas {listajugadores[i][0]}?  [SI/NO]")
         vecesdoblado=0
         while respuesta==("si" or "SI" or "Si" or "sí" or "SÍ" or "Sí"):
-            while vecesdoblado==0:
+            while vecesdoblado==0 and listajugadores[i][1]>=(listajugadores[i][2]*2):
                 funciones.apuestajugadores(listajugadores,i)
                 os.system('cls')
                 vecesdoblado=1
@@ -90,15 +89,19 @@ while opcion!="terminar":
     os.system('cls')
     funciones.vermesa(listajugadores,listabanca)
     funciones.eliminardatosronda(listajugadores)
-    del listabanca[1:]
-    os.system('cls')
-    opcion=funciones.menujuego(listajugadores) #Menu de cuando finaliza la ronda, se devuelve valor porque si  opcion="terminar" se rompe el bucle y termina la partida
-    if len(listajugadores)!=0:
-        primerJugador=listajugadores.pop(0) #El jugador que hablaba primero pasa a hablar el ultimo
-        listajugadores.append(primerJugador)
-    #print (baraja)
-    #print (listajugadores)
-    #print (listabanca)
+    if listabanca[0]<=0:
+        print ("BANCAROTA!")
+        opcion="terminar"
+    else:
+        del listabanca[1:]
+        os.system('cls')
+        opcion=funciones.menujuego(listajugadores) #Menu de cuando finaliza la ronda, se devuelve valor porque si  opcion="terminar" se rompe el bucle y termina la partida
+        if len(listajugadores)!=0:
+            primerJugador=listajugadores.pop(0) #El jugador que hablaba primero pasa a hablar el ultimo
+            listajugadores.append(primerJugador)
+        #print (baraja)
+        #print (listajugadores)
+        #print (listabanca)
 
 #print (listajugadores)
 #print (listabanca)

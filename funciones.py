@@ -41,6 +41,8 @@ def dinerobanca (listabanca):
     cambio=prints.colorinput("\n   >>> La banca empieza con 1.000.000 de euros.\n   >>> Si quiere cambiar esa cantidad escriba \"CAMBIAR\", si no pulse \"ENTER\".")
     if cambio=="cambiar":
         dinerobanca=int(prints.colorinput("   >>> Cuanto dinero quieres que tenga la banca?"))
+        while dinerobanca<=0:
+            dinerobanca=int(prints.colorinput("   >>> La banca necesita mas que eso, Cuanto dinero quieres que tenga la banca?"))
         listabanca.clear()
         listabanca.append(dinerobanca)
 
@@ -237,10 +239,13 @@ def opcionesjugadores (listajugadores):
     listajugadoressaliendo=[]
     for i in range(len(listajugadores)):
         if len(listajugadores)-1==len(listajugadoressaliendo):
-            opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas terminar la partida, añadir dinero, o  continuar? [ terminar / añadir / ENTER ]")
-        else:
-            opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas salir la partida, añadir dinero, o  continuar? [ salir / añadir / ENTER ]")
-        if len(listajugadores)-1==len(listajugadoressaliendo):
+            if listajugadores[i][1]<=0:
+                opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas terminar la partida o añadir dinero? [ terminar / añadir ]")
+                while opcion not in ["salir","añadir"]:
+                    opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, esa opcion no es posible, solo puedes terminar la partida o añadir dinero [ terminar / añadir ]")
+            else:
+                opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas terminar la partida, añadir dinero, o  continuar? [ terminar / añadir / ENTER ]")
+
             if opcion=="terminar":
                 print (f"   >>> ¡Vale! Hasta la proxima {listajugadores[i][0]}!")
                 listajugadoressaliendo.append(i)
@@ -249,6 +254,13 @@ def opcionesjugadores (listajugadores):
             else:
                 ("   >>> ¡Sigamos asi pues!")
         else:
+            if listajugadores[i][1]<=0:
+                opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas salir de la partida o añadir dinero? [ salir / añadir ]")
+                while opcion not in ["salir","añadir"]:
+                    opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, esa opcion no es posible, solo puedes salir de la partida o añadir dinero [ salir / añadir ]")
+            else:
+                opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas salir la partida, añadir dinero, o  continuar? [ salir / añadir / ENTER ]")
+
             if opcion=="salir":
                 print (f"   >>> ¡Vale! Hasta la proxima {listajugadores[i][0]}!")
                 listajugadoressaliendo.append(i)
