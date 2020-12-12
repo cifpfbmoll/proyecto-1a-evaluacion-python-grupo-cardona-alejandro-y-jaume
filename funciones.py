@@ -241,7 +241,7 @@ def opcionesjugadores (listajugadores):
         if len(listajugadores)-1==len(listajugadoressaliendo):
             if listajugadores[i][1]<=0:
                 opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas terminar la partida o añadir dinero? [ terminar / añadir ]")
-                while opcion not in ["salir","añadir"]:
+                while opcion not in ["terminar","añadir"]:
                     opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, esa opcion no es posible, solo puedes terminar la partida o añadir dinero [ terminar / añadir ]")
             else:
                 opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas terminar la partida, añadir dinero, o  continuar? [ terminar / añadir / ENTER ]")

@@ -9,7 +9,7 @@ listabanca=[1000000]
 
 #Elegir valor de as (creo que lo mejor es darle valor de 1, y luego elegir si subirlo a 11)
 #Añadir dividir (en culaquier momento que tengas dos cartas del mismo valor 6 i 6, j i j, 10 i k,...)
-
+#Optimizar funciones.
 
 prints.inicio()
 funciones.dinerobanca(listabanca)
