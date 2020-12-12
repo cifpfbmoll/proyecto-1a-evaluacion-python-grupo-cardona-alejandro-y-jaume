@@ -294,36 +294,65 @@ def menujuego (listajugadores):
     return opcion
 
 def compararcartas (listajugadores,listabanca):
-    for i in listajugadores:
-        if listabanca[2]>21 and i[4]<22: #Si la banca se pasa de 21 y el jugador no
-            if i[4]==21:
-                apuesta=i[2]
-                dinerobanca=listabanca.pop(0)-(apuesta*1.5)
-                listabanca.insert(0,dinerobanca)
-                dinerojugador=i.pop(1)+(apuesta*1.5)
-                i.insert(1,dinerojugador)
-            else:
-                apuesta=i[2]
-                dinerobanca=listabanca.pop(0)-apuesta
-                listabanca.insert(0,dinerobanca)
-                dinerojugador=i.pop(1)+apuesta
-                i.insert(1,dinerojugador)
-        elif listabanca[2]>=i[4] and i[4]<22: #Si la banca iguala o supera al jugador i el jugador no se ha pasado
+    for i in listajugadores:#Cuando la banca cobra
+        if listabanca[2]<22 and listabanca[2]>=i[4] and i[4]<22: #Si la banca no se pasa, iguala o supera al jugador i el jugador no se ha pasado
             apuesta=i[2]
             dinerobanca=listabanca.pop(0)+apuesta
             listabanca.insert(0,dinerobanca)
             dinerojugador=i.pop(1)-apuesta
             i.insert(1,dinerojugador)
-        elif listabanca[2]<i[4] and i[4]<22: #Si la banca no supera al jugador i el jugador no se ha pasado 
-            if i[4]==21:
+    for i in listajugadores:#Cuando la banca paga
+        if listabanca[2]>21 and i[4]<22 and listabanca[0]>0: #Si la banca se pasa de 21 y el jugador no (y la banca tiene dinero)
+            if i[4]==21:#Si el jugador tiene blackjack
                 apuesta=i[2]
-                dinerobanca=listabanca.pop(0)-(apuesta*1.5)
-                listabanca.insert(0,dinerobanca)
-                dinerojugador=i.pop(1)+(apuesta*1.5)
-                i.insert(1,dinerojugador)
+                if apuesta*2>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
+                    apuesta=listabanca[0]
+                    dinerobanca=listabanca.pop(0)-(apuesta)
+                    listabanca.insert(0,dinerobanca)
+                    dinerojugador=i.pop(1)+(apuesta)
+                    i.insert(1,dinerojugador)
+                else:
+                    dinerobanca=listabanca.pop(0)-(apuesta*2)
+                    listabanca.insert(0,dinerobanca)
+                    dinerojugador=i.pop(1)+(apuesta*2)
+                    i.insert(1,dinerojugador)
             else:
                 apuesta=i[2]
-                dinerobanca=listabanca.pop(0)-apuesta
-                listabanca.insert(0,dinerobanca)
-                dinerojugador=i.pop(1)+apuesta
-                i.insert(1,dinerojugador)
+                if apuesta>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
+                    apuesta=listabanca[0]
+                    dinerobanca=listabanca.pop(0)-(apuesta)
+                    listabanca.insert(0,dinerobanca)
+                    dinerojugador=i.pop(1)+(apuesta)
+                    i.insert(1,dinerojugador)
+                else:
+                    dinerobanca=listabanca.pop(0)-apuesta
+                    listabanca.insert(0,dinerobanca)
+                    dinerojugador=i.pop(1)+apuesta
+                    i.insert(1,dinerojugador)
+        elif listabanca[2]<i[4] and i[4]<22 and listabanca[0]>0: #Si la banca no supera al jugador i el jugador no se ha pasado (y la banca tiene dinero)
+            if i[4]==21:#Si el jugador tiene blackjack
+                apuesta=i[2]
+                if apuesta*2>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
+                    apuesta=listabanca[0]
+                    dinerobanca=listabanca.pop(0)-(apuesta)
+                    listabanca.insert(0,dinerobanca)
+                    dinerojugador=i.pop(1)+(apuesta)
+                    i.insert(1,dinerojugador)
+                else:
+                    dinerobanca=listabanca.pop(0)-(apuesta*2)
+                    listabanca.insert(0,dinerobanca)
+                    dinerojugador=i.pop(1)+(apuesta*2)
+                    i.insert(1,dinerojugador)
+            else:
+                apuesta=i[2]
+                if apuesta>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
+                    apuesta=listabanca[0]
+                    dinerobanca=listabanca.pop(0)-(apuesta)
+                    listabanca.insert(0,dinerobanca)
+                    dinerojugador=i.pop(1)+(apuesta)
+                    i.insert(1,dinerojugador)
+                else:
+                    dinerobanca=listabanca.pop(0)-apuesta
+                    listabanca.insert(0,dinerobanca)
+                    dinerojugador=i.pop(1)+apuesta
+                    i.insert(1,dinerojugador)
