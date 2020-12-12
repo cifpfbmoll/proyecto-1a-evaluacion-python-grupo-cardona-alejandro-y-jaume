@@ -41,8 +41,8 @@ def dinerobanca (listabanca):
     cambio=prints.colorinput("\n   >>> La banca empieza con 1.000.000 de euros.\n   >>> Si quiere cambiar esa cantidad escriba \"CAMBIAR\", si no pulse \"ENTER\".")
     if cambio=="cambiar":
         dinerobanca=int(prints.colorinput("   >>> Cuanto dinero quieres que tenga la banca?"))
-        while dinerobanca<=0:
-            dinerobanca=int(prints.colorinput("   >>> La banca necesita mas que eso, Cuanto dinero quieres que tenga la banca?"))
+        while dinerobanca<50:
+            dinerobanca=int(prints.colorinput("   >>> La banca necesita minimo 50 euros, Cuanto dinero quieres que tenga la banca?"))
         listabanca.clear()
         listabanca.append(dinerobanca)
 
