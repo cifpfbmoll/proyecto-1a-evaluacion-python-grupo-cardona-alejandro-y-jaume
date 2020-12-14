@@ -49,10 +49,10 @@ while opcion!="terminar":
         os.system('cls')
         funciones.valorcartas(listajugadores[i],listabanca)
         funciones.vercartas(listajugadores,listajugadores[i][0],listabanca)
-        respuesta=prints.colorinput(f"   >>> Quieres una carta mas {listajugadores[i][0]}?  [si/NO]")
+        respuesta=prints.colorinput(f"   >>> Quieres una carta mas {listajugadores[i][0]}?  [ si /NO ]")
         while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
             prints.colorerror("    ⚠  Porfavor escriba si o no")
-            respuesta=prints.colorinput(f"   >>> Quieres una carta mas {listajugadores[i][0]}?  [si/NO]")
+            respuesta=prints.colorinput(f"   >>> Quieres una carta mas {listajugadores[i][0]}?  [ si / NO ]")
         vecesdoblado=0
         while respuesta==("si" or "SI" or "Si" or "sí" or "SÍ" or "Sí"):
             while vecesdoblado==0 and listajugadores[i][1]>=(listajugadores[i][2]*2):
@@ -65,10 +65,10 @@ while opcion!="terminar":
             pasado=funciones.valorcartas(listajugadores[i],listabanca)
             
             if not pasado:
-                respuesta=prints.colorinput("   >>> Quieres una carta mas? [si/NO]")
+                respuesta=prints.colorinput("   >>> Quieres una carta mas? [ si / NO ]")
                 while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
                     prints.colorerror("    ⚠  Porfavor escriba si o no")
-                    respuesta=prints.colorinput("   >>> Quieres una carta mas? [si/NO]")
+                    respuesta=prints.colorinput("   >>> Quieres una carta mas? [ si / NO ]")
                 os.system('cls')
             if pasado:
                 respuesta="no" or "NO" or "No"
