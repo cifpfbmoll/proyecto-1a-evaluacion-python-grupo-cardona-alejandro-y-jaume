@@ -6,4 +6,4 @@ import prints
 
 prints.adios()
 
-input("")
+input(len(listabanca))

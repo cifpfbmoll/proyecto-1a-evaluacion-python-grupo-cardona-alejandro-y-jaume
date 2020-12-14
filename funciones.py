@@ -302,35 +302,8 @@ def compararcartas (listajugadores,listabanca):
             dinerojugador=i.pop(1)-apuesta
             i.insert(1,dinerojugador)
     for i in listajugadores:#Cuando la banca paga
-        if listabanca[2]>21 and i[4]<22 and listabanca[0]>0: #Si la banca se pasa de 21 y el jugador no (y la banca tiene dinero)
-            if i[4]==21:#Si el jugador tiene blackjack
-                apuesta=i[2]
-                if apuesta*2>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
-                    apuesta=listabanca[0]
-                    dinerobanca=listabanca.pop(0)-(apuesta)
-                    listabanca.insert(0,dinerobanca)
-                    dinerojugador=i.pop(1)+(apuesta)
-                    i.insert(1,dinerojugador)
-                else:
-                    dinerobanca=listabanca.pop(0)-(apuesta*2)
-                    listabanca.insert(0,dinerobanca)
-                    dinerojugador=i.pop(1)+(apuesta*2)
-                    i.insert(1,dinerojugador)
-            else:
-                apuesta=i[2]
-                if apuesta>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
-                    apuesta=listabanca[0]
-                    dinerobanca=listabanca.pop(0)-(apuesta)
-                    listabanca.insert(0,dinerobanca)
-                    dinerojugador=i.pop(1)+(apuesta)
-                    i.insert(1,dinerojugador)
-                else:
-                    dinerobanca=listabanca.pop(0)-apuesta
-                    listabanca.insert(0,dinerobanca)
-                    dinerojugador=i.pop(1)+apuesta
-                    i.insert(1,dinerojugador)
-        elif listabanca[2]<i[4] and i[4]<22 and listabanca[0]>0: #Si la banca no supera al jugador i el jugador no se ha pasado (y la banca tiene dinero)
-            if i[4]==21:#Si el jugador tiene blackjack
+        if (listabanca[2]>21 and i[4]<22 and listabanca[0]>0) or (listabanca[2]<i[4] and i[4]<22 and listabanca[0]>0): #Si la banca se pasa de 21 y el jugador no (y la banca tiene dinero) o si la banca no supera al jugador i el jugador no se ha pasado (y la banca tiene dinero)
+            if i[4]==21 and len(i[3])==2:#Si el jugador tiene blackjack
                 apuesta=i[2]
                 if apuesta*2>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
                     apuesta=listabanca[0]
