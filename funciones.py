@@ -26,6 +26,7 @@ def valorcartasbanca (listabanca):
     valormano=0
     for i in listabanca[1]:
         valormano+=objetos.valor_baraja.get(i)
+    valormano=comprobarAses(valormano,listabanca,1)
     if listabanca[-1]==listabanca[1]:
         listabanca.append(valormano)
     else:
@@ -90,7 +91,7 @@ def valorcartassimple (listajugadores):
     valormano=0
     for i in listajugadores[3]:
         valormano+=objetos.valor_baraja.get(i)
-    
+    valormano=comprobarAses(valormano,listajugadores,3)
     if listajugadores[-1]==listajugadores[3]:
         listajugadores.append(valormano)
     else:
@@ -102,6 +103,7 @@ def valorcartas (listajugadores,listabanca):
     apuesta=listajugadores[2]
     for i in listajugadores[3]:
         valormano+=objetos.valor_baraja.get(i)
+    valormano=comprobarAses(valormano,listajugadores,3)
     if valormano>21:
         if listajugadores[-1]==listajugadores[3]:
             listajugadores.append(valormano)
@@ -303,7 +305,6 @@ def menuopciones(listabanca):
         os.system('cls')
         menuinicial(listabanca)
 
-
 def menuinicial(listabanca):
     prints.inicio()
     opcion = prints.colorinput("   >>> Que deseas hacer?")
@@ -353,16 +354,17 @@ def compararcartas (listajugadores,listabanca):
                     dinerojugador=i.pop(1)+apuesta
                     i.insert(1,dinerojugador)
 
-def comprobarAses(valormano,listajugadores):
+def comprobarAses(valormano,listajugadores,a):
     if valormano>21:
         hayAs=False
-        for i in listajugadores[3]:
+        for i in listajugadores[a]:
             if "AS" in i:
                 hayAs=True
         if hayAs:
             ases=0
-            for j in listajugadores[3]:
+            for j in listajugadores[a]:
                 ases+=j.count("AS")
-            for k in ases:
+            for k in range(ases):
                 if valormano>21:
                     valormano-=10
+    return valormano
