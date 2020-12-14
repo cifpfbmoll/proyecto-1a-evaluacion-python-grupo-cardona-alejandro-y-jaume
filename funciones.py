@@ -92,6 +92,7 @@ def valorcartassimple (listajugadores):
     valormano=0
     for i in listajugadores[3]:
         valormano+=objetos.valor_baraja.get(i)
+    
     if listajugadores[-1]==listajugadores[3]:
         listajugadores.append(valormano)
     else:
@@ -329,3 +330,17 @@ def compararcartas (listajugadores,listabanca):
                     listabanca.insert(0,dinerobanca)
                     dinerojugador=i.pop(1)+apuesta
                     i.insert(1,dinerojugador)
+
+def comprobarAses(valormano,listajugadores):
+    if valormano>21:
+        hayAs=False
+        for i in listajugadores[3]:
+            if "AS" in i:
+                hayAs=True
+        if hayAs:
+            ases=0
+            for j in listajugadores[3]:
+                ases+=j.count("AS")
+            for k in ases:
+                if valormano>21:
+                    valormano-=10

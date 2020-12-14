@@ -1,9 +1,17 @@
 lista=["jugador","sudinero","apuesta",["cartasenMano"],"valormano"]
 
-listabanca=["Dinero",["cartas"],"valorcartas"]
+listabanca=["Dinero","cartas","valorcartas"]
 
 import prints
 
 prints.adios()
 
-input(len(listabanca))
+count=0
+
+for i in listabanca:
+
+    count+=i.count("carta")
+
+
+
+print (count," ",listabanca.count("cartas"))
