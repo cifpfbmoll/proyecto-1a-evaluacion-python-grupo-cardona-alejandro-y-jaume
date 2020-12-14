@@ -1,10 +1,14 @@
+import funciones
+import prints
+import objetos
+
 def valorcartas (listajugadores,listabanca):
     valormano=0
     apuesta=listajugadores[2]
     for i in listajugadores[3]:
         valormano+=objetos.valor_baraja.get(i)
     while valormano>21:
-        
+        "AS ♦" or "AS ♠" or "AS ♥" or "AS ♣" == 1
     if valormano>21:
         if listajugadores[-1]==listajugadores[3]:
             listajugadores.append(valormano)
