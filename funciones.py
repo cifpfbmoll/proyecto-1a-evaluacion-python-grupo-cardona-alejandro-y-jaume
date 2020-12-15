@@ -199,7 +199,11 @@ def vermesa(listajugadores,listabanca):
             else:
                 print("%s" % (j), end="")
         prints.colorreset()
-    prints.colorinput("\n   >>> La partida ha finalizado, pulsa \"ENTER\" para continuar.")
+    if listabanca[0]>0:
+        prints.colorinput("\n   >>> La ronda ha finalizado, pulsa \"ENTER\" para continuar.")
+    else:
+        print("\n   >>> BANCAROTA! La banca se ha quedado sin dinero, coge el dinero antes de que llegue seguridad.")
+        prints.colorinput("   >>> Pulsa \"ENTER\" para acabar la partida.")
 
 def eliminarjugadores (listajugadoressaliendo,listajugadores):
     listajugadoressaliendo.reverse()
