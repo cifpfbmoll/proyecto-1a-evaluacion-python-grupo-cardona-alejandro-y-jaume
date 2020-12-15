@@ -46,3 +46,6 @@ Jaume es el SCRUM master de hoy. Seguimos perfeccionando el programa. Cardona si
 
 Karina es la SCRUM master de hoy. Se han añadido un menú inicial al ejecutar el programa y las "opciones". Jaume y Cardona han modificado algunas funciones para optimizar el código y solucionado bugs.
 
+## Martes, 15 de diciembre.
+
+Cardona es el SCRUM master de hoy. Entre todos se ha ido simplificando y retocando el código habiendo así por ejemplo cambios en el menú y en alguna de las funciones. Se han corregido todos los bugs y fallos encontrados por el momento. El proyecto sigue su curso como queremos (implementando nuevas ideas que van surgiendo) y cada dia trabajamos para pulirlo un poco más, repito, con cambios y actualizaciones y corregiendo los errores.
