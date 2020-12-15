@@ -74,23 +74,10 @@ while funciones.menuprincipal(listabanca) == "2":
                 prints.colorinput("   >>> Pulsa \"ENTER\" para pasar al siguiente jugador.")
         #funciones.vermesa(listajugadores,listabanca)
         funciones.valorcartasbanca(listabanca)
-<<<<<<< HEAD
-    funciones.compararcartas(listajugadores,listabanca)
-    os.system('cls')
-    funciones.vermesa(listajugadores,listabanca)
-    funciones.eliminardatosronda(listajugadores)
-    if listabanca[0]==0:
-        print ("¡BANCAROTA!")
-        prints.colorinput("\n   >>> Pulsa \"ENTER\" para cerrar el programa.")
-        opcion="terminar"
-    else:
-        del listabanca[1:]
-=======
         while listabanca[2]<17: #La banca saca cartas hasta que obtiene un valor de 17 o mas
             funciones.repartircartabanca(listabanca,baraja)
             funciones.valorcartasbanca(listabanca)
         funciones.compararcartas(listajugadores,listabanca)
->>>>>>> b40f3ba7e45deee9c745a553742989ef93796d90
         os.system('cls')
         funciones.vermesa(listajugadores,listabanca)
         funciones.eliminardatosronda(listajugadores)
