@@ -277,10 +277,10 @@ def menujuego (listajugadores):
     print ("   >>> Aqui cada jugador puede salir de la partida o añadir dinero!\n   >>> Ademas pueden entrar a jugar mas personas mientras se respete el numero máximo de jugadores.\n")
     opcion=opcionesjugadores(listajugadores)
     if len(listajugadores)!=0 and (len(listajugadores))<7:
-        masjugadores=prints.colorinput("   >>> Van a entrar a jugar mas jugadores?")
+        masjugadores=prints.colorinput("   >>> Van a entrar a jugar mas jugadores? [ si / NO ]")
         if masjugadores=="si":
             nuevosjugadores(listajugadores)
-        if masjugadores=="no":
+        if masjugadores=="no" or masjugadores=="":
             ("   >>> Sigamos pues!")
     return opcion
 
