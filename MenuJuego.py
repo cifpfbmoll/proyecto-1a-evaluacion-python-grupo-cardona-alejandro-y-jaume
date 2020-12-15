@@ -61,6 +61,7 @@ while opcion!="terminar":
                 vecesdoblado=1
             
             funciones.repartircarta(listajugadores,baraja,i)
+            os.system('cls')
             funciones.vercartas(listajugadores,listajugadores[i][0],listabanca)
             pasado=funciones.valorcartas(listajugadores[i],listabanca)
             

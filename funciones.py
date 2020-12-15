@@ -60,14 +60,14 @@ def dinerojugadores (listajugadores):
 
 def apuestainicialjugadores (listajugadores):
     for i in range (len(listajugadores)):
-        apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} (Dinero: {listajugadores[i][1]}):"))
+        apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]}: [ Dinero → {listajugadores[i][1]} ]"))
         while apuesta>listajugadores[i][1] or apuesta<1:
             if apuesta>listajugadores[i][1]:
                 prints.colorerror(f"    ⚠  No puedes apostar mas dinero del que tienes en mesa!")
-                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} (Dinero: {listajugadores[i][1]}):"))
+                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
             else:
                 prints.colorerror(f"    ⚠  Recuerda que la apuesta minima es de 1 euro!")
-                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} (Dinero: {listajugadores[i][1]}):"))
+                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
         listajugadores[i].append(apuesta)
     return listajugadores
 
@@ -107,25 +107,23 @@ def valorcartas (listajugadores,listabanca):
     if valormano>21:
         if listajugadores[-1]==listajugadores[3]:
             listajugadores.append(valormano)
-            print ("   >>> Looseeeeer!")
-            print ("   >>> Tu puntuación es mayor a 21.")
+            prints.colorerror("\n   >>> Tu puntuación es mayor a 21.")
             dinerojugador=(listajugadores.pop(1))-apuesta
             listajugadores.insert(1,dinerojugador)
             dinerobanca=listabanca.pop(0)+apuesta
             listabanca.insert(0,dinerobanca)
             pasado=True
-            prints.colorinput("\n   >>> Pulsa ENTER para abandonar la mesa.")
+            prints.colorinput("   >>> Pulsa ENTER para abandonar la mesa.")
         else:
             del listajugadores[4]
             listajugadores.append(valormano)
-            print ("   >>> Looseeeeer!")
-            print ("   >>> Tu puntuación es mayor a 21.")
+            prints.colorerror("\n   >>> Tu puntuación es mayor a 21.")
             dinerojugador=(listajugadores.pop(1))-apuesta
             listajugadores.insert(1,dinerojugador)
             dinerobanca=listabanca.pop(0)+apuesta
             listabanca.insert(0,dinerobanca)
             pasado=True
-            prints.colorinput("\n   >>> Pulsa ENTER para abandonar la mesa.")
+            prints.colorinput("   >>> Pulsa ENTER para abandonar la mesa.")
     else:
         if listajugadores[-1]==listajugadores[3]:
             listajugadores.append(valormano)
@@ -166,16 +164,16 @@ def vercartas (listajugadores,jugador,listabanca):
             prints.colorreset()
             print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: ?" % (i[0],i[1],i[2]))
         if i[0] == jugador:
-            for j in i[3]:
-                if j != i[3][-1]:
-                    if j == i[3][0]:
-                        print("    >> ", end="")
+            for j in i[3]:                          # Empieza a imprimir las cartas del jugador "i", el cual será el jugador actual
+                if j != i[3][-1]:                   # Comprueba si la posicion de la carta es la primera o la ultima
+                    if j == i[3][0]:                # para saber como ha de imprimirlaa
+                        print("    >> ", end="")     
                     print("%s" % (j), end=" | ")
                 else:
                     print("%s" % (j), end="")
         else:
-            for j in i[3]:
-                if j != i[3][-1]:
+            for j in i[3]:                          # Aqui imprimirá las cartas del resto, separado ya que no debemos ver la ultima
+                if j != i[3][-1]:                   # carta del resto
                     if j == i[3][0]:
                         print("    >> ", end="")
                     print("%s" % (j), end=" | ")
@@ -187,7 +185,7 @@ def vermesa(listajugadores,listabanca):
     prints.mesa()
     verbanca(listabanca)
     for i in listajugadores:
-        if listabanca[2] > 21 and i[4] <= 21:
+        if listabanca[2] > 21 and i[4] <= 21:   # Determinar si el jugador ha ganado o perdido
             estado = "GANADOR/A"
             prints.colorganador()
         elif i[4] > listabanca[2] and i[4] <= 21:
@@ -198,14 +196,14 @@ def vermesa(listajugadores,listabanca):
             prints.colorperdedor()
         print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s ⁞ %s" % (i[0],i[1],i[2],i[4],estado))
         for j in i[3]:
-            if j != i[3][-1]:
+            if j != i[3][-1]:                   # Se enseñan todas las cartas ya que es el final de la partida.
                 if j == i[3][0]:
                     print("    >> ", end="")
                 print("%s" % (j), end=" | ")
             else:
                 print("%s" % (j), end="")
         prints.colorreset()
-    prints.colorinput("   >>> La partida ha finalizado, pulsa \"ENTER\" para continuar.")
+    prints.colorinput("\n   >>> La partida ha finalizado, pulsa \"ENTER\" para continuar.")
 
 def eliminarjugadores (listajugadoressaliendo,listajugadores):
 
@@ -218,7 +216,7 @@ def eliminarjugadores (listajugadoressaliendo,listajugadores):
     del listajugadoressaliendo
 
 def añadirdinero (listajugadores,i):
-    dinero=int(prints.colorinput(f"   >>> Cuanto dinero quieres añadir? (Dinero: {listajugadores[i][1]})"))
+    dinero=int(prints.colorinput(f"   >>> Cuanto dinero quieres añadir? [ Dinero → {listajugadores[i][1]} ]"))
     dinerototal=listajugadores[i][1]+dinero
     del listajugadores[i][1]
     listajugadores[i].insert(1,dinerototal)
