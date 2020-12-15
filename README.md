@@ -41,3 +41,8 @@ Cardona es el SCRUM master de hoy. Seguimos retocando el programa para que quede
 ## Sabado, 5 de diciembre.
 
 Jaume es el SCRUM master de hoy. Seguimos perfeccionando el programa. Cardona sigue repasando el código i probando el programa en busca de bugs i posibles mejoras. Jaume tiene que crear diferentes funciones para solucionar bugs (repetición del mensaje has perdido i opción terminar cuando solo queda 1 persona), borrar datos de lista jugadores al terminar ronda i crear lista banca i sus funciones. Karina tiene que añadir la interfaz visual de la banca, además tiene que seguir mejorando la parte estética del programa. Todas estas tareas están asignadas para el fin de semana.
+
+## Lunes, 14 de diciembre.
+
+Karina es la SCRUM master de hoy. Se han añadido un menú inicial al ejecutar el programa y las "opciones". Jaume y Cardona han modificado algunas funciones para optimizar el código y solucionado bugs.
+
