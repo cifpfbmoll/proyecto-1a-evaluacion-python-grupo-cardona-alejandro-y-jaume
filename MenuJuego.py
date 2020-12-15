@@ -87,8 +87,9 @@ while opcion!="terminar":
     os.system('cls')
     funciones.vermesa(listajugadores,listabanca)
     funciones.eliminardatosronda(listajugadores)
-    if listabanca[0]<=0:
-        print ("BANCAROTA!")
+    if listabanca[0]==0:
+        print ("¡BANCAROTA!")
+        prints.colorinput("\n   >>> Pulsa \"ENTER\" para cerrar el programa.")
         opcion="terminar"
     else:
         del listabanca[1:]
