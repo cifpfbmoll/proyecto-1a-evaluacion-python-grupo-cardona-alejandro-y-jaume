@@ -7,19 +7,17 @@ def sacarcarta (lista):
 
 def repartircartasiniciales (listajugadores,baraja):
     for i in range (len(listajugadores)):
+        carta=sacarcarta(baraja)
         if listajugadores[i][-1]==listajugadores[i][2]:
-            carta=sacarcarta(baraja)
             listajugadores[i].append([carta])
         else:
-            carta=sacarcarta(baraja)
             listajugadores[i][3].append(carta)
 
 def repartircartabanca (listabanca,baraja):
+    carta=sacarcarta(baraja)
     if listabanca[-1]==listabanca[0]:
-        carta=sacarcarta(baraja)
         listabanca.append([carta])
     else:
-        carta=sacarcarta(baraja)
         listabanca[1].append(carta)
 
 def valorcartasbanca (listabanca):
@@ -64,10 +62,9 @@ def apuestainicialjugadores (listajugadores):
         while apuesta>listajugadores[i][1] or apuesta<1:
             if apuesta>listajugadores[i][1]:
                 prints.colorerror(f"    ⚠  No puedes apostar mas dinero del que tienes en mesa!")
-                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
             else:
                 prints.colorerror(f"    ⚠  Recuerda que la apuesta minima es de 1 euro!")
-                apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
+            apuesta=int(prints.colorinput(f"   >>> Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
         listajugadores[i].append(apuesta)
     return listajugadores
 
@@ -113,7 +110,6 @@ def valorcartas (listajugadores,listabanca):
             dinerobanca=listabanca.pop(0)+apuesta
             listabanca.insert(0,dinerobanca)
             pasado=True
-            prints.colorinput("   >>> Pulsa ENTER para abandonar la mesa.")
         else:
             del listajugadores[4]
             listajugadores.append(valormano)
@@ -123,7 +119,7 @@ def valorcartas (listajugadores,listabanca):
             dinerobanca=listabanca.pop(0)+apuesta
             listabanca.insert(0,dinerobanca)
             pasado=True
-            prints.colorinput("   >>> Pulsa ENTER para abandonar la mesa.")
+        prints.colorinput("   >>> Pulsa ENTER para abandonar la mesa.")
     else:
         if listajugadores[-1]==listajugadores[3]:
             listajugadores.append(valormano)
@@ -206,13 +202,9 @@ def vermesa(listajugadores,listabanca):
     prints.colorinput("\n   >>> La partida ha finalizado, pulsa \"ENTER\" para continuar.")
 
 def eliminarjugadores (listajugadoressaliendo,listajugadores):
-
     listajugadoressaliendo.reverse()
-
     for i in listajugadoressaliendo:
-
         del listajugadores[i]
-
     del listajugadoressaliendo
 
 def añadirdinero (listajugadores,i):
@@ -244,7 +236,6 @@ def opcionesjugadores (listajugadores):
                     opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, esa opcion no es posible, solo puedes terminar la partida o añadir dinero [ terminar / añadir ]")
             else:
                 opcion=prints.colorinput(f"   >>> {listajugadores[i][0]}, ¿deseas terminar la partida, añadir dinero, o  continuar? [ terminar / añadir / ENTER ]")
-
             if opcion=="terminar":
                 print (f"   >>> ¡Vale! Hasta la proxima {listajugadores[i][0]}!")
                 listajugadoressaliendo.append(i)
@@ -301,12 +292,13 @@ def menuopciones(listabanca):
         opcion = menunopcioneslimpiar(listabanca)
     if opcion == "2":
         os.system('cls')
-        menuinicial(listabanca)
+        prints.inicio()
 
-def menuinicial(listabanca):
+def menuprincipal(listabanca):
+    os.system('cls')
     prints.inicio()
     opcion = prints.colorinput("   >>> Que deseas hacer?")
-    while opcion not in ["1","2"]:
+    while opcion not in ["1","2","3"]:
         os.system('cls')
         prints.inicio()
         prints.colorerror("    ⚠  Esta opción no está disponible")
@@ -314,6 +306,7 @@ def menuinicial(listabanca):
     if opcion == "1":
         os.system('cls')
         menuopciones(listabanca)
+    return opcion
 
 def compararcartas (listajugadores,listabanca):
     for i in listajugadores:#Cuando la banca cobra
