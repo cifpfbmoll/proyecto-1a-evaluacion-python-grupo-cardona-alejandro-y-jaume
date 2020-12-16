@@ -1,23 +1,23 @@
 import objetos
 import prints
 import os
-def sacarcarta (lista):
+def sacarCarta (lista):
     carta=lista.pop(0)
     return carta
-def repartircartasiniciales (listajugadores,baraja):
+def repartirCartasIniciales (listajugadores,baraja):
     for i in range (len(listajugadores)):
-        carta=sacarcarta(baraja)
+        carta=sacarCarta(baraja)
         if listajugadores[i][-1]==listajugadores[i][2]:
             listajugadores[i].append([carta])
         else:
             listajugadores[i][3].append(carta)
-def repartircartabanca (listabanca,baraja):
-    carta=sacarcarta(baraja)
+def repartirCartaBanca (listabanca,baraja):
+    carta=sacarCarta(baraja)
     if listabanca[-1]==listabanca[0]:
         listabanca.append([carta])
     else:
         listabanca[1].append(carta)
-def valorcartasbanca (listabanca):
+def valorCartasBanca (listabanca):
     valormano=0
     for i in listabanca[1]:
         valormano+=objetos.valor_baraja.get(i)
@@ -31,24 +31,24 @@ def barajar (lista):
     import random
     random.shuffle(lista)
     return lista
-def dinerobanca (listabanca):
-    dinerobanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
-    while dinerobanca<50:
-        dinerobanca=int(prints.colorinput("La banca necesita minimo 50 euros, Cuanto dinero quieres que tenga la banca?"))
+def dineroBanca (listabanca):
+    dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
+    while dineroBanca<50:
+        dineroBanca=int(prints.colorinput("La banca necesita minimo 50 euros, Cuanto dinero quieres que tenga la banca?"))
     listabanca.clear()
-    listabanca.append(dinerobanca)
-def nombrejugadores (numerojugadores):
+    listabanca.append(dineroBanca)
+def nombreJugadores (numerojugadores):
     listajugadores=[]
     for i in range(1,numerojugadores+1):
         nombrejugador=str(prints.colorinput(f"Escribe el nombre del jugador {i}:"))
         listajugadores.append([nombrejugador.capitalize()])
     return listajugadores
-def dinerojugadores (listajugadores):
+def dineroJugadores (listajugadores):
     for i in range (len(listajugadores)):
         dinero=int(prints.colorinput(f"Introducir dinero de {listajugadores[i][0]}:"))
         listajugadores[i].append(dinero)
     return listajugadores
-def apuestainicialjugadores (listajugadores):
+def apuestaInicialJugadores (listajugadores):
     for i in range (len(listajugadores)):
         apuesta=int(prints.colorinput(f"Introducir apuesta de {listajugadores[i][0]}: [ Dinero → {listajugadores[i][1]} ]"))
         while apuesta>listajugadores[i][1] or apuesta<1:
@@ -59,7 +59,7 @@ def apuestainicialjugadores (listajugadores):
             apuesta=int(prints.colorinput(f"Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
         listajugadores[i].append(apuesta)
     return listajugadores
-def apuestajugadores (listajugadores,i):
+def apuestaJugadores (listajugadores,i):
     respuesta=(prints.colorinput(f"Vas a doblar la apuesta inicial {listajugadores[i][0]}? [ si / NO ]"))
     while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
         prints.colorerror("    ⚠  Porfavor escriba si o no")
@@ -70,10 +70,10 @@ def apuestajugadores (listajugadores,i):
         doblar=apuesta+apuesta
         del listajugadores[i][2]
         listajugadores[i].insert(2,doblar)
-def repartircarta (listajugadores,baraja,i):
-    carta=sacarcarta(baraja)
+def repartirCarta (listajugadores,baraja,i):
+    carta=sacarCarta(baraja)
     listajugadores[i][3].append(carta)
-def valorcartassimple (listajugadores):
+def valorCartasSimple (listajugadores):
     valormano=0
     for i in listajugadores[3]:
         valormano+=objetos.valor_baraja.get(i)
@@ -83,7 +83,7 @@ def valorcartassimple (listajugadores):
     else:
         del listajugadores[4]
         listajugadores.append(valormano)
-def valorcartas (listajugadores,listabanca):
+def valorCartas (listajugadores,listabanca):
     valormano=0
     apuesta=listajugadores[2]
     for i in listajugadores[3]:
@@ -96,8 +96,8 @@ def valorcartas (listajugadores,listabanca):
         prints.colorerror("\n   !!! Tu puntuación es mayor a 21.")
         dinerojugador=(listajugadores.pop(1))-apuesta
         listajugadores.insert(1,dinerojugador)
-        dinerobanca=listabanca.pop(0)+apuesta
-        listabanca.insert(0,dinerobanca)
+        dineroBanca=listabanca.pop(0)+apuesta
+        listabanca.insert(0,dineroBanca)
         pasado=True
         prints.colorinput("Pulsa ENTER para abandonar la mesa.")
     else:
@@ -106,10 +106,10 @@ def valorcartas (listajugadores,listabanca):
         listajugadores.append(valormano)
         pasado=False
     return pasado
-def verbanca (listabanca):
+def verBanca (listabanca):
     #print(listabanca)
     prints.colorbanca()
-    valorcartasbanca(listabanca)
+    valorCartasBanca(listabanca)
     print("   >>> Cartas de la BANCA ⁞ Dinero: %s ⁞ Valor de la mano: %s" % (listabanca[0],listabanca[2]))
     for i in listabanca[1]:
         if i != listabanca[1][-1]:
@@ -121,11 +121,11 @@ def verbanca (listabanca):
                 print("    >> ", end="")
             print("%s" % (i), end="")
     prints.colorreset()
-def vercartas (listajugadores,jugador,listabanca):
+def verCartas (listajugadores,jugador,listabanca):
     for i in range (len(listajugadores)):
-        valorcartassimple(listajugadores[i])
+        valorCartasSimple(listajugadores[i])
     prints.mesa()
-    verbanca(listabanca)
+    verBanca(listabanca)
     for i in listajugadores:
         if i[0] == jugador:
             prints.colorjugadoractual()
@@ -150,9 +150,9 @@ def vercartas (listajugadores,jugador,listabanca):
                 else:
                     print("?", end="")
         prints.colorreset()
-def vermesa(listajugadores,listabanca):
+def verMesa(listajugadores,listabanca):
     prints.mesa()
-    verbanca(listabanca)
+    verBanca(listabanca)
     for i in listajugadores:
         if listabanca[2] > 21 and i[4] <= 21:   # Determinar si el jugador ha ganado o perdido
             estado = "GANADOR/A"
@@ -177,28 +177,28 @@ def vermesa(listajugadores,listabanca):
     else:
         print("\n   >>> \033[31mBANCAROTA! \033[92mLa banca se ha quedado sin dinero, coge el dinero antes de que llegue seguridad.")
         prints.colorinput("Pulsa \"ENTER\" para acabar la partida.")
-def eliminarjugadores (listajugadoressaliendo,listajugadores):
+def eliminarJugadores (listajugadoressaliendo,listajugadores):
     listajugadoressaliendo.reverse()
     for i in listajugadoressaliendo:
         del listajugadores[i]
     del listajugadoressaliendo
-def añadirdinero (listajugadores,i):
+def añadirDinero (listajugadores,i):
     dinero=int(prints.colorinput(f"Cuanto dinero quieres añadir? [ Dinero → {listajugadores[i][1]} ]"))
     dinerototal=listajugadores[i][1]+dinero
     del listajugadores[i][1]
     listajugadores[i].insert(1,dinerototal)
-def nuevosjugadores (listajugadores):
-    numeroNuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
-    while (len(listajugadores))+numeroNuevosJugadores>7:
+def nuevosJugadores (listajugadores):
+    numeronuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
+    while (len(listajugadores))+numeronuevosJugadores>7:
         prints.colorerror("    ⚠  El máximo son 7 jugadores.")
-        numeroNuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
-    listajugadores.extend(nombrejugadores(numeroNuevosJugadores))
-    dinerojugadores(listajugadores[-numeroNuevosJugadores:])
-    del numeroNuevosJugadores
-def eliminardatosronda (listajugadores):
+        numeronuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
+    listajugadores.extend(nombreJugadores(numeronuevosJugadores))
+    dineroJugadores(listajugadores[-numeronuevosJugadores:])
+    del numeronuevosJugadores
+def eliminarDatosRonda (listajugadores):
     for i in listajugadores:
         del i[2:]
-def gestfinal(listajugadores,i,listajugadoressaliendo,opc):
+def gestFinal(listajugadores,i,listajugadoressaliendo,opc):
     if listajugadores[i][1]<=0:
         opcion=prints.colorinput(f"{listajugadores[i][0]}, ¿deseas {opc} la partida o añadir dinero? [ {opc} / añadir ]")
         while opcion not in ["%s" % (opc),"añadir"]:
@@ -210,37 +210,37 @@ def gestfinal(listajugadores,i,listajugadoressaliendo,opc):
         print (f"   >>> ¡Vale! Hasta la proxima {listajugadores[i][0]}!")
         listajugadoressaliendo.append(i)
     elif opcion=="añadir":
-        añadirdinero (listajugadores,i)
+        añadirDinero (listajugadores,i)
     else:
         ("   >>> ¡Sigamos asi pues!")
     return opcion
-def opcionesjugadores (listajugadores):
+def opcionesJugadores (listajugadores):
     listajugadoressaliendo=[]
     for i in range(len(listajugadores)):
         if len(listajugadores)-1==len(listajugadoressaliendo):
-            opcion = gestfinal(listajugadores,i,listajugadoressaliendo,"terminar")
+            opcion = gestFinal(listajugadores,i,listajugadoressaliendo,"terminar")
         else:
-            opcion = gestfinal(listajugadores,i,listajugadoressaliendo,"salir")
-    eliminarjugadores(listajugadoressaliendo,listajugadores)
+            opcion = gestFinal(listajugadores,i,listajugadoressaliendo,"salir")
+    eliminarJugadores(listajugadoressaliendo,listajugadores)
     return opcion
 
-def menujuego (listajugadores): 
+def menuJuego (listajugadores): 
     prints.menu()
     print ("   >>> Aqui cada jugador puede salir de la partida o añadir dinero!\n   >>> Ademas pueden entrar a jugar mas personas mientras se respete el numero máximo de jugadores.\n")
-    opcion=opcionesjugadores(listajugadores)
+    opcion=opcionesJugadores(listajugadores)
     if len(listajugadores)!=0 and (len(listajugadores))<7:
         masjugadores=prints.colorinput("Van a entrar a jugar mas jugadores? [ si / NO ]")
         if masjugadores=="si":
-            nuevosjugadores(listajugadores)
+            nuevosJugadores(listajugadores)
         if masjugadores=="no" or masjugadores=="":
             ("   >>> Sigamos pues!")
     return opcion
-def menunopcioneslimpiar(listabanca):
+def menuOpcionesLimpiar(listabanca):
     os.system('cls')
     prints.opciones(listabanca[0])
     opcion = prints.colorinput("Que deseas hacer?")
     return opcion
-def menuopciones(listabanca):
+def menuOpciones(listabanca):
     prints.opciones(listabanca[0])
     opcion = prints.colorinput("Que deseas hacer?")
     while opcion != "2":
@@ -250,41 +250,45 @@ def menuopciones(listabanca):
             prints.colorerror("    ⚠  Esta opción no está disponible")
             opcion = prints.colorinput("Que deseas hacer?")
         if opcion == "1":
-            dinerobanca(listabanca)
-            opcion = menunopcioneslimpiar(listabanca)
+            dineroBanca(listabanca)
+            opcion = menuOpcionesLimpiar(listabanca)
         if opcion == "2":
             os.system('cls')
             prints.inicio()
-def menuprincipalinit():
+def menuPrincipalInit():
     os.system('cls')
     prints.inicio()
-    opcion = prints.colorinput("Que deseas hacer?")
+    opcion = prints.colorinput("Que deseas hacer? [ 1 - 4 ]")
     return opcion
-def menuprincipal(listabanca):
-    opcion = menuprincipalinit()
-    while opcion != "3":
-        while opcion not in ["1","2","3"]:
+def menuPrincipal(listabanca):
+    opcion = menuPrincipalInit()
+    while opcion != "4":
+        while opcion not in ["1","2","3","4"]:
             os.system('cls')
             prints.inicio()
             prints.colorerror("    ⚠  Esta opción no está disponible")
-            opcion = prints.colorinput("Que deseas hacer?")
+            opcion = prints.colorinput("Que deseas hacer? [ 1 - 4 ]")
         if opcion == "1":
             os.system('cls')
-            menuopciones(listabanca)
-            opcion = menuprincipalinit()
+            menuOpciones(listabanca)
+            opcion = menuPrincipalInit()
+        if opcion == "2":
+            os.system('cls')
+            prints.reglas()
+            opcion = menuPrincipalInit()
     return opcion
 
-def gestdinerobanca(listabanca,apuesta,i,multiplicador):
-    dinerobanca=listabanca.pop(0)-(apuesta*multiplicador)
-    listabanca.insert(0,dinerobanca)
+def gestdineroBanca(listabanca,apuesta,i,multiplicador):
+    dineroBanca=listabanca.pop(0)-(apuesta*multiplicador)
+    listabanca.insert(0,dineroBanca)
     dinerojugador=i.pop(1)+(apuesta*multiplicador)
     i.insert(1,dinerojugador)
-def compararcartas (listajugadores,listabanca):
+def compararCartas (listajugadores,listabanca):
     for i in listajugadores:#Cuando la banca cobra
         if listabanca[2]<22 and listabanca[2]>=i[4] and i[4]<22: #Si la banca no se pasa, iguala o supera al jugador i el jugador no se ha pasado
             apuesta=i[2]
-            dinerobanca=listabanca.pop(0)+apuesta
-            listabanca.insert(0,dinerobanca)
+            dineroBanca=listabanca.pop(0)+apuesta
+            listabanca.insert(0,dineroBanca)
             dinerojugador=i.pop(1)-apuesta
             i.insert(1,dinerojugador)
     for i in listajugadores:#Cuando la banca paga
@@ -293,16 +297,16 @@ def compararcartas (listajugadores,listabanca):
                 apuesta=i[2]
                 if apuesta*2>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
                     apuesta=listabanca[0]
-                    gestdinerobanca(listabanca,apuesta,i,1)
+                    gestdineroBanca(listabanca,apuesta,i,1)
                 else:
-                    gestdinerobanca(listabanca,apuesta,i,2)
+                    gestdineroBanca(listabanca,apuesta,i,2)
             else:
                 apuesta=i[2]
                 if apuesta>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
                     apuesta=listabanca[0]
-                    gestdinerobanca(listabanca,apuesta,i,1)
+                    gestdineroBanca(listabanca,apuesta,i,1)
                 else:
-                    gestdinerobanca(listabanca,apuesta,i,1)
+                    gestdineroBanca(listabanca,apuesta,i,1)
 def comprobarAses(valormano,listajugadores,a):
     if valormano>21:
         hayAs=False
