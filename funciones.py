@@ -226,7 +226,7 @@ def opcionesJugadores (listajugadores):
     return opcion
 
 def menuJuego (listajugadores): 
-    prints.menu()
+    prints.ronda()
     print ("   >>> Aqui cada jugador puede salir de la partida o añadir dinero!\n   >>> Ademas pueden entrar a jugar mas personas mientras se respete el numero máximo de jugadores.\n")
     opcion=opcionesJugadores(listajugadores)
     if len(listajugadores)!=0 and (len(listajugadores))<7:
