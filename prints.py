@@ -34,8 +34,9 @@ def inicio():
     print("   ╚═════════════════════════════════════════╩══════════════════╩═════════════════════════════════════════╝")
     print("")
     print("     1 >> Opciones")
-    print("     2 >> Empezar partida")
-    print("     3 >> Salir")
+    print("     2 >> Ver reglas")
+    print("     3 >> Empezar partida")
+    print("     4 >> Salir")
     print("")
 
 
@@ -52,6 +53,25 @@ def opciones(dinerobanca):
     print("     1 >> Dinero inicial de la banca. [ Actual: %d ]" % (dinerobanca))
     print("     2 << Volver atrás")
     print("")
+
+def reglas():
+    banner()
+    print("   ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+    print("   ║                                                                                                      ║")
+    print("   ║                          Bienvenido/s a su programa de BlackJack preferido!                          ║")
+    print("   ║                                                                                                      ║")
+    print("   ╠═════════════════════════════════════════╦══════════════════╦═════════════════════════════════════════╣")
+    print("   ╠═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═╣      Reglas      ╠═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═╣")
+    print("   ╚═════════════════════════════════════════╩══════════════════╩═════════════════════════════════════════╝")
+    print("")
+    print("     1 >> Objetivo: superar a la banca en puntuación sin pasar de 21.")
+    print("     2 >> J, Q y K suman 10 puntos.")
+    print("     3 >> Un AS puede sumar 11 o 1.")
+    print("     4 >> Se considera BlackJack tener 21 puntos con una combinación de 2 cartas.")
+    print("     5 >> Todos los jugadores juegan contra la banca, sin embargo tendrán una carta oculta.")
+    print("     6 >> La banca sacará cartas para si misma hasta que tenga una puntuación de 17 o superior.")
+    print("")
+    colorinput("Pulsa \"ENTER\" para volver al menú.")
 
 def empezar():
     banner()
