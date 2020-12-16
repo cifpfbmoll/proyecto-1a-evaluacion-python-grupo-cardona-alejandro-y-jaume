@@ -8,6 +8,9 @@ listabanca=[1000000]
 opc=funciones.menuPrincipal(listabanca)
 while opc != "4":
     if opc == "3":
+        if listabanca[0] < 50:
+            prints.colorerror("    ⚠  La banca no tiene suficiente dinero.")
+            listabanca[0] += int(prints.colorinput("Cuanto dinero quieres añadirle a la banca?"))
         numerojugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
         while numerojugadores not in ["1","2","3","4","5","6","7"]:
             os.system('cls')
@@ -37,10 +40,10 @@ while opc != "4":
                 os.system('cls')
                 funciones.valorCartas(listajugadores[i],listabanca)
                 funciones.verCartas(listajugadores,listajugadores[i][0],listabanca)
-                respuesta=prints.colorinput(f"   >>> Quieres una carta mas {listajugadores[i][0]}?  [ si /NO ]")
+                respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}?  [ si /NO ]")
                 while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
                     prints.colorerror("    ⚠  Porfavor escriba si o no")
-                    respuesta=prints.colorinput(f"   >>> Quieres una carta mas {listajugadores[i][0]}?  [ si / NO ]")
+                    respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}?  [ si / NO ]")
                 vecesdoblado=0
                 while respuesta==("si" or "SI" or "Si" or "sí" or "SÍ" or "Sí"):
                     while vecesdoblado==0 and listajugadores[i][1]>=(listajugadores[i][2]*2):
