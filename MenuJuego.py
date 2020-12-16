@@ -81,7 +81,6 @@ while opc != "3":
             funciones.vermesa(listajugadores,listabanca)
             funciones.eliminardatosronda(listajugadores)
             if listabanca[0]<=0:
-                print ("BANCAROTA!")
                 opcion="terminar"
             else:
                 del listabanca[1:]
