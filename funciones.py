@@ -173,6 +173,7 @@ def verMesa(listajugadores,listabanca):
                 print("%s" % (j), end="")
         prints.colorreset()
     if listabanca[0]>0:
+        print("")
         prints.colorinput("La ronda ha finalizado, pulsa \"ENTER\" para continuar.")
     else:
         print("\n   >>> \033[31mBANCAROTA! \033[92mLa banca se ha quedado sin dinero, coge el dinero antes de que llegue seguridad.")
@@ -225,7 +226,7 @@ def opcionesJugadores (listajugadores):
     return opcion
 
 def menuJuego (listajugadores): 
-    prints.menu()
+    prints.ronda()
     print ("   >>> Aqui cada jugador puede salir de la partida o añadir dinero!\n   >>> Ademas pueden entrar a jugar mas personas mientras se respete el numero máximo de jugadores.\n")
     opcion=opcionesJugadores(listajugadores)
     if len(listajugadores)!=0 and (len(listajugadores))<7:
@@ -262,7 +263,7 @@ def menuPrincipalInit():
     return opcion
 def menuPrincipal(listabanca):
     opcion = menuPrincipalInit()
-    while opcion != "4":
+    while opcion < "3":
         while opcion not in ["1","2","3","4"]:
             os.system('cls')
             prints.inicio()
@@ -271,11 +272,10 @@ def menuPrincipal(listabanca):
         if opcion == "1":
             os.system('cls')
             menuOpciones(listabanca)
-            opcion = menuPrincipalInit()
         if opcion == "2":
             os.system('cls')
             prints.reglas()
-            opcion = menuPrincipalInit()
+        opcion = menuPrincipalInit()
     return opcion
 
 def gestdineroBanca(listabanca,apuesta,i,multiplicador):

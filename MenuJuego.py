@@ -6,8 +6,8 @@ listabanca=[1000000]
 #Añadir dividir (en culaquier momento que tengas dos cartas del mismo valor 6 i 6, j i j, 10 i k,...)
 #Optimizar funciones.
 opc=funciones.menuPrincipal(listabanca)
-while opc != "3":
-    if opc == "2":
+while opc != "4":
+    if opc == "3":
         numerojugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
         while numerojugadores not in ["1","2","3","4","5","6","7"]:
             os.system('cls')
@@ -92,4 +92,5 @@ while opc != "3":
     opc=funciones.menuPrincipal(listabanca)
 os.system('cls')
 prints.adios()
-prints.colorinput("\n   >>> Pulsa \"ENTER\" para cerrar el programa.")
+print("")
+prints.colorinput("Pulsa \"ENTER\" para cerrar el programa.")
