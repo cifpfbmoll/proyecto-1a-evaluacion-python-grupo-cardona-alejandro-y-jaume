@@ -2,23 +2,18 @@ import os
 import funciones
 import prints
 import objetos
-
 listabanca=[1000000]
-
-
 #Añadir dividir (en culaquier momento que tengas dos cartas del mismo valor 6 i 6, j i j, 10 i k,...)
 #Optimizar funciones.
 opc=funciones.menuprincipal(listabanca)
 while opc != "3":
     if opc == "2":
-        numerojugadores=prints.colorinput("   >>> Cuantos jugadores vais a entrar? [1-7]")
-
+        numerojugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
         while numerojugadores not in ["1","2","3","4","5","6","7"]:
             os.system('cls')
             prints.creando()
             prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
-            numerojugadores=prints.colorinput("   >>> Cuantos jugadores vais a entrar? [1-7]")
-
+            numerojugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
         os.system('cls')
         prints.creando()
         listajugadores=funciones.nombrejugadores(int(numerojugadores))
@@ -59,10 +54,10 @@ while opc != "3":
                     pasado=funciones.valorcartas(listajugadores[i],listabanca)
                     
                     if not pasado:
-                        respuesta=prints.colorinput("   >>> Quieres una carta mas? [ si / NO ]")
+                        respuesta=prints.colorinput("Quieres una carta mas? [ si / NO ]")
                         while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
                             prints.colorerror("    ⚠  Porfavor escriba si o no")
-                            respuesta=prints.colorinput("   >>> Quieres una carta mas? [ si / NO ]")
+                            respuesta=prints.colorinput("Quieres una carta mas? [ si / NO ]")
                         os.system('cls')
                     if pasado:
                         respuesta="no" or "NO" or "No"
@@ -70,7 +65,7 @@ while opc != "3":
                 if i != len(listajugadores)-1:
                     prints.siguiente_jugador()
                     
-                    prints.colorinput("   >>> Pulsa \"ENTER\" para pasar al siguiente jugador.")
+                    prints.colorinput("Pulsa \"ENTER\" para pasar al siguiente jugador.")
             #funciones.vermesa(listajugadores,listabanca)
             funciones.valorcartasbanca(listabanca)
             while listabanca[2]<17: #La banca saca cartas hasta que obtiene un valor de 17 o mas

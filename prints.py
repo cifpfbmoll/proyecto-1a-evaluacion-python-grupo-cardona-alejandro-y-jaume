@@ -8,7 +8,7 @@ def colorerror(skk):
     print("\033[91m {}\033[00m" .format(skk))
     colorreset()
 def colorinput(skk):
-    print("{}" .format(skk), end="\033[33m \n")
+    print("\033[33m   >>> \033[92m%s" % (skk), end="\033[33m \n")
     valor = input("    >  ")
     colorreset()
     return valor
