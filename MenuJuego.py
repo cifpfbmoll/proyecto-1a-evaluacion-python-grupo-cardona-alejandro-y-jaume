@@ -5,6 +5,7 @@ import objetos
 listabanca=[1000000]
 apuesta_normal = 1
 apuesta_blackjack = 2
+#Añadir dividir (en culaquier momento que tengas dos cartas del mismo valor 6 i 6, j i j, 10 i k,...)
 #Optimizar funciones.
 opc=funciones.menuPrincipal(listabanca,apuesta_normal,apuesta_blackjack)
 while opc != "4":
@@ -88,6 +89,11 @@ while opc != "4":
                 if len(listajugadores)!=0:
                     primerJugador=listajugadores.pop(0) #El jugador que hablaba primero pasa a hablar el ultimo
                     listajugadores.append(primerJugador)
+                #print (baraja)
+                #print (listajugadores)
+                #print (listabanca)
+        #print (listajugadores)
+        #print (listabanca)
     opc=funciones.menuPrincipal(listabanca,apuesta_normal,apuesta_blackjack)
 os.system('cls')
 prints.adios()

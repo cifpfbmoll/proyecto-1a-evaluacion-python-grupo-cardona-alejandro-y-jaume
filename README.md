@@ -49,7 +49,3 @@ Karina es la SCRUM master de hoy. Se han añadido un menú inicial al ejecutar e
 ## Martes, 15 de diciembre.
 
 Cardona es el SCRUM master de hoy. Entre todos se ha ido simplificando y retocando el código habiendo así por ejemplo cambios en el menú y en alguna de las funciones. Se han corregido todos los bugs y fallos encontrados por el momento. El proyecto sigue su curso como queremos (implementando nuevas ideas que van surgiendo) y cada dia trabajamos para pulirlo un poco más, repito, con cambios y actualizaciones y corregiendo los errores.
-
-## Mieroles, 16 de diciembre.
-
-Jaume es el Scrum master de hoy. Hemos estado comprovando que el codigo funcionara bien y no tuviera fallos. Karina ha estado creando diversas funciones de el menu inicial del juego y optimizando diversas lineas de codigo. Cardona y yo nos hemos centrado en comprovar que todo funcionara como toca.
