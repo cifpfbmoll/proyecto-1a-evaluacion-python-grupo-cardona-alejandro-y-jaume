@@ -38,6 +38,15 @@ def dineroBanca (listabanca):
         dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     listabanca.clear()
     listabanca.append(dineroBanca)
+
+def cantidadJugadores ():
+    numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
+    while numeroJugadores not in ["1","2","3","4","5","6","7"]:
+        os.system('cls')
+        prints.creando()
+        prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
+        numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
+    return numeroJugadores
 def nombreJugadores (numerojugadores):
     listajugadores=[]
     for i in range(1,numerojugadores+1):

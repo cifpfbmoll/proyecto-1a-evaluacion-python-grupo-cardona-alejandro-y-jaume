@@ -13,12 +13,7 @@ while opc != "4":
     if opc == "3":
         if listabanca[0]==0:
             funciones.dineroBanca(listabanca)
-        numerojugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
-        while numerojugadores not in ["1","2","3","4","5","6","7"]:
-            os.system('cls')
-            prints.creando()
-            prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
-            numerojugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
+        numerojugadores=funciones.cantidadJugadores()
         os.system('cls')
         prints.creando()
         listajugadores=funciones.nombreJugadores(int(numerojugadores))
