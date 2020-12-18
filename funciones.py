@@ -83,6 +83,14 @@ def apuestaJugadores (listajugadores,i):
 def repartirCarta (listajugadores,baraja,i):
     carta=sacarCarta(baraja)
     listajugadores[i][3].append(carta)
+
+def preguntaUnaCartaMas (jugador):
+    respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
+    while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
+        prints.colorerror("    ⚠  Porfavor escriba si o no")
+        respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
+    return respuesta
+
 def valorCartasSimple (listajugadores):
     valormano=0
     for i in listajugadores[3]:

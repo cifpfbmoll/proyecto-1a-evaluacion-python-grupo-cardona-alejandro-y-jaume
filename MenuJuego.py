@@ -37,10 +37,7 @@ while opc != "4":
                 os.system('cls')
                 funciones.valorCartas(listajugadores[i],listabanca)
                 funciones.verCartas(listajugadores,listajugadores[i][0],listabanca)
-                respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}?  [ si /NO ]")
-                while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
-                    prints.colorerror("    ⚠  Porfavor escriba si o no")
-                    respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}?  [ si / NO ]")
+                respuesta=funciones.preguntaUnaCartaMas(listajugadores[i][0])
                 vecesdoblado=0
                 while respuesta==("si" or "SI" or "Si" or "sí" or "SÍ" or "Sí"):
                     while vecesdoblado==0 and listajugadores[i][1]>=(listajugadores[i][2]*2):
@@ -54,10 +51,7 @@ while opc != "4":
                     pasado=funciones.valorCartas(listajugadores[i],listabanca)
                     
                     if not pasado:
-                        respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}? [ si / NO ]")
-                        while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
-                            prints.colorerror("    ⚠  Porfavor escriba si o no")
-                            respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}? [ si / NO ]")
+                        respuesta=funciones.preguntaUnaCartaMas(listajugadores[i][0])
                         os.system('cls')
                     if pasado:
                         respuesta="no"
