@@ -34,7 +34,8 @@ def barajar (lista):
 def dineroBanca (listabanca):
     dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     while dineroBanca<50:
-        dineroBanca=int(prints.colorinput("La banca necesita minimo 50 euros, Cuanto dinero quieres que tenga la banca?"))
+        prints.colorerror("    ⚠  La banca no tiene suficiente dinero, necesita minimo 50.")
+        dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     listabanca.clear()
     listabanca.append(dineroBanca)
 def nombreJugadores (numerojugadores):
