@@ -6,8 +6,9 @@ listabanca=[1000000]
 
 apuesta_normal = 1
 apuesta_blackjack = 2
+numero_barajas = 8
 #Optimizar funciones.
-opc,apuesta_normal,apuesta_blackjack = funciones.menuPrincipal(listabanca, apuesta_normal, apuesta_blackjack)
+opc,apuesta_normal,apuesta_blackjack,numero_barajas = funciones.menuPrincipal(listabanca, apuesta_normal, apuesta_blackjack, numero_barajas)
 while opc != "4":
     if opc == "3":
         if listabanca[0] < 50:
@@ -94,7 +95,7 @@ while opc != "4":
                 #print (listabanca)
         #print (listajugadores)
         #print (listabanca)
-    opc=funciones.menuPrincipal(listabanca,apuesta_normal, apuesta_blackjack)
+    opc=funciones.menuPrincipal(listabanca,apuesta_normal, apuesta_blackjack, numero_barajas)
 os.system('cls')
 prints.adios()
 print("")
