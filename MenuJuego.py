@@ -4,12 +4,10 @@ import prints
 import objetos
 listabanca=[1000000]
 
-global apuesta_normal
-global apuesta_blackjack
 apuesta_normal = 1
 apuesta_blackjack = 2
 #Optimizar funciones.
-opc = funciones.menuPrincipal(listabanca, apuesta_normal, apuesta_blackjack)
+opc,apuesta_normal,apuesta_blackjack = funciones.menuPrincipal(listabanca, apuesta_normal, apuesta_blackjack)
 while opc != "4":
     if opc == "3":
         if listabanca[0] < 50:

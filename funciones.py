@@ -269,9 +269,10 @@ def comprobarAses(valormano,listajugadores,a):
     return valormano
 
 
-def modificarApuestas(apuesta_normal, apuesta_blackjack):
+def modificarApuestas(apuesta_normal,apuesta_blackjack):
     apuesta_normal = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta normal? [Recomendado: 1] [Actual: %d]" % apuesta_normal))
     apuesta_blackjack = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta de BlackJack? [Recomendado: 1] [Actual: %d]" % apuesta_blackjack))
+    return apuesta_normal,apuesta_blackjack
 def menuJuego (listajugadores): 
     prints.ronda()
     print ("   >>> Aqui cada jugador puede salir de la partida o añadir dinero!\n   >>> Ademas pueden entrar a jugar mas personas mientras se respete el numero máximo de jugadores.\n")
@@ -305,8 +306,9 @@ def menuOpciones(listabanca,apuesta_normal,apuesta_blackjack):
         if opcion == "1":
             dineroBanca(listabanca)
         if opcion == "2":
-            modificarApuestas(apuesta_normal,apuesta_blackjack)
+            apuesta_normal,apuesta_blackjack=modificarApuestas(apuesta_normal,apuesta_blackjack)
         opcion = menuOpcionesLimpiar(listabanca,apuesta_normal,apuesta_blackjack)
+    return apuesta_normal,apuesta_blackjack
 def menuPrincipalInit():
     os.system('cls')
     prints.inicio()
@@ -319,9 +321,9 @@ def menuPrincipal(listabanca,apuesta_normal,apuesta_blackjack):
         comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,apuesta_normal,apuesta_blackjack)
         if opcion == "1":
             os.system('cls')
-            menuOpciones(listabanca,apuesta_normal,apuesta_blackjack)
+            apuesta_normal,apuesta_blackjack=menuOpciones(listabanca,apuesta_normal,apuesta_blackjack)
         if opcion == "2":
             os.system('cls')
             prints.reglas()
         opcion = menuPrincipalInit()
-    return opcion
+    return opcion,apuesta_normal,apuesta_blackjack
