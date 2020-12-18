@@ -59,13 +59,13 @@ while opc != "4":
                     pasado=funciones.valorCartas(listajugadores[i],listabanca)
                     
                     if not pasado:
-                        respuesta=prints.colorinput("Quieres una carta mas? [ si / NO ]")
+                        respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}? [ si / NO ]")
                         while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
                             prints.colorerror("    ⚠  Porfavor escriba si o no")
-                            respuesta=prints.colorinput("Quieres una carta mas? [ si / NO ]")
+                            respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}? [ si / NO ]")
                         os.system('cls')
                     if pasado:
-                        respuesta="no" or "NO" or "No"
+                        respuesta="no"
                 os.system('cls')
                 if i != len(listajugadores)-1:
                     prints.siguiente_jugador()
