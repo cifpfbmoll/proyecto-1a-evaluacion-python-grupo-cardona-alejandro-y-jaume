@@ -314,6 +314,9 @@ def comprobarOpcion(lista, variable, opcion, listabanca, apuesta_normal, apuesta
 def modificarBarajas(baraja):
     print(baraja)
     baraja_final = int(prints.colorinput("Con cuantas barajas quieres jugar? [Recomendado: 8]"))
+    while baraja_final < 1:
+        prints.colorerror("    ⚠  Has de jugar como mínimo con 1 baraja.")
+        baraja_final = int(prints.colorinput("Con cuantas barajas quieres jugar? [Recomendado: 8]"))
     return baraja_final
 def menuOpciones(listabanca,apuesta_normal,apuesta_blackjack,baraja):
     prints.opciones(listabanca[0], apuesta_normal, apuesta_blackjack, baraja)
