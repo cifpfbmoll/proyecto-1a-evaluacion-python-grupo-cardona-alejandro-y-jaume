@@ -13,12 +13,7 @@ while opc != "4":
     if opc == "3":
         if listabanca[0]==0:
             funciones.dineroBanca(listabanca)
-        numerojugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
-        while numerojugadores not in ["1","2","3","4","5","6","7"]:
-            os.system('cls')
-            prints.creando()
-            prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
-            numerojugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
+        numerojugadores=funciones.cantidadJugadores()
         os.system('cls')
         prints.creando()
         listajugadores=funciones.nombreJugadores(int(numerojugadores))
@@ -59,13 +54,13 @@ while opc != "4":
                     pasado=funciones.valorCartas(listajugadores[i],listabanca)
                     
                     if not pasado:
-                        respuesta=prints.colorinput("Quieres una carta mas? [ si / NO ]")
+                        respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}? [ si / NO ]")
                         while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
                             prints.colorerror("    ⚠  Porfavor escriba si o no")
-                            respuesta=prints.colorinput("Quieres una carta mas? [ si / NO ]")
+                            respuesta=prints.colorinput(f"Quieres una carta mas {listajugadores[i][0]}? [ si / NO ]")
                         os.system('cls')
                     if pasado:
-                        respuesta="no" or "NO" or "No"
+                        respuesta="no"
                 os.system('cls')
                 if i != len(listajugadores)-1:
                     prints.siguiente_jugador()
