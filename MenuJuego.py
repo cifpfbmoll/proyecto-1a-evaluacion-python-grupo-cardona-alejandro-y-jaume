@@ -3,11 +3,15 @@ import funciones
 import prints
 import objetos
 listabanca=[1000000]
+
+global apuesta_normal
+global apuesta_blackjack
 apuesta_normal = 1
 apuesta_blackjack = 2
+
 #Añadir dividir (en culaquier momento que tengas dos cartas del mismo valor 6 i 6, j i j, 10 i k,...)
 #Optimizar funciones.
-opc=funciones.menuPrincipal(listabanca,apuesta_normal,apuesta_blackjack)
+opc = funciones.menuPrincipal(listabanca, apuesta_normal, apuesta_blackjack)
 while opc != "4":
     if opc == "3":
         if listabanca[0] < 50:
@@ -76,7 +80,7 @@ while opc != "4":
             while listabanca[2]<17: #La banca saca cartas hasta que obtiene un valor de 17 o mas
                 funciones.repartirCartaBanca(listabanca,baraja)
                 funciones.valorCartasBanca(listabanca)
-            funciones.compararCartas(listajugadores,listabanca,apuesta_normal,apuesta_blackjack)
+            funciones.compararCartas(listajugadores,listabanca,apuesta_normal, apuesta_blackjack)
             os.system('cls')
             funciones.verMesa(listajugadores,listabanca)
             funciones.eliminarDatosRonda(listajugadores)
@@ -94,7 +98,7 @@ while opc != "4":
                 #print (listabanca)
         #print (listajugadores)
         #print (listabanca)
-    opc=funciones.menuPrincipal(listabanca,apuesta_normal,apuesta_blackjack)
+    opc=funciones.menuPrincipal(listabanca,apuesta_normal, apuesta_blackjack)
 os.system('cls')
 prints.adios()
 print("")
