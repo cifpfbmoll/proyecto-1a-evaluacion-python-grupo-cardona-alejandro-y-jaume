@@ -54,11 +54,12 @@ def nombreJugadores (numerojugadores):
         listajugadores.append([nombrejugador.capitalize()])
     return listajugadores
 def dineroJugadores (listajugadores):
+    print("   >>> Con cuanto dinero vais a entrar cada uno?\n")
     for i in range (len(listajugadores)):
         dinero=int(prints.colorinput(f"Introducir dinero de {listajugadores[i][0]}:"))
         listajugadores[i].append(dinero)
-    return listajugadores
 def apuestaInicialJugadores (listajugadores):
+    print ("   >>> Hagan sus apuestas!\n")
     for i in range (len(listajugadores)):
         apuesta=int(prints.colorinput(f"Introducir apuesta de {listajugadores[i][0]}: [ Dinero → {listajugadores[i][1]} ]"))
         while apuesta>listajugadores[i][1] or apuesta<1:
@@ -68,7 +69,6 @@ def apuestaInicialJugadores (listajugadores):
                 prints.colorerror(f"    ⚠  Recuerda que la apuesta minima es de 1 euro!")
             apuesta=int(prints.colorinput(f"Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
         listajugadores[i].append(apuesta)
-    return listajugadores
 def apuestaJugadores (listajugadores,i):
     respuesta=(prints.colorinput(f"Vas a doblar la apuesta inicial {listajugadores[i][0]}? [ si / NO ]"))
     while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
@@ -125,7 +125,6 @@ def valorCartas (listajugadores,listabanca):
         pasado=False
     return pasado
 def verBanca (listabanca):
-    #print(listabanca)
     prints.colorbanca()
     valorCartasBanca(listabanca)
     print("   >>> Cartas de la BANCA ⁞ Dinero: %s ⁞ Valor de la mano: %s" % (listabanca[0],listabanca[2]))

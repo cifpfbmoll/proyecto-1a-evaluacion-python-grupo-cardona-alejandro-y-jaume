@@ -19,7 +19,6 @@ while opc != "4":
         listajugadores=funciones.nombreJugadores(int(numerojugadores))
         os.system('cls')
         prints.creando()
-        print("   >>> Con cuanto dinero vais a entrar cada uno?\n")
         funciones.dineroJugadores(listajugadores)
         os.system('cls')
         prints.creando()
@@ -27,7 +26,6 @@ while opc != "4":
         while opcion!="terminar":
             os.system('cls')
             prints.empezar()
-            print ("   >>> Hagan sus apuestas!\n")
             funciones.apuestaInicialJugadores(listajugadores)
             baraja=funciones.barajar(objetos.baraja[:]*numero_barajas)
             funciones.repartirCartasIniciales(listajugadores,baraja)
