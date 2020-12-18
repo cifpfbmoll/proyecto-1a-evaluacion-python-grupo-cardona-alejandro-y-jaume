@@ -4,16 +4,15 @@ import prints
 import objetos
 listabanca=[1000000]
 
-apuesta_normal = 1
+apuesta_normal = 1 
 apuesta_blackjack = 2
 numero_barajas = 8
 #Optimizar funciones.
 opc,apuesta_normal,apuesta_blackjack,numero_barajas = funciones.menuPrincipal(listabanca, apuesta_normal, apuesta_blackjack, numero_barajas)
 while opc != "4":
     if opc == "3":
-        if listabanca[0] < 50:
-            prints.colorerror("    ⚠  La banca no tiene suficiente dinero.")
-            listabanca[0] += int(prints.colorinput("Cuanto dinero quieres añadirle a la banca?"))
+        if listabanca[0]==0:
+            funciones.dineroBanca(listabanca)
         numerojugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
         while numerojugadores not in ["1","2","3","4","5","6","7"]:
             os.system('cls')
@@ -35,7 +34,7 @@ while opc != "4":
             prints.empezar()
             print ("   >>> Hagan sus apuestas!\n")
             funciones.apuestaInicialJugadores(listajugadores)
-            baraja=funciones.barajar(objetos.baraja[:])
+            baraja=funciones.barajar(objetos.baraja[:]*numero_barajas)
             funciones.repartirCartasIniciales(listajugadores,baraja)
             funciones.repartirCartaBanca(listabanca,baraja)
             funciones.repartirCartasIniciales(listajugadores,baraja)
@@ -72,7 +71,6 @@ while opc != "4":
                     prints.siguiente_jugador()
                     
                     prints.colorinput("Pulsa \"ENTER\" para pasar al siguiente jugador.")
-            #funciones.verMesa(listajugadores,listabanca)
             funciones.valorCartasBanca(listabanca)
             while listabanca[2]<17: #La banca saca cartas hasta que obtiene un valor de 17 o mas
                 funciones.repartirCartaBanca(listabanca,baraja)
@@ -90,11 +88,6 @@ while opc != "4":
                 if len(listajugadores)!=0:
                     primerJugador=listajugadores.pop(0) #El jugador que hablaba primero pasa a hablar el ultimo
                     listajugadores.append(primerJugador)
-                #print (baraja)
-                #print (listajugadores)
-                #print (listabanca)
-        #print (listajugadores)
-        #print (listabanca)
     opc=funciones.menuPrincipal(listabanca,apuesta_normal, apuesta_blackjack, numero_barajas)
 os.system('cls')
 prints.adios()
