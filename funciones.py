@@ -246,7 +246,7 @@ def gestdineroBanca(listabanca,apuesta,i,multiplicador):
     listabanca.insert(0,dineroBanca)
     dinerojugador=i.pop(1)+(apuesta*multiplicador)
     i.insert(1,dinerojugador)
-def compararCartas (listajugadores,listabanca,apuesta_normal,apuesta_blackjack):
+def compararCartas (listajugadores,listabanca,tasa_normal,tasa_blackjack):
     for i in listajugadores:#Cuando la banca cobra
         if listabanca[2]<22 and listabanca[2]>=i[4] and i[4]<22: #Si la banca no se pasa, iguala o supera al jugador i el jugador no se ha pasado
             apuesta=i[2]
@@ -260,16 +260,16 @@ def compararCartas (listajugadores,listabanca,apuesta_normal,apuesta_blackjack):
                 apuesta=i[2]
                 if apuesta*2>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
                     apuesta=listabanca[0]
-                    gestdineroBanca(listabanca,apuesta,i,apuesta_normal)
+                    gestdineroBanca(listabanca,apuesta,i,tasa_normal)
                 else:
-                    gestdineroBanca(listabanca,apuesta,i,apuesta_blackjack)
+                    gestdineroBanca(listabanca,apuesta,i,tasa_blackjack)
             else:
                 apuesta=i[2]
                 if apuesta>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
                     apuesta=listabanca[0]
-                    gestdineroBanca(listabanca,apuesta,i,apuesta_normal)
+                    gestdineroBanca(listabanca,apuesta,i,tasa_normal)
                 else:
-                    gestdineroBanca(listabanca,apuesta,i,apuesta_normal)
+                    gestdineroBanca(listabanca,apuesta,i,tasa_normal)
 def comprobarAses(valormano,listajugadores,a):
     if valormano>21:
         hayAs=False
@@ -284,10 +284,10 @@ def comprobarAses(valormano,listajugadores,a):
                 if valormano>21:
                     valormano-=10
     return valormano
-def modificarApuestas(apuesta_normal,apuesta_blackjack):
-    apuesta_normal = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta normal? [Recomendado: 1] [Actual: %d]" % apuesta_normal))
-    apuesta_blackjack = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta de BlackJack? [Recomendado: 1] [Actual: %d]" % apuesta_blackjack))
-    return apuesta_normal,apuesta_blackjack
+def modificarTasas(tasa_normal,tasa_blackjack):
+    tasa_normal = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta normal? [Recomendado: 1] [Actual: %d]" % tasa_normal))
+    tasa_blackjack = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta de BlackJack? [Recomendado: 1] [Actual: %d]" % tasa_blackjack))
+    return tasa_normal,tasa_blackjack
 def menuJuego (listajugadores): 
     prints.ronda()
     print ("   >>> Aqui cada jugador puede salir de la partida o añadir dinero!\n   >>> Ademas pueden entrar a jugar mas personas mientras se respete el numero máximo de jugadores.\n")
@@ -299,15 +299,15 @@ def menuJuego (listajugadores):
         if masjugadores=="no" or masjugadores=="":
             ("   >>> Sigamos pues!")
     return opcion
-def menuOpcionesLimpiar(listabanca,apuesta_normal,apuesta_blackjack, baraja):
+def menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja):
     os.system('cls')
-    prints.opciones(listabanca[0],apuesta_normal,apuesta_blackjack, baraja)
+    prints.opciones(listabanca[0],tasa_normal,tasa_blackjack, baraja)
     opcion = prints.colorinput("Que deseas hacer?")
     return opcion
-def comprobarOpcion(lista, variable, opcion, listabanca, apuesta_normal, apuesta_blackjack, baraja):
+def comprobarOpcion(lista, variable, opcion, listabanca, tasa_normal, tasa_blackjack, baraja):
     while opcion not in lista:
         os.system('cls')
-        prints.opciones(listabanca[0], apuesta_normal, apuesta_blackjack, baraja)
+        prints.opciones(listabanca[0], tasa_normal, tasa_blackjack, baraja)
         prints.colorerror("    ⚠  Esta opción no está disponible")
         opcion = prints.colorinput(f"Que deseas hacer? {variable}")
 def modificarBarajas(baraja):
@@ -317,20 +317,20 @@ def modificarBarajas(baraja):
         prints.colorerror("    ⚠  Has de jugar como mínimo con 1 baraja.")
         baraja_final = int(prints.colorinput("Con cuantas barajas quieres jugar? [Recomendado: 8]"))
     return baraja_final
-def menuOpciones(listabanca,apuesta_normal,apuesta_blackjack,baraja):
-    prints.opciones(listabanca[0], apuesta_normal, apuesta_blackjack, baraja)
+def menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja):
+    prints.opciones(listabanca[0], tasa_normal, tasa_blackjack, baraja)
     opcion = prints.colorinput("Que deseas hacer?")
-    comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,apuesta_normal,apuesta_blackjack, baraja)
+    comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
     while opcion < "4":
-        comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,apuesta_normal,apuesta_blackjack, baraja)
+        comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
         if opcion == "1":
             dineroBanca(listabanca)
         if opcion == "2":
-            apuesta_normal,apuesta_blackjack=modificarApuestas(apuesta_normal,apuesta_blackjack)
+            tasa_normal,tasa_blackjack=modificarTasas(tasa_normal,tasa_blackjack)
         if opcion == "3":
             baraja=modificarBarajas(baraja)
-        opcion = menuOpcionesLimpiar(listabanca,apuesta_normal,apuesta_blackjack, baraja)
-    return apuesta_normal, apuesta_blackjack, baraja
+        opcion = menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja)
+    return tasa_normal, tasa_blackjack, baraja
 def menuPrincipalInit():
     os.system('cls')
     prints.inicio()
@@ -338,16 +338,16 @@ def menuPrincipalInit():
     return opcion
 
 
-def menuPrincipal(listabanca, apuesta_normal, apuesta_blackjack, baraja):
+def menuPrincipal(listabanca, tasa_normal, tasa_blackjack, baraja):
     opcion = menuPrincipalInit()
-    comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,apuesta_normal,apuesta_blackjack, baraja)
+    comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
     while opcion < "3":
-        comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,apuesta_normal,apuesta_blackjack, baraja)
+        comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
         if opcion == "1":
             os.system('cls')
-            apuesta_normal,apuesta_blackjack,baraja=menuOpciones(listabanca,apuesta_normal,apuesta_blackjack,baraja)
+            tasa_normal,tasa_blackjack,baraja=menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja)
         if opcion == "2":
             os.system('cls')
             prints.reglas()
         opcion = menuPrincipalInit()
-    return opcion, apuesta_normal, apuesta_blackjack, baraja
+    return opcion, tasa_normal, tasa_blackjack, baraja

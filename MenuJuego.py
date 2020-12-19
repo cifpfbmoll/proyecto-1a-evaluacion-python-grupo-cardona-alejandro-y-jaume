@@ -4,11 +4,11 @@ import prints
 import objetos
 listabanca=[1000000]
 
-apuesta_normal = 1 
-apuesta_blackjack = 2
+tasa_normal = 1 
+tasa_blackjack = 2
 numero_barajas = 8
 #Optimizar funciones.
-opc,apuesta_normal,apuesta_blackjack,numero_barajas = funciones.menuPrincipal(listabanca, apuesta_normal, apuesta_blackjack, numero_barajas)
+opc,tasa_normal,tasa_blackjack,numero_barajas = funciones.menuPrincipal(listabanca, tasa_normal, tasa_blackjack, numero_barajas)
 while opc != "4":
     if opc == "3":
         if listabanca[0]==0:
@@ -62,7 +62,7 @@ while opc != "4":
             while listabanca[2]<17: #La banca saca cartas hasta que obtiene un valor de 17 o mas
                 funciones.repartirCartaBanca(listabanca,baraja)
                 funciones.valorCartasBanca(listabanca)
-            funciones.compararCartas(listajugadores,listabanca,apuesta_normal, apuesta_blackjack)
+            funciones.compararCartas(listajugadores,listabanca,tasa_normal, tasa_blackjack)
             os.system('cls')
             funciones.verMesa(listajugadores,listabanca)
             funciones.eliminarDatosRonda(listajugadores)
@@ -75,7 +75,7 @@ while opc != "4":
                 if len(listajugadores)!=0:
                     primerJugador=listajugadores.pop(0) #El jugador que hablaba primero pasa a hablar el ultimo
                     listajugadores.append(primerJugador)
-    opc=funciones.menuPrincipal(listabanca,apuesta_normal, apuesta_blackjack, numero_barajas)
+    opc=funciones.menuPrincipal(listabanca,tasa_normal, tasa_blackjack, numero_barajas)
 os.system('cls')
 prints.adios()
 print("")
