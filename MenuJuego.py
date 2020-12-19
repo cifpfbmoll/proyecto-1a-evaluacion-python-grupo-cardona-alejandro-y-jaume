@@ -7,7 +7,7 @@ listabanca=[1000000]
 tasa_normal = 1 
 tasa_blackjack = 2
 numero_barajas = 8
-#Optimizar funciones.
+
 opc,tasa_normal,tasa_blackjack,numero_barajas = funciones.menuPrincipal(listabanca, tasa_normal, tasa_blackjack, numero_barajas)
 while opc != "4":
     if opc == "3":
