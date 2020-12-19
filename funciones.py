@@ -91,22 +91,23 @@ def preguntaUnaCartaMas (jugador):
         respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
     return respuesta
 
-def valorCartasSimple (listajugadores):
+def calcularValorMano (listajugadores):
     valormano=0
     for i in listajugadores[3]:
         valormano+=objetos.valor_baraja.get(i)
     valormano=comprobarAses(valormano,listajugadores,3)
+    return valormano
+
+def valorCartasSimple (listajugadores):
+    valormano=calcularValorMano(listajugadores)
     if listajugadores[-1]==listajugadores[3]:
         listajugadores.append(valormano)
     else:
         del listajugadores[4]
         listajugadores.append(valormano)
-def valorCartas (listajugadores,listabanca):
-    valormano=0
+def valorCartas (listajugadores,listabanca): 
     apuesta=listajugadores[2]
-    for i in listajugadores[3]:
-        valormano+=objetos.valor_baraja.get(i)
-    valormano=comprobarAses(valormano,listajugadores,3)
+    valormano=calcularValorMano(listajugadores)
     if valormano>21:
         if listajugadores[-1]!=listajugadores[3]:
             del listajugadores[4]
@@ -336,7 +337,6 @@ def menuPrincipalInit():
     prints.inicio()
     opcion = prints.colorinput("Que deseas hacer? [ 1 - 4 ]")
     return opcion
-
 
 def menuPrincipal(listabanca, apuesta_normal, apuesta_blackjack, baraja):
     opcion = menuPrincipalInit()
