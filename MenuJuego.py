@@ -15,17 +15,17 @@ while opc != "4":#Bucle que se repite hasta que se desea salir del programa.
             #pero los jugadores han querido seguir jugando, y por tanto no han salido del programa.
             funciones.dineroBanca(listabanca) 
         numerojugadores=funciones.cantidadJugadores()
-        os.system('cls')
+        funciones.limpiarTerminal()
         prints.creando()
         listajugadores=funciones.nombreJugadores(int(numerojugadores))
-        os.system('cls')
+        funciones.limpiarTerminal()
         prints.creando()
         funciones.dineroJugadores(listajugadores)
-        os.system('cls')
+        funciones.limpiarTerminal()
         prints.creando()
         opcion=""
         while opcion!="terminar":#Bucle de las rondas de la partida.
-            os.system('cls')
+            funciones.limpiarTerminal()
             prints.empezar()
             funciones.apuestaInicialJugadores(listajugadores)
             baraja=funciones.barajar(objetos.baraja[:]*numero_barajas)
@@ -33,7 +33,7 @@ while opc != "4":#Bucle que se repite hasta que se desea salir del programa.
             funciones.repartirCartaBanca(listabanca,baraja)
             funciones.repartirCartasIniciales(listajugadores,baraja)
             for i in range (len(listajugadores)):#turnos de los jugadores, cada valor de i es un turno.
-                os.system('cls')
+                funciones.limpiarTerminal()
                 funciones.valorCartas(listajugadores[i],listabanca)
                 funciones.verCartas(listajugadores,listajugadores[i][0],listabanca)
                 respuesta=funciones.preguntaUnaCartaMas(listajugadores[i][0])
@@ -42,20 +42,20 @@ while opc != "4":#Bucle que se repite hasta que se desea salir del programa.
                     if vecesdoblado==0 and listajugadores[i][1]>=(listajugadores[i][2]*2):#Si el jugador quiere una carta mas, no ha
                         #doblado antes i tiene suficiente dinero se entrara en la funcion donde se le pedira si quiere doblar la apuesta
                         funciones.apuestaJugadores(listajugadores,i)
-                        os.system('cls')
+                        funciones.limpiarTerminal()
                         vecesdoblado=1
                     
                     funciones.repartirCarta(listajugadores,baraja,i)
-                    os.system('cls')
+                    funciones.limpiarTerminal()
                     funciones.verCartas(listajugadores,listajugadores[i][0],listabanca)
                     pasado=funciones.valorCartas(listajugadores[i],listabanca)
                     
                     if not pasado:
                         respuesta=funciones.preguntaUnaCartaMas(listajugadores[i][0])
-                        os.system('cls')
+                        funciones.limpiarTerminal()
                     if pasado:
                         respuesta="no"
-                os.system('cls')
+                funciones.limpiarTerminal()
                 if i != len(listajugadores)-1:#Si no es el ultimo jugador se entrar en este bucle para que se haga el siguiente print
                     prints.siguiente_jugador()
                     
@@ -65,21 +65,21 @@ while opc != "4":#Bucle que se repite hasta que se desea salir del programa.
                 funciones.repartirCartaBanca(listabanca,baraja)
                 funciones.valorCartasBanca(listabanca)
             funciones.compararCartas(listajugadores,listabanca,tasa_normal, tasa_blackjack)
-            os.system('cls')
+            funciones.limpiarTerminal()
             funciones.verMesa(listajugadores,listabanca)
             funciones.eliminarDatosRonda(listajugadores)
             if listabanca[0]<=0: #Si la banca se queda sin dinero, se da opcion terminar para que se rompa el bucle de la partida
                 opcion="terminar"
             else:
                 del listabanca[1:]
-                os.system('cls')
+                funciones.limpiarTerminal()
                 opcion=funciones.menuJuego(listajugadores) #Menu de cuando finaliza la ronda, se devuelve valor porque si  opcion="terminar"
                 # se rompe el bucle y termina la partida
                 if len(listajugadores)!=0:
                     primerJugador=listajugadores.pop(0) 
                     listajugadores.append(primerJugador)#El jugador que hablaba primero pasa a hablar el ultimo
     opc,tasa_normal,tasa_blackjack,numero_barajas=funciones.menuPrincipal(listabanca,tasa_normal, tasa_blackjack, numero_barajas)
-os.system('cls')
+funciones.limpiarTerminal()
 prints.adios()
 print("")
 prints.colorinput("Pulsa \"ENTER\" para cerrar el programa.")

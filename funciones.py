@@ -42,7 +42,7 @@ def dineroBanca (listabanca):
 def cantidadJugadores ():
     numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
     while numeroJugadores not in ["1","2","3","4","5","6","7"]:
-        os.system('cls')
+        limpiarTerminal()
         prints.creando()
         prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
         numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
@@ -301,13 +301,13 @@ def menuJuego (listajugadores):
             ("   >>> Sigamos pues!")
     return opcion
 def menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja):
-    os.system('cls')
+    limpiarTerminal()
     prints.opciones(listabanca[0],tasa_normal,tasa_blackjack, baraja)
     opcion = prints.colorinput("Que deseas hacer?")
     return opcion
 def comprobarOpcion(lista, variable, opcion, listabanca, tasa_normal, tasa_blackjack, baraja):
     while opcion not in lista:
-        os.system('cls')
+        limpiarTerminal()
         prints.opciones(listabanca[0], tasa_normal, tasa_blackjack, baraja)
         prints.colorerror("    ⚠  Esta opción no está disponible")
         opcion = prints.colorinput(f"Que deseas hacer? {variable}")
@@ -333,7 +333,7 @@ def menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja):
         opcion = menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja)
     return tasa_normal, tasa_blackjack, baraja
 def menuPrincipalInit():
-    os.system('cls')
+    limpiarTerminal()
     prints.inicio()
     opcion = prints.colorinput("Que deseas hacer? [ 1 - 4 ]")
     return opcion
@@ -345,10 +345,16 @@ def menuPrincipal(listabanca, tasa_normal, tasa_blackjack, baraja):
     while opcion < "3":
         comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
         if opcion == "1":
-            os.system('cls')
+            limpiarTerminal()
             tasa_normal,tasa_blackjack,baraja=menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja)
         if opcion == "2":
-            os.system('cls')
+            limpiarTerminal()
             prints.reglas()
         opcion = menuPrincipalInit()
     return opcion, tasa_normal, tasa_blackjack, baraja
+
+def limpiarTerminal ():
+    if os.name=="posix":
+        os.system('clear')
+    else:
+        os.system('cls')
