@@ -18,11 +18,7 @@ def repartirCartasIniciales (listajugadores,baraja):
             listajugadores[i].append([carta])
         else:
             listajugadores[i][3].append(carta)
-<<<<<<< HEAD
 # Procedimiento que llama a la función sacarCarta para que le dé una carta y la añade a la lista de la banca.
-=======
-# Procedimiento que llama a la funcion sacarCarta para que le dé una carta y la añade a la lista de la banca.
->>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def repartirCartaBanca (listabanca,baraja):
     carta=sacarCarta(baraja)
     if listabanca[-1]==listabanca[0]:
@@ -41,20 +37,12 @@ def valorCartasBanca (listabanca):
     else:
         del listabanca[2]
         listabanca.append(valormano)
-<<<<<<< HEAD
 # Función que aleatoriza los elementos de una lista.
-=======
-# Funcion que aleatoriza los elementos de una lista.
->>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def barajar (lista):
     import random
     random.shuffle(lista)
     return lista
-<<<<<<< HEAD
 # Procedimiento que añade un número(dinero) a la lista banca después de limpiarla. Se pedirá el número hasta que sea mayor que 50.
-=======
-# Procedimiento que añade un numero(dinero) a la lista banca después de limpiarla. Se pedirá el numero hasta que sea mayor que 50.
->>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def dineroBanca (listabanca):
     dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     while dineroBanca<50:
@@ -62,11 +50,7 @@ def dineroBanca (listabanca):
         dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     listabanca.clear()
     listabanca.append(dineroBanca)
-<<<<<<< HEAD
 # Función que pide un número(número de jugadores) y se asegura que esté entre el 1 y el 7. Luego devuelve ese número.
-=======
-# Funcion que pide un numero(numero de jugadores) y se asegura que este entre el 1 y el 7. Luego devuelve ese numero.
->>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def cantidadJugadores ():
     numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
     while numeroJugadores not in ["1","2","3","4","5","6","7"]:
@@ -124,11 +108,7 @@ def preguntaUnaCartaMas (jugador):
         respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
     return respuesta
 # Función en la cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en
-<<<<<<< HEAD
 # un diccionario y sumarlos. Se devuelve ese valor.
-=======
-#un diccionario y sumarlos. Se devuelve ese valor.
->>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def calcularValorMano (listajugadores):
     valormano=0
     for i in listajugadores[3]:
