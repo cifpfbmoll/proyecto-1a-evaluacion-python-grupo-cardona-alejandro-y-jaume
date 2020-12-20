@@ -31,7 +31,7 @@ def valorCartasBanca (listabanca):
     valormano=0
     for i in listabanca[1]:
         valormano+=objetos.valor_baraja.get(i)
-    valormano=comprobarAses(valormano,listabanca,1)
+    valormano=comprobarAses(valormano,listabanca,1)#Comprueba si hay ases para cambiarlos a valor 1 si el jugador se pasa
     if listabanca[-1]==listabanca[1]:
         listabanca.append(valormano)
     else:
@@ -59,18 +59,20 @@ def cantidadJugadores ():
         prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
         numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
     return numeroJugadores
-
+#Función que pide los nombres de los jugadores y finaliza devolviendo la lista de jugadores en cuestión.
 def nombreJugadores (numerojugadores):
     listajugadores=[]
     for i in range(1,numerojugadores+1):
         nombrejugador=str(prints.colorinput(f"Escribe el nombre del jugador {i}:"))
         listajugadores.append([nombrejugador.capitalize()])
     return listajugadores
+#Procedimiento que pide el dinero con el que jugarán los jugadores y acaba añadiendo esas cantidades dentro de la lista de jugadores.
 def dineroJugadores (listajugadores):
     print("   >>> Con cuanto dinero vais a entrar cada uno?\n")
     for i in range (len(listajugadores)):
         dinero=int(prints.colorinput(f"Introducir dinero de {listajugadores[i][0]}:"))
         listajugadores[i].append(dinero)
+#Procedimiento que empieza pidiendo las apuestas iniciales (de antes de comenzar la partida) a los jugadores y finaliza añadiendo ese valor a la lista de jugadores.
 def apuestaInicialJugadores (listajugadores):
     print ("   >>> Hagan sus apuestas!\n")
     for i in range (len(listajugadores)):
@@ -82,6 +84,7 @@ def apuestaInicialJugadores (listajugadores):
                 prints.colorerror(f"    ⚠  Recuerda que la apuesta minima es de 1 euro!")
             apuesta=int(prints.colorinput(f"Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
         listajugadores[i].append(apuesta)
+#Procedimiento que pide al jugador si va a querer o no doblar su apuesta inicial antes de que robe cartas. Si el jugador decide doblar se modifica el valor de su apuesta y se añade el doble.
 def apuestaJugadores (listajugadores,i):
     respuesta=(prints.colorinput(f"Vas a doblar la apuesta inicial {listajugadores[i][0]}? [ si / NO ]"))
     while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
@@ -93,24 +96,26 @@ def apuestaJugadores (listajugadores,i):
         doblar=apuesta+apuesta
         del listajugadores[i][2]
         listajugadores[i].insert(2,doblar)
+#Procedimiento que añade las cartas a la lista de jugadores.
 def repartirCarta (listajugadores,baraja,i):
     carta=sacarCarta(baraja)
     listajugadores[i][3].append(carta)
-
+#Función que pide si el jugador va a querer una carta más para jugar donde finalmente se devolverá la opción seleccionada.
 def preguntaUnaCartaMas (jugador):
     respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
     while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
         prints.colorerror("    ⚠  Porfavor escriba si o no")
         respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
     return respuesta
-
+#Funcion en la cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en
+#un diccionario y sumarlos. Se devuelve ese valor.
 def calcularValorMano (listajugadores):
     valormano=0
     for i in listajugadores[3]:
         valormano+=objetos.valor_baraja.get(i)
-    valormano=comprobarAses(valormano,listajugadores,3)
+    valormano=comprobarAses(valormano,listajugadores,3)#Comprueba si hay ases para cambiarlos a valor 1 si el jugador se pasa
     return valormano
-
+#Procedimiento que llama a la funcion calcularValorMano y añade el valor que se da (valor mano jugador) a la lista del jugador.
 def valorCartasSimple (listajugadores):
     valormano=calcularValorMano(listajugadores)
     if listajugadores[-1]==listajugadores[3]:
@@ -118,13 +123,16 @@ def valorCartasSimple (listajugadores):
     else:
         del listajugadores[4]
         listajugadores.append(valormano)
+#Funcion que llama a la funcion calcularValorMano y añade el valor que se da (valor mano jugador) a la lista del jugador, ademas comprueba si
+#el jugador se ha pasado de 21 puntos, si se ha pasado le quita el dinero de la apuesta de su dinero total i se lo suma a la banca. Al final
+#devuelve un boleano que hacer referencia a si se ha pasado o no.
 def valorCartas (listajugadores,listabanca): 
     apuesta=listajugadores[2]
     valormano=calcularValorMano(listajugadores)
+    if listajugadores[-1]!=listajugadores[3]:
+        del listajugadores[4]
+    listajugadores.append(valormano)
     if valormano>21:
-        if listajugadores[-1]!=listajugadores[3]:
-            del listajugadores[4]
-        listajugadores.append(valormano)
         prints.colorerror("\n   !!! Tu puntuación es mayor a 21.")
         dinerojugador=(listajugadores.pop(1))-apuesta
         listajugadores.insert(1,dinerojugador)
@@ -133,9 +141,6 @@ def valorCartas (listajugadores,listabanca):
         pasado=True
         prints.colorinput("Pulsa ENTER para abandonar la mesa.")
     else:
-        if listajugadores[-1]!=listajugadores[3]:
-            del listajugadores[4]
-        listajugadores.append(valormano)
         pasado=False
     return pasado
 # Procedimiento utilizado para mostrar la información de la banca en el juego
