@@ -25,7 +25,8 @@ def repartirCartaBanca (listabanca,baraja):
         listabanca.append([carta])
     else:
         listabanca[1].append(carta)
-
+#Procedimiento en el cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en
+# un diccionario y sumarlos. Esa suma se añade a la lista de la banca y es el valor actual de las cartas que tiene la banca.
 def valorCartasBanca (listabanca):
     valormano=0
     for i in listabanca[1]:
@@ -36,10 +37,12 @@ def valorCartasBanca (listabanca):
     else:
         del listabanca[2]
         listabanca.append(valormano)
+#Funcion que aleatoriza los elementos de una lista.
 def barajar (lista):
     import random
     random.shuffle(lista)
     return lista
+#Procedimiento que añade un numero(dinero) a la lista banca después de limpiarla. Se pedirá el numero hasta que sea mayor que 50.
 def dineroBanca (listabanca):
     dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     while dineroBanca<50:
@@ -47,7 +50,7 @@ def dineroBanca (listabanca):
         dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     listabanca.clear()
     listabanca.append(dineroBanca)
-
+#Funcion que pide un numero(numero de jugadores) y se asegura que este entre el 1 y el 7. Luego devuelve ese numero.
 def cantidadJugadores ():
     numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
     while numeroJugadores not in ["1","2","3","4","5","6","7"]:
@@ -56,6 +59,7 @@ def cantidadJugadores ():
         prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
         numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
     return numeroJugadores
+
 def nombreJugadores (numerojugadores):
     listajugadores=[]
     for i in range(1,numerojugadores+1):
