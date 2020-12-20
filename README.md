@@ -1,4 +1,4 @@
-## Sprint Backlog
+# Sprint Backlog
 
 Al ser la primera vez que hacemos un proyecto de programación los 3, y además ser la primera vez que hacemos algo con la metodología SCRUM, hemos decidido que en este primer sprint simplemente planificaremos nuestros objetivos a grandes rasgos y decidir las funciones que desarrollaremos cada uno. En primer lugar, decidimos que el sprint dure 2 semanas, donde intentaremos tener la estructura del programa definida y las funciones básicas (la baraja, barajar, repartir cartas, añadir jugadores, apuestas, bucles de partida y ronda, ...) para poder tener así un programa funcional. Nuestro objetivo principal es poder hacer un juego de blackjack con una banca, que será el ordenador, en la que puedan participar un número de personas, 7 o 8 a la vez, sin ningún bug ni fallo y lo más parecido a la realidad (que se pueda apostar, pedir cartas, doblar apuestas antes de pedir cartas, desbancar a la banca, que la banca te desbanque, que la última carta que se ha repartido a cada jugador solo la pueda ver el jugador propietario, como en la realidad, ....). También hemos decidido, aunque puede haber cambios, que utilizaremos listas anidadas para almacenar la información (nombre, dinero, apuesta, ...) de cada jugador y de la banca, bucles para que no se cierre el programa y para simular la partida, sus rondas y los turnos de los jugadores y utilizaremos estructuras de control de flujo para las diferentes condiciones que pueda tener el programa.
 
@@ -36,11 +36,11 @@ Jaume es el SCRUM master. Cardona no ha podido asistir a clase, pero estamos en 
 
 Karina es la SCRUM master. Se han solucionado algunos errores internos de las funciones. Se ha modificado el formato en el que se enseña los programas añadiendo colores y se ha añadido información visible.
 
-## Revisión de Sprint
+# Revisión de Sprint
 
 El sprint ha ido mejor que lo que habíamos planeado. Además de crear la estructura del programa (bucles y funciones ordenadas para tener un programa funcional) y las funciones básicas, también hemos creado otras funciones adicionales como son: obtener el valor de las cartas de cada jugador(una función que llama a un diccionario donde hemos dado un valor a cada carta), funciones de interfaz gráfica para ver la mesa desde el punto de vista de un jugador (con la última carta de los otros jugadores tapada) o ver la mesa con todas las cartas a la vista además de un menú de juego que se activa al terminar cada ronda (los jugadores pueden salir de la partida, añadir dinero o se pueden añadir nuevos jugadores).
 
-## Sprint Backlog
+# Sprint Backlog
 
 En el sprint planning, el cual durara 2 semanas al igual que el anterior, lo que nos dejara con el programa terminado a pocos días de la entrega, hemos planteado las funciones que nos faltan, entre ellas se encuentran: La lista con la información de la banca y sus funciones(añadirle sus cartas has que tenga un valor de más de 17, comprobar su valor, comparar el valor de la banca con el de cada jugador y pagar o cobrar según corresponda), la función del valor de los ases(puede ser 1 o 11) y un menú de inicio de partida donde poder cambiar algunos aspectos del juego.
 
