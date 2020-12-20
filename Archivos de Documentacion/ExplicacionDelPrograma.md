@@ -14,11 +14,9 @@
 
 ## Apuestas:
 
- - Si el jugador supera a la banca en puntuación obtiene una ganancia de 2:1
+ - Si el jugador supera a la banca en puntuación obtiene una ganancia de 1:1
 
- - Si el jugador supera a la banca con 21 puntos obtiene una ganancia de 3:2
-
- - Si el jugador gana a la banca con blackjack obtiene una ganancia de 3:1
+ - Si el jugador gana a la banca con blackjack obtiene una ganancia de 2:1
 
 # *Valores de las cartas*
 
@@ -27,3 +25,7 @@
 # *Diagrama de juego*
 
 ![Diagrama de juego](diagrama.svg)
+
+# Programa:
+
+El programa emula una partida de
