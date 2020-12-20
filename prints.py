@@ -36,7 +36,7 @@ def inicio():
     print("     1 >> Opciones")
     print("     2 >> Ver reglas")
     print("     3 >> Empezar partida")
-    print("     4 >> Salir")
+    print("     4 << Salir")
     print("")
 
 

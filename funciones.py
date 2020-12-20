@@ -290,9 +290,10 @@ def comprobarAses(valormano,listajugadores,a):
                 if valormano>21:
                     valormano-=10
     return valormano
+
 def modificarTasas(tasa_normal,tasa_blackjack):
     tasa_normal = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta normal? [Recomendado: 1] [Actual: %d]" % tasa_normal))
-    tasa_blackjack = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta de BlackJack? [Recomendado: 1] [Actual: %d]" % tasa_blackjack))
+    tasa_blackjack = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta de BlackJack? [Recomendado: 2] [Actual: %d]" % tasa_blackjack))
     return tasa_normal,tasa_blackjack
 def menuJuego (listajugadores): 
     prints.ronda()
@@ -310,12 +311,16 @@ def menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja):
     prints.opciones(listabanca[0],tasa_normal,tasa_blackjack, baraja)
     opcion = prints.colorinput("Que deseas hacer?")
     return opcion
-def comprobarOpcion(lista, variable, opcion, listabanca, tasa_normal, tasa_blackjack, baraja):
+def comprobarOpcion(menu, lista, variable, opcion, listabanca, tasa_normal, tasa_blackjack, baraja):
     while opcion not in lista:
         limpiarTerminal()
-        prints.opciones(listabanca[0], tasa_normal, tasa_blackjack, baraja)
+        if menu == "opciones":
+            prints.opciones(listabanca[0], tasa_normal, tasa_blackjack, baraja)
+        else:
+            prints.inicio()
         prints.colorerror("    ⚠  Esta opción no está disponible")
         opcion = prints.colorinput(f"Que deseas hacer? {variable}")
+    return opcion
 def modificarBarajas(baraja):
     print(baraja)
     baraja_final = int(prints.colorinput("Con cuantas barajas quieres jugar? [Recomendado: 8]"))
@@ -326,15 +331,15 @@ def modificarBarajas(baraja):
 def menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja):
     prints.opciones(listabanca[0], tasa_normal, tasa_blackjack, baraja)
     opcion = prints.colorinput("Que deseas hacer?")
-    comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
+    opcion = comprobarOpcion( "opciones", ["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
     while opcion < "4":
-        comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
         if opcion == "1":
             dineroBanca(listabanca)
         if opcion == "2":
             tasa_normal,tasa_blackjack=modificarTasas(tasa_normal,tasa_blackjack)
         if opcion == "3":
             baraja=modificarBarajas(baraja)
+        opcion = comprobarOpcion( "opciones", ["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
         opcion = menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja)
     return tasa_normal, tasa_blackjack, baraja
 def menuPrincipalInit():
@@ -342,13 +347,10 @@ def menuPrincipalInit():
     prints.inicio()
     opcion = prints.colorinput("Que deseas hacer? [ 1 - 4 ]")
     return opcion
-
-
 def menuPrincipal(listabanca, tasa_normal, tasa_blackjack, baraja):
     opcion = menuPrincipalInit()
-    comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
+    opcion = comprobarOpcion( "principal", ["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
     while opcion < "3":
-        comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
         if opcion == "1":
             limpiarTerminal()
             tasa_normal,tasa_blackjack,baraja=menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja)
@@ -356,6 +358,7 @@ def menuPrincipal(listabanca, tasa_normal, tasa_blackjack, baraja):
             limpiarTerminal()
             prints.reglas()
         opcion = menuPrincipalInit()
+        opcion = comprobarOpcion( "principal", ["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
     return opcion, tasa_normal, tasa_blackjack, baraja
 
 def limpiarTerminal ():
