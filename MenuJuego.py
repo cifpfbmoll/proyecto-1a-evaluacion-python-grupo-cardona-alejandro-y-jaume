@@ -3,7 +3,7 @@ import funciones
 import prints
 import objetos
 
-listabanca=[1000000] #Dinero con el que empieza la banca por defecto.
+listabanca=[1000000] #Lista con la informacion de la banca, el valor que ya esta dado es el dinero con el que empieza la banca por defecto.
 tasa_normal = 1 #numero predeterminado por el que se multiplica la apuesta cuando se gana a la banca sin blackjack.
 tasa_blackjack = 2 #numero predeterminado por el que se multiplica la apuesta cuando se gana a la banca teniendo blackjack.
 numero_barajas = 8 #numero predeterminado de barajas con las que se juega.

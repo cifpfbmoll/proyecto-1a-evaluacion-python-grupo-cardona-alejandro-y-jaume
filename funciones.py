@@ -1,9 +1,12 @@
 import objetos
 import prints
 import os
-def sacarCarta (lista):
+
+#Funcion que remueve el primer valor de una lista y lo devuelve, sirve para sacar la primera carta de la baraja.
+def sacarCarta (lista): 
     carta=lista.pop(0)
     return carta
+#Procedimiento que por cada jugador llama a la funcion sacarCarta para que le de una carta y la añade a la lista del jugador.
 def repartirCartasIniciales (listajugadores,baraja):
     for i in range (len(listajugadores)):
         carta=sacarCarta(baraja)
@@ -11,12 +14,14 @@ def repartirCartasIniciales (listajugadores,baraja):
             listajugadores[i].append([carta])
         else:
             listajugadores[i][3].append(carta)
+#Procedimiento que llama a la funcion sacarCarta para que le de una carta y la añade a la lista de la banca.
 def repartirCartaBanca (listabanca,baraja):
     carta=sacarCarta(baraja)
     if listabanca[-1]==listabanca[0]:
         listabanca.append([carta])
     else:
         listabanca[1].append(carta)
+
 def valorCartasBanca (listabanca):
     valormano=0
     for i in listabanca[1]:
