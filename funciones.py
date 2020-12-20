@@ -59,18 +59,20 @@ def cantidadJugadores ():
         prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
         numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
     return numeroJugadores
-
+#Función que pide los nombres de los jugadores y finaliza devolviendo la lista de jugadores en cuestión.
 def nombreJugadores (numerojugadores):
     listajugadores=[]
     for i in range(1,numerojugadores+1):
         nombrejugador=str(prints.colorinput(f"Escribe el nombre del jugador {i}:"))
         listajugadores.append([nombrejugador.capitalize()])
     return listajugadores
+#Procedimiento que pide el dinero con el que jugarán los jugadores y acaba añadiendo esas cantidades dentro de la lista de jugadores.
 def dineroJugadores (listajugadores):
     print("   >>> Con cuanto dinero vais a entrar cada uno?\n")
     for i in range (len(listajugadores)):
         dinero=int(prints.colorinput(f"Introducir dinero de {listajugadores[i][0]}:"))
         listajugadores[i].append(dinero)
+#Procedimiento que empieza pidiendo las apuestas iniciales (de antes de comenzar la partida) a los jugadores y finaliza añadiendo ese valor a la lista de jugadores.
 def apuestaInicialJugadores (listajugadores):
     print ("   >>> Hagan sus apuestas!\n")
     for i in range (len(listajugadores)):
@@ -82,6 +84,7 @@ def apuestaInicialJugadores (listajugadores):
                 prints.colorerror(f"    ⚠  Recuerda que la apuesta minima es de 1 euro!")
             apuesta=int(prints.colorinput(f"Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
         listajugadores[i].append(apuesta)
+#Procedimiento que pide al jugador si va a querer o no doblar su apuesta inicial antes de que robe cartas. Si el jugador decide doblar se modifica el valor de su apuesta y se añade el doble.
 def apuestaJugadores (listajugadores,i):
     respuesta=(prints.colorinput(f"Vas a doblar la apuesta inicial {listajugadores[i][0]}? [ si / NO ]"))
     while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
@@ -93,10 +96,11 @@ def apuestaJugadores (listajugadores,i):
         doblar=apuesta+apuesta
         del listajugadores[i][2]
         listajugadores[i].insert(2,doblar)
+#Procedimiento que añade las cartas a la lista de jugadores.
 def repartirCarta (listajugadores,baraja,i):
     carta=sacarCarta(baraja)
     listajugadores[i][3].append(carta)
-
+#Función que pide si el jugador va a querer una carta más para jugar donde finalmente se devolverá la opción seleccionada.
 def preguntaUnaCartaMas (jugador):
     respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
     while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
