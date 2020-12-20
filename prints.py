@@ -1,3 +1,7 @@
+###########################################################
+#          Procedimientos y funciones de colores          #
+###########################################################
+
 def colorreset(): print("\033[92m") 
 
 def colorjugadoractual(): print("\033[96m") 
@@ -12,6 +16,10 @@ def colorinput(skk):
     valor = input("    >  ")
     colorreset()
     return valor
+
+##################################################################
+#          Procedimientos de prints para limpiar código          #
+##################################################################
 
 def banner():
     colorreset()
