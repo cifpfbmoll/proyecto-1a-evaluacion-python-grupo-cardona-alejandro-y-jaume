@@ -41,8 +41,9 @@ def dineroBanca (listabanca):
     while dineroBanca<50:
         prints.colorerror("    ⚠  La banca no tiene suficiente dinero, necesita minimo 50.")
         dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
-    listabanca.clear()
-    listabanca.append(dineroBanca)
+    while False:
+        listabanca.clear()
+        listabanca.append(dineroBanca)
 
 def cantidadJugadores ():
     numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
@@ -322,7 +323,6 @@ def comprobarOpcion(menu, lista, variable, opcion, listabanca, tasa_normal, tasa
         opcion = prints.colorinput(f"Que deseas hacer? {variable}")
     return opcion
 def modificarBarajas(baraja):
-    print(baraja)
     baraja_final = int(prints.colorinput("Con cuantas barajas quieres jugar? [Recomendado: 8]"))
     while baraja_final < 1:
         prints.colorerror("    ⚠  Has de jugar como mínimo con 1 baraja.")
