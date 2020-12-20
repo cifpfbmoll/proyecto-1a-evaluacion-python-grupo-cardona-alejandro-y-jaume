@@ -18,7 +18,11 @@ def repartirCartasIniciales (listajugadores,baraja):
             listajugadores[i].append([carta])
         else:
             listajugadores[i][3].append(carta)
+<<<<<<< HEAD
 # Procedimiento que llama a la función sacarCarta para que le dé una carta y la añade a la lista de la banca.
+=======
+# Procedimiento que llama a la funcion sacarCarta para que le dé una carta y la añade a la lista de la banca.
+>>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def repartirCartaBanca (listabanca,baraja):
     carta=sacarCarta(baraja)
     if listabanca[-1]==listabanca[0]:
@@ -37,12 +41,20 @@ def valorCartasBanca (listabanca):
     else:
         del listabanca[2]
         listabanca.append(valormano)
+<<<<<<< HEAD
 # Función que aleatoriza los elementos de una lista.
+=======
+# Funcion que aleatoriza los elementos de una lista.
+>>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def barajar (lista):
     import random
     random.shuffle(lista)
     return lista
+<<<<<<< HEAD
 # Procedimiento que añade un número(dinero) a la lista banca después de limpiarla. Se pedirá el número hasta que sea mayor que 50.
+=======
+# Procedimiento que añade un numero(dinero) a la lista banca después de limpiarla. Se pedirá el numero hasta que sea mayor que 50.
+>>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def dineroBanca (listabanca):
     dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     while dineroBanca<50:
@@ -50,7 +62,11 @@ def dineroBanca (listabanca):
         dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     listabanca.clear()
     listabanca.append(dineroBanca)
+<<<<<<< HEAD
 # Función que pide un número(número de jugadores) y se asegura que esté entre el 1 y el 7. Luego devuelve ese número.
+=======
+# Funcion que pide un numero(numero de jugadores) y se asegura que este entre el 1 y el 7. Luego devuelve ese numero.
+>>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def cantidadJugadores ():
     numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
     while numeroJugadores not in ["1","2","3","4","5","6","7"]:
@@ -108,7 +124,11 @@ def preguntaUnaCartaMas (jugador):
         respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
     return respuesta
 # Función en la cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en
+<<<<<<< HEAD
 # un diccionario y sumarlos. Se devuelve ese valor.
+=======
+#un diccionario y sumarlos. Se devuelve ese valor.
+>>>>>>> cde1b453c4bb4457f7e6ee548fcb1c8665a7964d
 def calcularValorMano (listajugadores):
     valormano=0
     for i in listajugadores[3]:
@@ -231,16 +251,20 @@ def finAnadirJugadores(listajugadores):
         if masjugadores == "no" or masjugadores == "":
             ("   >>> Sigamos pues!")
     return opcion
+# Procedimiento en el cual se pasa por parámetro una lista de numero que hacen referencia a jugadores que van a dejar de jugar. 
+# Esta función elimina esos jugadores de la listajugadores.
 def eliminarJugadores (listajugadoressaliendo,listajugadores):
     listajugadoressaliendo.reverse()
     for i in listajugadoressaliendo:
         del listajugadores[i]
-    del listajugadoressaliendo
+# Procedimiento que pide un numero(dinero a añadir), luego se suma ese numero al numero que ya había en la lista del jugador en el índice 1(dinero)
 def añadirDinero (listajugadores,i):
     dinero=int(prints.colorinput(f"Cuanto dinero quieres añadir? [ Dinero → {listajugadores[i][1]} ]"))
     dinerototal=listajugadores[i][1]+dinero
     del listajugadores[i][1]
     listajugadores[i].insert(1,dinerototal)
+# Procedimiento que pide un numero (cantidad de jugadores que se van a añadir) y comprueba que la suma de estos y los que ya están jugando
+# no sea mayor a 7. Luego llama a las funciones nombreJugadores y dineroJugadores para crear una lista del jugador con su nombre y su dinero
 def nuevosJugadores (listajugadores):
     numeronuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
     while (len(listajugadores))+numeronuevosJugadores>7:
@@ -248,7 +272,7 @@ def nuevosJugadores (listajugadores):
         numeronuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
     listajugadores.extend(nombreJugadores(numeronuevosJugadores))
     dineroJugadores(listajugadores[-numeronuevosJugadores:])
-    del numeronuevosJugadores
+# Procedimiento que elimina de cada lista (cada jugador) los datos que son únicos de cada ronda (apuesta[2], cartas[3], valor mano[4]).
 def eliminarDatosRonda (listajugadores):
     for i in listajugadores:
         del i[2:]
@@ -285,6 +309,7 @@ def gestdineroBanca(listabanca,apuesta,i,multiplicador):
     listabanca.insert(0,dineroBanca)
     dinerojugador=i.pop(1)+(apuesta*multiplicador)
     i.insert(1,dinerojugador)
+# Procedimiento que compara el valor mano de cada jugador con el de la banca. Luego, según quien gane, la banca cobra y el jugador paga o viceversa.
 def compararCartas (listajugadores,listabanca,tasa_normal,tasa_blackjack):
     for i in listajugadores:# Cuando la banca cobra.
         if listabanca[2]<22 and listabanca[2]>=i[4] and i[4]<22: # Si la banca no se pasa, iguala o supera al jugador y el jugador no se ha pasado.
@@ -309,6 +334,9 @@ def compararCartas (listajugadores,listabanca,tasa_normal,tasa_blackjack):
                     gestdineroBanca(listabanca,apuesta,i,tasa_normal)
                 else:
                     gestdineroBanca(listabanca,apuesta,i,tasa_normal)
+# Función que recibe por parámetro el valor de la mano de un jugador y sus cartas y comprueba si hay algún as. Si hay alguno,
+# comprueba cuantos hay exactamente para luego si el jugador se pasa de 21 poder cambiar el valor del as de 11 a 1(restar 10), 
+# para que no se pase así, tantas veces como ases tenga en mano. Devuelve el valor de la mano.
 def comprobarAses(valormano,listajugadores,a):
     if valormano>21:
         hayAs=False
@@ -397,6 +425,7 @@ def menuPrincipal(listabanca, tasa_normal, tasa_blackjack, baraja):
 #          Miscelánea          #
 ################################
 
+# Procedimiento que diferencia si el SO es Linux/Mac(posix) o Windows(nt) para limpiar la terminal con el código que toca.
 def limpiarTerminal ():
     if os.name=="posix":
         os.system('clear')
