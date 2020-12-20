@@ -2,11 +2,11 @@ import objetos
 import prints
 import os
 
-#Funcion que remueve el primer valor de una lista y lo devuelve, sirve para sacar la primera carta de la baraja.
+#Función que remueve el primer valor de una lista y lo devuelve, sirve para sacar la primera carta de la baraja.
 def sacarCarta (lista): 
     carta=lista.pop(0)
     return carta
-#Procedimiento que por cada jugador llama a la funcion sacarCarta para que le de una carta y la añade a la lista del jugador.
+#Procedimiento que por cada jugador llama a la función sacarCarta para que le dé una carta y la añade a la lista del jugador.
 def repartirCartasIniciales (listajugadores,baraja):
     for i in range (len(listajugadores)):
         carta=sacarCarta(baraja)
@@ -14,7 +14,7 @@ def repartirCartasIniciales (listajugadores,baraja):
             listajugadores[i].append([carta])
         else:
             listajugadores[i][3].append(carta)
-#Procedimiento que llama a la funcion sacarCarta para que le de una carta y la añade a la lista de la banca.
+#Procedimiento que llama a la funcion sacarCarta para que le dé una carta y la añade a la lista de la banca.
 def repartirCartaBanca (listabanca,baraja):
     carta=sacarCarta(baraja)
     if listabanca[-1]==listabanca[0]:
@@ -157,16 +157,16 @@ def verCartas (listajugadores,jugador,listabanca):
             prints.colorreset()
             print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: ?" % (i[0],i[1],i[2]))
         if i[0] == jugador:
-            for j in i[3]:                          # Empieza a imprimir las cartas del jugador "i", el cual será el jugador actual
-                if j != i[3][-1]:                   # Comprueba si la posicion de la carta es la primera o la ultima
-                    if j == i[3][0]:                # para saber como ha de imprimirlaa
+            for j in i[3]:                          #Empieza a imprimir las cartas del jugador "i", el cual será el jugador actual
+                if j != i[3][-1]:                   #Comprueba si la posición de la carta es la primera o la última
+                    if j == i[3][0]:                #para saber como ha de imprimirla
                         print("    >> ", end="")     
                     print("%s" % (j), end=" | ")
                 else:
                     print("%s" % (j), end="")
         else:
-            for j in i[3]:                          # Aqui imprimirá las cartas del resto, separado ya que no debemos ver la ultima
-                if j != i[3][-1]:                   # carta del resto
+            for j in i[3]:                          #Aquí imprimirá las cartas del resto, separado ya que no debemos ver la última
+                if j != i[3][-1]:                   #carta del resto
                     if j == i[3][0]:
                         print("    >> ", end="")
                     print("%s" % (j), end=" | ")
@@ -177,7 +177,7 @@ def verMesa(listajugadores,listabanca):
     prints.mesa()
     verBanca(listabanca)
     for i in listajugadores:
-        if listabanca[2] > 21 and i[4] <= 21:   # Determinar si el jugador ha ganado o perdido
+        if listabanca[2] > 21 and i[4] <= 21:   #Determinar si el jugador ha ganado o perdido
             estado = "GANADOR/A"
             prints.colorganador()
         elif i[4] > listabanca[2] and i[4] <= 21:
@@ -188,7 +188,7 @@ def verMesa(listajugadores,listabanca):
             prints.colorperdedor()
         print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s ⁞ %s" % (i[0],i[1],i[2],i[4],estado))
         for j in i[3]:
-            if j != i[3][-1]:                   # Se enseñan todas las cartas ya que es el final de la partida.
+            if j != i[3][-1]:                   #Se enseñan todas las cartas, ya que es el final de la partida.
                 if j == i[3][0]:
                     print("    >> ", end="")
                 print("%s" % (j), end=" | ")
@@ -254,14 +254,14 @@ def gestdineroBanca(listabanca,apuesta,i,multiplicador):
     i.insert(1,dinerojugador)
 def compararCartas (listajugadores,listabanca,tasa_normal,tasa_blackjack):
     for i in listajugadores:#Cuando la banca cobra
-        if listabanca[2]<22 and listabanca[2]>=i[4] and i[4]<22: #Si la banca no se pasa, iguala o supera al jugador i el jugador no se ha pasado
+        if listabanca[2]<22 and listabanca[2]>=i[4] and i[4]<22: #Si la banca no se pasa, iguala o supera al jugador y el jugador no se ha pasado
             apuesta=i[2]
             dineroBanca=listabanca.pop(0)+apuesta
             listabanca.insert(0,dineroBanca)
             dinerojugador=i.pop(1)-apuesta
             i.insert(1,dinerojugador)
     for i in listajugadores:#Cuando la banca paga
-        if (listabanca[2]>21 and i[4]<22 and listabanca[0]>0) or (listabanca[2]<i[4] and i[4]<22 and listabanca[0]>0): #Si la banca se pasa de 21 y el jugador no (y la banca tiene dinero) o si la banca no supera al jugador i el jugador no se ha pasado (y la banca tiene dinero)
+        if (listabanca[2]>21 and i[4]<22 and listabanca[0]>0) or (listabanca[2]<i[4] and i[4]<22 and listabanca[0]>0): #Si la banca se pasa de 21 y el jugador no (y la banca tiene dinero) o si la banca no supera al jugador y el jugador no se ha pasado (y la banca tiene dinero)
             if i[4]==21 and len(i[3])==2:#Si el jugador tiene blackjack
                 apuesta=i[2]
                 if apuesta*2>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
