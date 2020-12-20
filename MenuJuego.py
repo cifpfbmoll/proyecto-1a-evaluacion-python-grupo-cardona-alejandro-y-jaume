@@ -73,7 +73,7 @@ while opc != "4":#Bucle que se repite hasta que se desea salir del programa.
             else:
                 del listabanca[1:]
                 funciones.limpiarTerminal()
-                opcion=funciones.menuJuego(listajugadores) #Menu de cuando finaliza la ronda, se devuelve valor porque si  opcion="terminar"
+                opcion=funciones.menuJuego(listajugadores) #Menu de cuando finaliza la ronda, se devuelve valor porque si opcion="terminar"
                 # se rompe el bucle y termina la partida
                 if len(listajugadores)!=0:
                     primerJugador=listajugadores.pop(0) 
