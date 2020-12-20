@@ -40,7 +40,7 @@ def inicio():
     print("")
 
 
-def opciones(dinerobanca):
+def opciones(dinerobanca,tasa_normal,tasa_blackjack,barajas):
     banner()
     print("   ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗")
     print("   ║                                                                                                      ║")
@@ -51,7 +51,9 @@ def opciones(dinerobanca):
     print("   ╚═════════════════════════════════════════╩══════════════════╩═════════════════════════════════════════╝")
     print("")
     print("     1 >> Dinero inicial de la banca. [ Actual: %d ]" % (dinerobanca))
-    print("     2 << Volver atrás")
+    print("     2 >> Tasas de retorno. [ Tasa normal: %d ] [ Tasa BlackJack: %d ]" % (tasa_normal,tasa_blackjack))
+    print("     3 >> Número de barajas. [ Actual: %d ]" % (barajas))
+    print("     4 << Volver atrás")
     print("")
 
 def reglas():

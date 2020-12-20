@@ -1,9 +1,12 @@
 import objetos
 import prints
 import os
-def sacarCarta (lista):
+
+#Funcion que remueve el primer valor de una lista y lo devuelve, sirve para sacar la primera carta de la baraja.
+def sacarCarta (lista): 
     carta=lista.pop(0)
     return carta
+#Procedimiento que por cada jugador llama a la funcion sacarCarta para que le de una carta y la añade a la lista del jugador.
 def repartirCartasIniciales (listajugadores,baraja):
     for i in range (len(listajugadores)):
         carta=sacarCarta(baraja)
@@ -11,12 +14,14 @@ def repartirCartasIniciales (listajugadores,baraja):
             listajugadores[i].append([carta])
         else:
             listajugadores[i][3].append(carta)
+#Procedimiento que llama a la funcion sacarCarta para que le de una carta y la añade a la lista de la banca.
 def repartirCartaBanca (listabanca,baraja):
     carta=sacarCarta(baraja)
     if listabanca[-1]==listabanca[0]:
         listabanca.append([carta])
     else:
         listabanca[1].append(carta)
+
 def valorCartasBanca (listabanca):
     valormano=0
     for i in listabanca[1]:
@@ -34,9 +39,19 @@ def barajar (lista):
 def dineroBanca (listabanca):
     dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     while dineroBanca<50:
-        dineroBanca=int(prints.colorinput("La banca necesita minimo 50 euros, Cuanto dinero quieres que tenga la banca?"))
+        prints.colorerror("    ⚠  La banca no tiene suficiente dinero, necesita minimo 50.")
+        dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     listabanca.clear()
     listabanca.append(dineroBanca)
+
+def cantidadJugadores ():
+    numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
+    while numeroJugadores not in ["1","2","3","4","5","6","7"]:
+        limpiarTerminal()
+        prints.creando()
+        prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
+        numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
+    return numeroJugadores
 def nombreJugadores (numerojugadores):
     listajugadores=[]
     for i in range(1,numerojugadores+1):
@@ -44,11 +59,12 @@ def nombreJugadores (numerojugadores):
         listajugadores.append([nombrejugador.capitalize()])
     return listajugadores
 def dineroJugadores (listajugadores):
+    print("   >>> Con cuanto dinero vais a entrar cada uno?\n")
     for i in range (len(listajugadores)):
         dinero=int(prints.colorinput(f"Introducir dinero de {listajugadores[i][0]}:"))
         listajugadores[i].append(dinero)
-    return listajugadores
 def apuestaInicialJugadores (listajugadores):
+    print ("   >>> Hagan sus apuestas!\n")
     for i in range (len(listajugadores)):
         apuesta=int(prints.colorinput(f"Introducir apuesta de {listajugadores[i][0]}: [ Dinero → {listajugadores[i][1]} ]"))
         while apuesta>listajugadores[i][1] or apuesta<1:
@@ -58,7 +74,6 @@ def apuestaInicialJugadores (listajugadores):
                 prints.colorerror(f"    ⚠  Recuerda que la apuesta minima es de 1 euro!")
             apuesta=int(prints.colorinput(f"Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
         listajugadores[i].append(apuesta)
-    return listajugadores
 def apuestaJugadores (listajugadores,i):
     respuesta=(prints.colorinput(f"Vas a doblar la apuesta inicial {listajugadores[i][0]}? [ si / NO ]"))
     while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
@@ -73,22 +88,31 @@ def apuestaJugadores (listajugadores,i):
 def repartirCarta (listajugadores,baraja,i):
     carta=sacarCarta(baraja)
     listajugadores[i][3].append(carta)
-def valorCartasSimple (listajugadores):
+
+def preguntaUnaCartaMas (jugador):
+    respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
+    while respuesta not in ["si","no","SI","NO","Si","No","sí","SÍ","Sí",""]:
+        prints.colorerror("    ⚠  Porfavor escriba si o no")
+        respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
+    return respuesta
+
+def calcularValorMano (listajugadores):
     valormano=0
     for i in listajugadores[3]:
         valormano+=objetos.valor_baraja.get(i)
     valormano=comprobarAses(valormano,listajugadores,3)
+    return valormano
+
+def valorCartasSimple (listajugadores):
+    valormano=calcularValorMano(listajugadores)
     if listajugadores[-1]==listajugadores[3]:
         listajugadores.append(valormano)
     else:
         del listajugadores[4]
         listajugadores.append(valormano)
-def valorCartas (listajugadores,listabanca):
-    valormano=0
+def valorCartas (listajugadores,listabanca): 
     apuesta=listajugadores[2]
-    for i in listajugadores[3]:
-        valormano+=objetos.valor_baraja.get(i)
-    valormano=comprobarAses(valormano,listajugadores,3)
+    valormano=calcularValorMano(listajugadores)
     if valormano>21:
         if listajugadores[-1]!=listajugadores[3]:
             del listajugadores[4]
@@ -107,7 +131,6 @@ def valorCartas (listajugadores,listabanca):
         pasado=False
     return pasado
 def verBanca (listabanca):
-    #print(listabanca)
     prints.colorbanca()
     valorCartasBanca(listabanca)
     print("   >>> Cartas de la BANCA ⁞ Dinero: %s ⁞ Valor de la mano: %s" % (listabanca[0],listabanca[2]))
@@ -224,66 +247,12 @@ def opcionesJugadores (listajugadores):
             opcion = gestFinal(listajugadores,i,listajugadoressaliendo,"salir")
     eliminarJugadores(listajugadoressaliendo,listajugadores)
     return opcion
-
-def menuJuego (listajugadores): 
-    prints.ronda()
-    print ("   >>> Aqui cada jugador puede salir de la partida o añadir dinero!\n   >>> Ademas pueden entrar a jugar mas personas mientras se respete el numero máximo de jugadores.\n")
-    opcion=opcionesJugadores(listajugadores)
-    if len(listajugadores)!=0 and (len(listajugadores))<7:
-        masjugadores=prints.colorinput("Van a entrar a jugar mas jugadores? [ si / NO ]")
-        if masjugadores=="si":
-            nuevosJugadores(listajugadores)
-        if masjugadores=="no" or masjugadores=="":
-            ("   >>> Sigamos pues!")
-    return opcion
-def menuOpcionesLimpiar(listabanca):
-    os.system('cls')
-    prints.opciones(listabanca[0])
-    opcion = prints.colorinput("Que deseas hacer?")
-    return opcion
-def menuOpciones(listabanca):
-    prints.opciones(listabanca[0])
-    opcion = prints.colorinput("Que deseas hacer?")
-    while opcion != "2":
-        while opcion not in ["1","2"]:
-            os.system('cls')
-            prints.opciones(listabanca[0])
-            prints.colorerror("    ⚠  Esta opción no está disponible")
-            opcion = prints.colorinput("Que deseas hacer?")
-        if opcion == "1":
-            dineroBanca(listabanca)
-            opcion = menuOpcionesLimpiar(listabanca)
-        if opcion == "2":
-            os.system('cls')
-            prints.inicio()
-def menuPrincipalInit():
-    os.system('cls')
-    prints.inicio()
-    opcion = prints.colorinput("Que deseas hacer? [ 1 - 4 ]")
-    return opcion
-def menuPrincipal(listabanca):
-    opcion = menuPrincipalInit()
-    while opcion < "3":
-        while opcion not in ["1","2","3","4"]:
-            os.system('cls')
-            prints.inicio()
-            prints.colorerror("    ⚠  Esta opción no está disponible")
-            opcion = prints.colorinput("Que deseas hacer? [ 1 - 4 ]")
-        if opcion == "1":
-            os.system('cls')
-            menuOpciones(listabanca)
-        if opcion == "2":
-            os.system('cls')
-            prints.reglas()
-        opcion = menuPrincipalInit()
-    return opcion
-
 def gestdineroBanca(listabanca,apuesta,i,multiplicador):
     dineroBanca=listabanca.pop(0)-(apuesta*multiplicador)
     listabanca.insert(0,dineroBanca)
     dinerojugador=i.pop(1)+(apuesta*multiplicador)
     i.insert(1,dinerojugador)
-def compararCartas (listajugadores,listabanca):
+def compararCartas (listajugadores,listabanca,tasa_normal,tasa_blackjack):
     for i in listajugadores:#Cuando la banca cobra
         if listabanca[2]<22 and listabanca[2]>=i[4] and i[4]<22: #Si la banca no se pasa, iguala o supera al jugador i el jugador no se ha pasado
             apuesta=i[2]
@@ -297,16 +266,16 @@ def compararCartas (listajugadores,listabanca):
                 apuesta=i[2]
                 if apuesta*2>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
                     apuesta=listabanca[0]
-                    gestdineroBanca(listabanca,apuesta,i,1)
+                    gestdineroBanca(listabanca,apuesta,i,tasa_normal)
                 else:
-                    gestdineroBanca(listabanca,apuesta,i,2)
+                    gestdineroBanca(listabanca,apuesta,i,tasa_blackjack)
             else:
                 apuesta=i[2]
                 if apuesta>listabanca[0]:#Si la banca no tiene suficiente dinero para pagar la apuesta entera
                     apuesta=listabanca[0]
-                    gestdineroBanca(listabanca,apuesta,i,1)
+                    gestdineroBanca(listabanca,apuesta,i,tasa_normal)
                 else:
-                    gestdineroBanca(listabanca,apuesta,i,1)
+                    gestdineroBanca(listabanca,apuesta,i,tasa_normal)
 def comprobarAses(valormano,listajugadores,a):
     if valormano>21:
         hayAs=False
@@ -321,3 +290,76 @@ def comprobarAses(valormano,listajugadores,a):
                 if valormano>21:
                     valormano-=10
     return valormano
+def modificarTasas(tasa_normal,tasa_blackjack):
+    tasa_normal = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta normal? [Recomendado: 1] [Actual: %d]" % tasa_normal))
+    tasa_blackjack = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta de BlackJack? [Recomendado: 1] [Actual: %d]" % tasa_blackjack))
+    return tasa_normal,tasa_blackjack
+def menuJuego (listajugadores): 
+    prints.ronda()
+    print ("   >>> Aqui cada jugador puede salir de la partida o añadir dinero!\n   >>> Ademas pueden entrar a jugar mas personas mientras se respete el numero máximo de jugadores.\n")
+    opcion=opcionesJugadores(listajugadores)
+    if len(listajugadores)!=0 and (len(listajugadores))<7:
+        masjugadores=prints.colorinput("Van a entrar a jugar mas jugadores? [ si / NO ]")
+        if masjugadores=="si":
+            nuevosJugadores(listajugadores)
+        if masjugadores=="no" or masjugadores=="":
+            ("   >>> Sigamos pues!")
+    return opcion
+def menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja):
+    limpiarTerminal()
+    prints.opciones(listabanca[0],tasa_normal,tasa_blackjack, baraja)
+    opcion = prints.colorinput("Que deseas hacer?")
+    return opcion
+def comprobarOpcion(lista, variable, opcion, listabanca, tasa_normal, tasa_blackjack, baraja):
+    while opcion not in lista:
+        limpiarTerminal()
+        prints.opciones(listabanca[0], tasa_normal, tasa_blackjack, baraja)
+        prints.colorerror("    ⚠  Esta opción no está disponible")
+        opcion = prints.colorinput(f"Que deseas hacer? {variable}")
+def modificarBarajas(baraja):
+    print(baraja)
+    baraja_final = int(prints.colorinput("Con cuantas barajas quieres jugar? [Recomendado: 8]"))
+    while baraja_final < 1:
+        prints.colorerror("    ⚠  Has de jugar como mínimo con 1 baraja.")
+        baraja_final = int(prints.colorinput("Con cuantas barajas quieres jugar? [Recomendado: 8]"))
+    return baraja_final
+def menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja):
+    prints.opciones(listabanca[0], tasa_normal, tasa_blackjack, baraja)
+    opcion = prints.colorinput("Que deseas hacer?")
+    comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
+    while opcion < "4":
+        comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
+        if opcion == "1":
+            dineroBanca(listabanca)
+        if opcion == "2":
+            tasa_normal,tasa_blackjack=modificarTasas(tasa_normal,tasa_blackjack)
+        if opcion == "3":
+            baraja=modificarBarajas(baraja)
+        opcion = menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja)
+    return tasa_normal, tasa_blackjack, baraja
+def menuPrincipalInit():
+    limpiarTerminal()
+    prints.inicio()
+    opcion = prints.colorinput("Que deseas hacer? [ 1 - 4 ]")
+    return opcion
+
+
+def menuPrincipal(listabanca, tasa_normal, tasa_blackjack, baraja):
+    opcion = menuPrincipalInit()
+    comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
+    while opcion < "3":
+        comprobarOpcion(["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
+        if opcion == "1":
+            limpiarTerminal()
+            tasa_normal,tasa_blackjack,baraja=menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja)
+        if opcion == "2":
+            limpiarTerminal()
+            prints.reglas()
+        opcion = menuPrincipalInit()
+    return opcion, tasa_normal, tasa_blackjack, baraja
+
+def limpiarTerminal ():
+    if os.name=="posix":
+        os.system('clear')
+    else:
+        os.system('cls')
