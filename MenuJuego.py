@@ -72,11 +72,11 @@ while opc != "4":# Bucle que se repite hasta que se desea salir del programa.
             else:
                 del listabanca[1:]
                 funciones.limpiarTerminal()
-                opcion=funciones.finAnadirJugadores(listajugadores) # Menu de cuando finaliza la ronda, se devuelve valor porque si
+                opcion=funciones.finAnadirJugadores(listajugadores) # Menu de cuando finaliza la ronda, se devuelve valor porque si opcion="terminar"
                 # se rompe el bucle y termina la partida.
                 if len(listajugadores)!=0:
                     primerJugador = listajugadores.pop(0) # El jugador que hablaba primero pasa a hablar el ultimo
-                    listajugadores.append(primerJugador)  # opcion="terminar"
+                    listajugadores.append(primerJugador)  
     opc,tasa_normal,tasa_blackjack,numero_barajas=funciones.menuPrincipal(listabanca,tasa_normal, tasa_blackjack, numero_barajas) # Ejecuta el menú principal de nuevo.
 
 # En caso de elegir la opción SALIR en el menú principal se sale del bucle WHILE y lanza el mensaje de despedida.
