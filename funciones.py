@@ -10,6 +10,7 @@ import os
 def sacarCarta (lista): 
     carta=lista.pop(0)
     return carta
+
 # Procedimiento que por cada jugador llama a la función sacarCarta para que le dé una carta y la añade a la lista del jugador.
 def repartirCartasIniciales (listajugadores,baraja):
     for i in range (len(listajugadores)):
@@ -18,6 +19,7 @@ def repartirCartasIniciales (listajugadores,baraja):
             listajugadores[i].append([carta])
         else:
             listajugadores[i][3].append(carta)
+
 # Procedimiento que llama a la función sacarCarta para que le dé una carta y la añade a la lista de la banca.
 def repartirCartaBanca (listabanca,baraja):
     carta=sacarCarta(baraja)
@@ -25,6 +27,7 @@ def repartirCartaBanca (listabanca,baraja):
         listabanca.append([carta])
     else:
         listabanca[1].append(carta)
+
 # Procedimiento en el cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en un diccionario y sumarlos. Esa suma se añade a la lista de la banca y es el valor actual de las cartas que tiene la banca.
 def valorCartasBanca (listabanca):
     valormano=0
@@ -36,11 +39,13 @@ def valorCartasBanca (listabanca):
     else:
         del listabanca[2]
         listabanca.append(valormano)
+
 # Función que aleatoriza los elementos de una lista.
 def barajar (lista):
     import random
     random.shuffle(lista)
     return lista
+
 # Procedimiento que añade un número(dinero) a la lista banca después de limpiarla. Se pedirá el número hasta que sea mayor que 50.
 def dineroBanca (listabanca):
     dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
@@ -49,6 +54,7 @@ def dineroBanca (listabanca):
         dineroBanca=int(prints.colorinput("Cuanto dinero quieres que tenga la banca?"))
     listabanca.clear()
     listabanca.append(dineroBanca)
+
 # Función que pide un número(número de jugadores) y se asegura que esté entre el 1 y el 7. Luego devuelve ese número.
 def cantidadJugadores ():
     numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
@@ -58,6 +64,7 @@ def cantidadJugadores ():
         prints.colorerror("\n    ⚠  Has de seleccionar un número del 1 al 7.")
         numeroJugadores=prints.colorinput("Cuantos jugadores vais a entrar? [1-7]")
     return numeroJugadores
+
 # Función que pide los nombres de los jugadores y finaliza devolviendo la lista de jugadores en cuestión.
 def nombreJugadores (numerojugadores):
     listajugadores=[]
@@ -65,12 +72,14 @@ def nombreJugadores (numerojugadores):
         nombrejugador=str(prints.colorinput(f"Escribe el nombre del jugador {i}:"))
         listajugadores.append([nombrejugador.capitalize()])
     return listajugadores
+
 # Procedimiento que pide el dinero con el que jugarán los jugadores y acaba añadiendo esas cantidades dentro de la lista de jugadores.
 def dineroJugadores (listajugadores):
     print("   >>> Con cuanto dinero vais a entrar cada uno?\n")
     for i in range (len(listajugadores)):
         dinero=int(prints.colorinput(f"Introducir dinero de {listajugadores[i][0]}:"))
         listajugadores[i].append(dinero)
+
 # Procedimiento que empieza pidiendo las apuestas iniciales (de antes de comenzar la partida) a los jugadores y finaliza añadiendo ese valor a la lista de jugadores.
 def apuestaInicialJugadores (listajugadores):
     print ("   >>> Hagan sus apuestas!\n")
@@ -83,6 +92,7 @@ def apuestaInicialJugadores (listajugadores):
                 prints.colorerror(f"    ⚠  Recuerda que la apuesta minima es de 1 euro!")
             apuesta=int(prints.colorinput(f"Introducir apuesta de {listajugadores[i][0]} [ Dinero → {listajugadores[i][1]} ]"))
         listajugadores[i].append(apuesta)
+
 # Procedimiento que pide al jugador si va a querer o no doblar su apuesta inicial antes de que robe cartas. Si el jugador decide doblar se modifica el valor de su apuesta y se añade el doble.
 def apuestaJugadores (listajugadores,i):
     respuesta=(prints.colorinput(f"Vas a doblar la apuesta inicial {listajugadores[i][0]}? [ si / NO ]"))
@@ -95,10 +105,12 @@ def apuestaJugadores (listajugadores,i):
         doblar=apuesta+apuesta
         del listajugadores[i][2]
         listajugadores[i].insert(2,doblar)
+
 # Procedimiento que añade las cartas a la lista de jugadores.
 def repartirCarta (listajugadores,baraja,i):
     carta=sacarCarta(baraja)
     listajugadores[i][3].append(carta)
+
 # Función que pide si el jugador va a querer una carta más para jugar donde finalmente se devolverá la opción seleccionada.
 def preguntaUnaCartaMas (jugador):
     respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
@@ -106,6 +118,7 @@ def preguntaUnaCartaMas (jugador):
         prints.colorerror("    ⚠  Porfavor escriba si o no")
         respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
     return respuesta
+
 # Función en la cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en un diccionario y sumarlos. Se devuelve ese valor.
 def calcularValorMano (listajugadores):
     valormano=0
@@ -113,6 +126,7 @@ def calcularValorMano (listajugadores):
         valormano+=objetos.valor_baraja.get(i)
     valormano=comprobarAses(valormano,listajugadores,3)#Comprueba si hay ases para cambiarlos a valor 1 si el jugador se pasa
     return valormano
+
 # Procedimiento que llama a la función calcularValorMano y añade el valor que se da (valor mano jugador) a la lista del jugador.
 def valorCartasSimple (listajugadores):
     valormano=calcularValorMano(listajugadores)
@@ -121,6 +135,7 @@ def valorCartasSimple (listajugadores):
     else:
         del listajugadores[4]
         listajugadores.append(valormano)
+
 # Función que llama a la función calcularValorMano y añade el valor que se da (valor mano jugador) a la lista del jugador, además comprueba si el jugador se ha pasado de 21 puntos, si se ha pasado le quita el dinero de la apuesta de su dinero total i se lo suma a la banca. Al final devuelve un booleano que hacer referencia a si se ha pasado o no.
 def valorCartas (listajugadores,listabanca): 
     apuesta=listajugadores[2]
@@ -139,6 +154,7 @@ def valorCartas (listajugadores,listabanca):
     else:
         pasado=False
     return pasado
+
 # Procedimiento utilizado para mostrar la información de la banca en el juego
 def verBanca (listabanca):
     prints.colorbanca()
@@ -157,7 +173,8 @@ def verBanca (listabanca):
                 primera_carta = False
             print("%s" % (i), end="")
     prints.colorreset()
-# Procedimiento que muestra las cartas de todos los jugadores en la mesa incluida la banca. Se va utilizando según los jugadores obtengan cartas nuevas, así como resaltando el jugador actual y ocultando la última carta del resto de jugadores. 
+
+# Procedimiento utilizado para acortar código e imprimir las cartas de los jugadores
 def imprimirCartas(cartas,mostrar):
     primera_carta = True
     carta_repetida = False
@@ -177,6 +194,7 @@ def imprimirCartas(cartas,mostrar):
                 j = "?"
             print(" | %s" % (j), end="")
 
+# Procedimiento que muestra las cartas de todos los jugadores en la mesa incluida la banca. Se va utilizando según los jugadores obtengan cartas nuevas, así como resaltando el jugador actual y ocultando la última carta del resto de jugadores.
 def verCartas (listajugadores,jugador,listabanca):
     for i in range (len(listajugadores)):
         valorCartasSimple(listajugadores[i])
@@ -194,6 +212,7 @@ def verCartas (listajugadores,jugador,listabanca):
         else:
             imprimirCartas(i, "no")
         prints.colorreset()
+
 # Procedimiento que muestra todas las cartas de los jugadores mas la banca. Se utiliza al final de la ronda, mostrando la mano final de la banca y todas las cartas de los jugadores.
 def verMesa(listajugadores,listabanca):
     prints.mesa()
@@ -217,6 +236,7 @@ def verMesa(listajugadores,listabanca):
     else:
         print("\n   >>> \033[31mBANCAROTA! \033[92mLa banca se ha quedado sin dinero, coge el dinero antes de que llegue seguridad.")
         prints.colorinput("Pulsa \"ENTER\" para acabar la partida.")
+
 # Función de final de ronda para añadir jugadores al final de ronda
 def finAnadirJugadores(listajugadores):
     prints.ronda()
@@ -230,18 +250,21 @@ def finAnadirJugadores(listajugadores):
         if masjugadores == "no" or masjugadores == "":
             ("   >>> Sigamos pues!")
     return opcion
+
 # Procedimiento en el cual se pasa por parámetro una lista de numero que hacen referencia a jugadores que van a dejar de jugar. 
 # Esta función elimina esos jugadores de la listajugadores.
 def eliminarJugadores (listajugadoressaliendo,listajugadores):
     listajugadoressaliendo.reverse()
     for i in listajugadoressaliendo:
         del listajugadores[i]
+
 # Procedimiento que pide un numero(dinero a añadir), luego se suma ese numero al numero que ya había en la lista del jugador en el índice 1(dinero)
 def añadirDinero (listajugadores,i):
     dinero=int(prints.colorinput(f"Cuanto dinero quieres añadir? [ Dinero → {listajugadores[i][1]} ]"))
     dinerototal=listajugadores[i][1]+dinero
     del listajugadores[i][1]
     listajugadores[i].insert(1,dinerototal)
+
 # Procedimiento que pide un numero (cantidad de jugadores que se van a añadir) y comprueba que la suma de estos y los que ya están jugando no sea mayor a 7. Luego llama a las funciones nombreJugadores y dineroJugadores para crear una lista del jugador con su nombre y su dinero
 def nuevosJugadores (listajugadores):
     numeronuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
@@ -250,10 +273,12 @@ def nuevosJugadores (listajugadores):
         numeronuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
     listajugadores.extend(nombreJugadores(numeronuevosJugadores))
     dineroJugadores(listajugadores[-numeronuevosJugadores:])
+
 # Procedimiento que elimina de cada lista (cada jugador) los datos que son únicos de cada ronda (apuesta[2], cartas[3], valor mano[4]).
 def eliminarDatosRonda (listajugadores):
     for i in listajugadores:
         del i[2:]
+
 # Funcion utilizada para acortar código en la funcion de opcionesJugadores(...)
 def gestFinal(listajugadores,i,listajugadoressaliendo,opc):
     if listajugadores[i][1]<=0:
@@ -271,6 +296,7 @@ def gestFinal(listajugadores,i,listajugadoressaliendo,opc):
     else:
         ("   >>> ¡Sigamos asi pues!")
     return opcion
+
 # Funcion utilizada al final de la ronda para saber si los jugadores desean salir de la partida, terminarla, añadir dinero, o continuar
 def opcionesJugadores (listajugadores):
     listajugadoressaliendo=[]
@@ -281,12 +307,14 @@ def opcionesJugadores (listajugadores):
             opcion = gestFinal(listajugadores,i,listajugadoressaliendo,"salir")
     eliminarJugadores(listajugadoressaliendo,listajugadores)
     return opcion
+
 # Procedimiento utilizado para acortar código en compararCartas(...)
 def gestdineroBanca(listabanca,apuesta,i,multiplicador):
     dineroBanca=listabanca.pop(0)-(apuesta*multiplicador)
     listabanca.insert(0,dineroBanca)
     dinerojugador=i.pop(1)+(apuesta*multiplicador)
     i.insert(1,dinerojugador)
+
 # Procedimiento que compara el valor mano de cada jugador con el de la banca. Luego, según quien gane, la banca cobra y el jugador paga o viceversa.
 def compararCartas (listajugadores,listabanca,tasa_normal,tasa_blackjack):
     for i in listajugadores:#Cuando la banca cobra
@@ -312,6 +340,7 @@ def compararCartas (listajugadores,listabanca,tasa_normal,tasa_blackjack):
                     gestdineroBanca(listabanca,apuesta,i,tasa_normal)
                 else:
                     gestdineroBanca(listabanca,apuesta,i,tasa_normal)
+
 # Función que recibe por parámetro el valor de la mano de un jugador y sus cartas y comprueba si hay algún as. Si hay alguno, comprueba cuantos hay exactamente para luego si el jugador se pasa de 21 poder cambiar el valor del as de 11 a 1(restar 10),  para que no se pase así, tantas veces como ases tenga en mano. Devuelve el valor de la mano.
 def comprobarAses(valormano,listajugadores,a):
     if valormano>21:
@@ -332,17 +361,20 @@ def comprobarAses(valormano,listajugadores,a):
 #          MENUSES          #
 #############################
 
+
 # Función de las opciones para modificar el multiplicador de las tasas
 def modificarTasas(tasa_normal,tasa_blackjack):
     tasa_normal = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta normal? [Recomendado: 1] [Actual: %d]" % tasa_normal))
     tasa_blackjack = int(prints.colorinput("¿Por cuanto quieres multiplicar la apuesta de BlackJack? [Recomendado: 2] [Actual: %d]" % tasa_blackjack))
     return tasa_normal,tasa_blackjack
+
 # Funcion utilizada en el menú de opciones para refrescar las variables mostradas en el menú despues de actualizarlas.
 def menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja):
     limpiarTerminal()
     prints.opciones(listabanca[0],tasa_normal,tasa_blackjack, baraja)
     opcion = prints.colorinput("Que deseas hacer?")
     return opcion
+
 # Funcion usada en los menús para confirmar que la opción seleccionada sea válida
 def comprobarOpcion(menu, lista, variable, opcion, listabanca, tasa_normal, tasa_blackjack, baraja):
     while opcion not in lista:
@@ -354,6 +386,7 @@ def comprobarOpcion(menu, lista, variable, opcion, listabanca, tasa_normal, tasa
         prints.colorerror("    ⚠  Esta opción no está disponible")
         opcion = prints.colorinput(f"Que deseas hacer? {variable}")
     return opcion
+
 # Funcion utilizada en las opciones para modificar la cantidad de barajas con las que se quiere jugar
 def modificarBarajas(baraja):
     baraja_final = int(prints.colorinput("Con cuantas barajas quieres jugar? [Recomendado: 8]"))
@@ -361,6 +394,7 @@ def modificarBarajas(baraja):
         prints.colorerror("    ⚠  Has de jugar como mínimo con 1 baraja.")
         baraja_final = int(prints.colorinput("Con cuantas barajas quieres jugar? [Recomendado: 8]"))
     return baraja_final
+
 # Función utilizada para mostrar un menú de opciones dónde modificar varias variables sobre el funcionamiento del juego.
 def menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja):
     prints.opciones(listabanca[0], tasa_normal, tasa_blackjack, baraja)
@@ -376,12 +410,14 @@ def menuOpciones(listabanca,tasa_normal,tasa_blackjack,baraja):
         opcion = comprobarOpcion( "opciones", ["1", "2", "3", "4"], "[ 1 - 4 ]", opcion, listabanca,tasa_normal,tasa_blackjack, baraja)
         opcion = menuOpcionesLimpiar(listabanca,tasa_normal,tasa_blackjack, baraja)
     return tasa_normal, tasa_blackjack, baraja
+
 # Funcion utilizada para acortar código de menuPrincipal(...)
 def menuPrincipalInit():
     limpiarTerminal()
     prints.inicio()
     opcion = prints.colorinput("Que deseas hacer? [ 1 - 4 ]")
     return opcion
+
 # Funcion utilizada para mostrar un menú principal al inicio del programa donde poder entrar en OPCIONES, visualizar las REGLAS, EMPEZAR la partida, o SALIR del programa. Al acabar una partida se vuelve a este menú.
 def menuPrincipal(listabanca, tasa_normal, tasa_blackjack, baraja):
     opcion = menuPrincipalInit()
