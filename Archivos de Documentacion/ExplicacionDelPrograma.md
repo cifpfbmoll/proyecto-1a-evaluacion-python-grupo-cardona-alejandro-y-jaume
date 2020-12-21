@@ -10,7 +10,7 @@
 
  - La banca debe sacar carta si su puntuación es menor o igual a 16.
 
- - Se considera Blackjack la suma de `J`, `Q` o `K` + `AS`
+ - Se considera Blackjack la suma de `10`, `J`, `Q` o `K` + `AS` *(Sumar 21 con 2 cartas)*
 
 ## Apuestas:
 
@@ -32,7 +32,7 @@ El programa emula una partida de blackjack real, con las mismas reglas, funciona
 
 **Listajugadores**: Esta lista es donde se guarda toda la información de cada jugador. Cada elemento de la lista es otra lista con toda la información de un jugador. De esta forma conseguimos guardar todos los datos de cada jugador de manera ordenada i sabiendo a quien pertenece cada uno. Esta lista seria algo así:
 
-`Listajugadores=[ ["jugador","sudinero","apuesta",["cartasenMano"],"valormano"] , ["jugador","sudinero","apuesta",["cartasenMano"],"valormano"] , ["jugador","sudinero","apuesta",["cartasenMano"],"valormano"] ]`
+`listajugadores=[ ["jugador","sudinero","apuesta",["cartasenMano"],"valormano"] , ["jugador","sudinero","apuesta",["cartasenMano"],"valormano"] , ["jugador","sudinero","apuesta",["cartasenMano"],"valormano"] ]`
 
 Esta lista representaría a 3 jugadores con sus respectivos datos. Como vemos el 4 elemento de la lista de cada jugador es otra lista en la cual se almacenarán todas las cartas que se le vayan dando durante la ronda. Las listas, como las vemos aquí, solo estarán así durante el momento que dure la ronda, al terminar la ronda los datos de apuesta, cartas en mano y valor mano se borran ya que son diferentes en cada una de las rondas.
 
@@ -41,3 +41,11 @@ Esta lista representaría a 3 jugadores con sus respectivos datos. Como vemos el
 `listabanca=["Dinero",["cartas"],"valorcartas"]`
 
 Como ocurre en la lista anterior las cartas en mano son otra lista dentro de la lista. Al igual que la anterior lista, esta solo estará así durante la ronda, al terminar se borraran los datos de cartas y valor cartas ya que son diferentes en cada ronda.
+
+### Variables utilizadas
+Las variables que manejan la partida y con las se trabajan en todo el código son:
++ `listajugadores` - Guarda la información de los jugadores.
++ `listabanca` - Guarda la inforamción de la banca.
++ `tasa_normal` - Define el multiplicador de la tasa de retorno normal.
++ `tasa_blackjack` - Define el multiplicador de la tasa de retorno al conseguir un **BlackJack**.
++ `numero_barajas` - Define el número de barajas con las que se van a jugar.
