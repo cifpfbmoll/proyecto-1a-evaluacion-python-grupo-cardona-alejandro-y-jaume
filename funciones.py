@@ -145,14 +145,12 @@ def verBanca (listabanca):
     valorCartasBanca(listabanca)
     print("   >>> Cartas de la BANCA ⁞ Dinero: %s ⁞ Valor de la mano: %s" % (listabanca[0],listabanca[2]))
     primera_carta = True
-    carta_repetida = False
     for i in listabanca[1]:
         if i != listabanca[1][-1]:
             if i == listabanca[1][0] and primera_carta == True:
                 print("    >> ", end="")
                 primera_carta = False
             print("%s" % (i), end=" | ")
-            carta_repetida = True
         else:
             if i == listabanca[1][0] and primera_carta == True:
                 print("    >> ", end="")
@@ -160,19 +158,24 @@ def verBanca (listabanca):
             print("%s" % (i), end="")
     prints.colorreset()
 # Procedimiento que muestra las cartas de todos los jugadores en la mesa incluida la banca. Se va utilizando según los jugadores obtengan cartas nuevas, así como resaltando el jugador actual y ocultando la última carta del resto de jugadores. 
-def imprimirCartas(cartas,final):
+def imprimirCartas(cartas,mostrar):
     primera_carta = True
     carta_repetida = False
-    for j in i[3]:                          
+    for j in cartas[3]:                          
         #Empieza a imprimir las cartas del jugador "i", el cual será el jugador actual, comprueba si la posición de la carta es la primera o la última, si están repetidas, etc, para saber como ha de imprimirla
-        if j != i[3][-1] or len(i[3])==2 and i[3][0] == i[3][1] and carta_repetida == False:
-            if j == i[3][0] and primera_carta == True:
+        if j != cartas[3][-1] or (j == cartas[3][-1] and carta_repetida == False and cartas[3].count(j) > 1):
+            if j == cartas[3][0] and primera_carta == True:
                 print("    >> ", end="")
                 primera_carta = False
-            print("%s" % (j), end=" | ")
-            carta_repetida = True
+                print("%s" % (j), end="")
+            else:
+                print(" | %s" % (j), end="")
+            if j == cartas[3][-1] and carta_repetida == False:
+                carta_repetida = True
         else:
-            print("%s" % (j), end="")
+            if mostrar == "no":
+                j = "?"
+            print(" | %s" % (j), end="")
 
 def verCartas (listajugadores,jugador,listabanca):
     for i in range (len(listajugadores)):
@@ -187,30 +190,9 @@ def verCartas (listajugadores,jugador,listabanca):
             prints.colorreset()
             print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: ?" % (i[0],i[1],i[2]))
         if i[0] == jugador:
-            primera_carta = True
-            carta_repetida = False
-            for j in i[3]:                          
-                #Empieza a imprimir las cartas del jugador "i", el cual será el jugador actual, comprueba si la posición de la carta es la primera o la última, si están repetidas, etc, para saber como ha de imprimirla
-                if j != i[3][-1] or len(i[3])==2 and i[3][0] == i[3][1] and carta_repetida == False:
-                    if j == i[3][0] and primera_carta == True:
-                        print("    >> ", end="")
-                        primera_carta = False
-                    print("%s" % (j), end=" | ")
-                    carta_repetida = True
-                else:
-                    print("%s" % (j), end="")
+            imprimirCartas(i, "si")
         else:
-            primera_carta = True
-            carta_repetida = False
-            for j in i[3]:                          #Aquí imprimirá las cartas del resto, separado ya que no debemos ver la última
-                if j != i[3][-1] or len(i[3])==2 and i[3][0] == i[3][1] and carta_repetida == False:                   #carta del resto
-                    if j == i[3][0] and primera_carta == True:
-                        print("    >> ", end="")
-                        primera_carta = False  
-                    print("%s" % (j), end=" | ")
-                    carta_repetida = True
-                else:
-                    print("?", end="")
+            imprimirCartas(i, "no")
         prints.colorreset()
 # Procedimiento que muestra todas las cartas de los jugadores mas la banca. Se utiliza al final de la ronda, mostrando la mano final de la banca y todas las cartas de los jugadores.
 def verMesa(listajugadores,listabanca):
@@ -227,17 +209,7 @@ def verMesa(listajugadores,listabanca):
             estado = "PERDEDOR/A"                   #Si no se cumple ninguna ha perdido
             prints.colorperdedor()
         print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s ⁞ %s" % (i[0],i[1],i[2],i[4],estado))
-        primera_carta = True
-        carta_repetida = False
-        for j in i[3]:
-            if j != i[3][-1] or len(i[3])==2 and i[3][0] == i[3][1] and carta_repetida == False:                   #Se enseñan todas las cartas, ya que es el final de la partida.
-                if j == i[3][0] and primera_carta == True:
-                    print("    >> ", end="")
-                    primera_carta = False
-                print("%s" % (j), end=" | ")
-                carta_repetida = True
-            else:
-                print("%s" % (j), end="")
+        imprimirCartas(i, "si")
         prints.colorreset()
     if listabanca[0]>0: # Comprueba si la banca se ha quedado sin dinero, para lanzar el mensaje de bancarota o fin de ronda
         print("")
