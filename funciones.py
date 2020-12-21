@@ -25,8 +25,7 @@ def repartirCartaBanca (listabanca,baraja):
         listabanca.append([carta])
     else:
         listabanca[1].append(carta)
-# Procedimiento en el cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en
-# un diccionario y sumarlos. Esa suma se añade a la lista de la banca y es el valor actual de las cartas que tiene la banca.
+# Procedimiento en el cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en un diccionario y sumarlos. Esa suma se añade a la lista de la banca y es el valor actual de las cartas que tiene la banca.
 def valorCartasBanca (listabanca):
     valormano=0
     for i in listabanca[1]:
@@ -107,8 +106,7 @@ def preguntaUnaCartaMas (jugador):
         prints.colorerror("    ⚠  Porfavor escriba si o no")
         respuesta=prints.colorinput(f"Quieres una carta mas {jugador}? [ si / NO ]")
     return respuesta
-# Función en la cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en
-# un diccionario y sumarlos. Se devuelve ese valor.
+# Función en la cual se utiliza un bucle para ir sacando elementos(cartas) de una lista, para luego buscar el valor de esos elementos en un diccionario y sumarlos. Se devuelve ese valor.
 def calcularValorMano (listajugadores):
     valormano=0
     for i in listajugadores[3]:
@@ -123,9 +121,7 @@ def valorCartasSimple (listajugadores):
     else:
         del listajugadores[4]
         listajugadores.append(valormano)
-# Función que llama a la función calcularValorMano y añade el valor que se da (valor mano jugador) a la lista del jugador, además comprueba si
-# el jugador se ha pasado de 21 puntos, si se ha pasado le quita el dinero de la apuesta de su dinero total i se lo suma a la banca. Al final
-# devuelve un booleano que hacer referencia a si se ha pasado o no.
+# Función que llama a la función calcularValorMano y añade el valor que se da (valor mano jugador) a la lista del jugador, además comprueba si el jugador se ha pasado de 21 puntos, si se ha pasado le quita el dinero de la apuesta de su dinero total i se lo suma a la banca. Al final devuelve un booleano que hacer referencia a si se ha pasado o no.
 def valorCartas (listajugadores,listabanca): 
     apuesta=listajugadores[2]
     valormano=calcularValorMano(listajugadores)
@@ -148,17 +144,36 @@ def verBanca (listabanca):
     prints.colorbanca()
     valorCartasBanca(listabanca)
     print("   >>> Cartas de la BANCA ⁞ Dinero: %s ⁞ Valor de la mano: %s" % (listabanca[0],listabanca[2]))
+    primera_carta = True
+    carta_repetida = False
     for i in listabanca[1]:
         if i != listabanca[1][-1]:
-            if i == listabanca[1][0]:
+            if i == listabanca[1][0] and primera_carta == True:
                 print("    >> ", end="")
+                primera_carta = False
             print("%s" % (i), end=" | ")
+            carta_repetida = True
         else:
-            if i == listabanca[1][0]:
+            if i == listabanca[1][0] and primera_carta == True:
                 print("    >> ", end="")
+                primera_carta = False
             print("%s" % (i), end="")
     prints.colorreset()
 # Procedimiento que muestra las cartas de todos los jugadores en la mesa incluida la banca. Se va utilizando según los jugadores obtengan cartas nuevas, así como resaltando el jugador actual y ocultando la última carta del resto de jugadores. 
+def imprimirCartas(cartas,final):
+    primera_carta = True
+    carta_repetida = False
+    for j in i[3]:                          
+        #Empieza a imprimir las cartas del jugador "i", el cual será el jugador actual, comprueba si la posición de la carta es la primera o la última, si están repetidas, etc, para saber como ha de imprimirla
+        if j != i[3][-1] or len(i[3])==2 and i[3][0] == i[3][1] and carta_repetida == False:
+            if j == i[3][0] and primera_carta == True:
+                print("    >> ", end="")
+                primera_carta = False
+            print("%s" % (j), end=" | ")
+            carta_repetida = True
+        else:
+            print("%s" % (j), end="")
+
 def verCartas (listajugadores,jugador,listabanca):
     for i in range (len(listajugadores)):
         valorCartasSimple(listajugadores[i])
@@ -172,19 +187,28 @@ def verCartas (listajugadores,jugador,listabanca):
             prints.colorreset()
             print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: ?" % (i[0],i[1],i[2]))
         if i[0] == jugador:
-            for j in i[3]:                          #Empieza a imprimir las cartas del jugador "i", el cual será el jugador actual
-                if j != i[3][-1]:                   #Comprueba si la posición de la carta es la primera o la última
-                    if j == i[3][0]:                #para saber como ha de imprimirla
-                        print("    >> ", end="")     
+            primera_carta = True
+            carta_repetida = False
+            for j in i[3]:                          
+                #Empieza a imprimir las cartas del jugador "i", el cual será el jugador actual, comprueba si la posición de la carta es la primera o la última, si están repetidas, etc, para saber como ha de imprimirla
+                if j != i[3][-1] or len(i[3])==2 and i[3][0] == i[3][1] and carta_repetida == False:
+                    if j == i[3][0] and primera_carta == True:
+                        print("    >> ", end="")
+                        primera_carta = False
                     print("%s" % (j), end=" | ")
+                    carta_repetida = True
                 else:
                     print("%s" % (j), end="")
         else:
+            primera_carta = True
+            carta_repetida = False
             for j in i[3]:                          #Aquí imprimirá las cartas del resto, separado ya que no debemos ver la última
-                if j != i[3][-1]:                   #carta del resto
-                    if j == i[3][0]:
+                if j != i[3][-1] or len(i[3])==2 and i[3][0] == i[3][1] and carta_repetida == False:                   #carta del resto
+                    if j == i[3][0] and primera_carta == True:
                         print("    >> ", end="")
+                        primera_carta = False  
                     print("%s" % (j), end=" | ")
+                    carta_repetida = True
                 else:
                     print("?", end="")
         prints.colorreset()
@@ -203,11 +227,15 @@ def verMesa(listajugadores,listabanca):
             estado = "PERDEDOR/A"                   #Si no se cumple ninguna ha perdido
             prints.colorperdedor()
         print("   >>> Cartas de %s ⁞ Dinero: %s ⁞ Apuesta: %s ⁞ Valor de la mano: %s ⁞ %s" % (i[0],i[1],i[2],i[4],estado))
+        primera_carta = True
+        carta_repetida = False
         for j in i[3]:
-            if j != i[3][-1]:                   #Se enseñan todas las cartas, ya que es el final de la partida.
-                if j == i[3][0]:
+            if j != i[3][-1] or len(i[3])==2 and i[3][0] == i[3][1] and carta_repetida == False:                   #Se enseñan todas las cartas, ya que es el final de la partida.
+                if j == i[3][0] and primera_carta == True:
                     print("    >> ", end="")
+                    primera_carta = False
                 print("%s" % (j), end=" | ")
+                carta_repetida = True
             else:
                 print("%s" % (j), end="")
         prints.colorreset()
@@ -242,8 +270,7 @@ def añadirDinero (listajugadores,i):
     dinerototal=listajugadores[i][1]+dinero
     del listajugadores[i][1]
     listajugadores[i].insert(1,dinerototal)
-# Procedimiento que pide un numero (cantidad de jugadores que se van a añadir) y comprueba que la suma de estos y los que ya están jugando
-# no sea mayor a 7. Luego llama a las funciones nombreJugadores y dineroJugadores para crear una lista del jugador con su nombre y su dinero
+# Procedimiento que pide un numero (cantidad de jugadores que se van a añadir) y comprueba que la suma de estos y los que ya están jugando no sea mayor a 7. Luego llama a las funciones nombreJugadores y dineroJugadores para crear una lista del jugador con su nombre y su dinero
 def nuevosJugadores (listajugadores):
     numeronuevosJugadores=int(prints.colorinput("Cuantos jugadores se van a añadir?"))
     while (len(listajugadores))+numeronuevosJugadores>7:
@@ -313,9 +340,7 @@ def compararCartas (listajugadores,listabanca,tasa_normal,tasa_blackjack):
                     gestdineroBanca(listabanca,apuesta,i,tasa_normal)
                 else:
                     gestdineroBanca(listabanca,apuesta,i,tasa_normal)
-# Función que recibe por parámetro el valor de la mano de un jugador y sus cartas y comprueba si hay algún as. Si hay alguno,
-# comprueba cuantos hay exactamente para luego si el jugador se pasa de 21 poder cambiar el valor del as de 11 a 1(restar 10), 
-# para que no se pase así, tantas veces como ases tenga en mano. Devuelve el valor de la mano.
+# Función que recibe por parámetro el valor de la mano de un jugador y sus cartas y comprueba si hay algún as. Si hay alguno, comprueba cuantos hay exactamente para luego si el jugador se pasa de 21 poder cambiar el valor del as de 11 a 1(restar 10),  para que no se pase así, tantas veces como ases tenga en mano. Devuelve el valor de la mano.
 def comprobarAses(valormano,listajugadores,a):
     if valormano>21:
         hayAs=False
